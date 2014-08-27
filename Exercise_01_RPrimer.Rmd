@@ -1,7 +1,7 @@
 ---
 title: 'Lab 1 - R Primer'
-author: "Michael Dietze"
-date: "August 25, 2014"
+author: "GE509"
+date: "September 3, 2014"
 output: html_document
 ---
 
