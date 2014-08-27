@@ -13,2823 +13,792 @@ xmlns:mv="http://macVmlSchemaUri" xmlns="http://www.w3.org/TR/REC-html40">
 <meta name=Originator content="Microsoft Word 14">
 <link rel=File-List href="GE509_files/filelist.xml">
 <title>Statistical Modeling  IB/NRES 509</title>
-<!--[if gte mso 9]><xml>
- <o:DocumentProperties>
-  <o:Author>Michael Dietze</o:Author>
-  <o:LastAuthor>Michael Dietze</o:LastAuthor>
-  <o:Revision>2</o:Revision>
-  <o:TotalTime>22</o:TotalTime>
-  <o:LastPrinted>2014-08-26T20:15:00Z</o:LastPrinted>
-  <o:Created>2014-08-26T21:15:00Z</o:Created>
-  <o:LastSaved>2014-08-26T21:15:00Z</o:LastSaved>
-  <o:Pages>3</o:Pages>
-  <o:Words>2586</o:Words>
-  <o:Characters>14742</o:Characters>
-  <o:Company>Boston University</o:Company>
-  <o:Lines>122</o:Lines>
-  <o:Paragraphs>34</o:Paragraphs>
-  <o:CharactersWithSpaces>17294</o:CharactersWithSpaces>
-  <o:Version>14.0</o:Version>
- </o:DocumentProperties>
- <o:OfficeDocumentSettings>
-  <o:AllowPNG/>
- </o:OfficeDocumentSettings>
-</xml><![endif]-->
-<link rel=themeData href="GE509_files/themedata.xml">
-<!--[if gte mso 9]><xml>
- <w:WordDocument>
-  <w:Zoom>150</w:Zoom>
-  <w:DisplayBackgroundShape/>
-  <w:SpellingState>Clean</w:SpellingState>
-  <w:TrackMoves/>
-  <w:TrackFormatting/>
-  <w:DefaultTableStyle Number="0">Normal</w:DefaultTableStyle>
-  <w:DrawingGridHorizontalSpacing>0 pt</w:DrawingGridHorizontalSpacing>
-  <w:DrawingGridVerticalSpacing>0 pt</w:DrawingGridVerticalSpacing>
-  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
-  <w:DisplayVerticalDrawingGridEvery>0</w:DisplayVerticalDrawingGridEvery>
-  <w:UseMarginsForDrawingGridOrigin/>
-  <w:ValidateAgainstSchemas/>
-  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
-  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
-  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
-  <w:DoNotPromoteQF/>
-  <w:LidThemeOther>EN-US</w:LidThemeOther>
-  <w:LidThemeAsian>JA</w:LidThemeAsian>
-  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
-  <w:DrawingGridHorizontalOrigin>0 pt</w:DrawingGridHorizontalOrigin>
-  <w:DrawingGridVerticalOrigin>0 pt</w:DrawingGridVerticalOrigin>
-  <w:Compatibility>
-   <w:SpaceForUL/>
-   <w:BalanceSingleByteDoubleByteWidth/>
-   <w:DoNotLeaveBackslashAlone/>
-   <w:ULTrailSpace/>
-   <w:DoNotExpandShiftReturn/>
-   <w:AdjustLineHeightInTable/>
-   <w:BreakWrappedTables/>
-   <w:SnapToGridInCell/>
-   <w:WrapTextWithPunct/>
-   <w:UseAsianBreakRules/>
-   <w:DontGrowAutofit/>
-   <w:SplitPgBreakAndParaMark/>
-   <w:EnableOpenTypeKerning/>
-   <w:DontFlipMirrorIndents/>
-   <w:OverrideTableStyleHps/>
-  </w:Compatibility>
-  <m:mathPr>
-   <m:mathFont m:val="Cambria Math"/>
-   <m:brkBin m:val="before"/>
-   <m:brkBinSub m:val="&#45;-"/>
-   <m:smallFrac m:val="off"/>
-   <m:dispDef/>
-   <m:lMargin m:val="0"/>
-   <m:rMargin m:val="0"/>
-   <m:defJc m:val="centerGroup"/>
-   <m:wrapIndent m:val="1440"/>
-   <m:intLim m:val="subSup"/>
-   <m:naryLim m:val="undOvr"/>
-  </m:mathPr></w:WordDocument>
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="true"
-  DefSemiHidden="true" DefQFormat="false" DefPriority="99"
-  LatentStyleCount="276">
-  <w:LsdException Locked="false" Priority="0" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="Normal"/>
-  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="heading 1"/>
-  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
-  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="heading 3"/>
-  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
-  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
-  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
-  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
-  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
-  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
-  <w:LsdException Locked="false" Priority="39" Name="toc 1"/>
-  <w:LsdException Locked="false" Priority="39" Name="toc 2"/>
-  <w:LsdException Locked="false" Priority="39" Name="toc 3"/>
-  <w:LsdException Locked="false" Priority="39" Name="toc 4"/>
-  <w:LsdException Locked="false" Priority="39" Name="toc 5"/>
-  <w:LsdException Locked="false" Priority="39" Name="toc 6"/>
-  <w:LsdException Locked="false" Priority="39" Name="toc 7"/>
-  <w:LsdException Locked="false" Priority="39" Name="toc 8"/>
-  <w:LsdException Locked="false" Priority="39" Name="toc 9"/>
-  <w:LsdException Locked="false" Priority="35" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="caption"/>
-  <w:LsdException Locked="false" Priority="10" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="Title"/>
-  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
-  <w:LsdException Locked="false" Priority="11" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="Subtitle"/>
-  <w:LsdException Locked="false" Priority="22" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="Strong"/>
-  <w:LsdException Locked="false" Priority="20" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="Emphasis"/>
-  <w:LsdException Locked="false" Priority="59" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Table Grid"/>
-  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Placeholder Text"/>
-  <w:LsdException Locked="false" Priority="1" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="No Spacing"/>
-  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Shading"/>
-  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light List"/>
-  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Grid"/>
-  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 1"/>
-  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 2"/>
-  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 1"/>
-  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 2"/>
-  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 1"/>
-  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 2"/>
-  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 3"/>
-  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Dark List"/>
-  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Shading"/>
-  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful List"/>
-  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Grid"/>
-  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Shading Accent 1"/>
-  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light List Accent 1"/>
-  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Grid Accent 1"/>
-  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 1"/>
-  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 1"/>
-  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 1 Accent 1"/>
-  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Revision"/>
-  <w:LsdException Locked="false" Priority="34" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="List Paragraph"/>
-  <w:LsdException Locked="false" Priority="29" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="Quote"/>
-  <w:LsdException Locked="false" Priority="30" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="Intense Quote"/>
-  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 2 Accent 1"/>
-  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 1"/>
-  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 1"/>
-  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 1"/>
-  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Dark List Accent 1"/>
-  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Shading Accent 1"/>
-  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful List Accent 1"/>
-  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Grid Accent 1"/>
-  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Shading Accent 2"/>
-  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light List Accent 2"/>
-  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Grid Accent 2"/>
-  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 2"/>
-  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 2"/>
-  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 1 Accent 2"/>
-  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 2 Accent 2"/>
-  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 2"/>
-  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 2"/>
-  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 2"/>
-  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Dark List Accent 2"/>
-  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Shading Accent 2"/>
-  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful List Accent 2"/>
-  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Grid Accent 2"/>
-  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Shading Accent 3"/>
-  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light List Accent 3"/>
-  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Grid Accent 3"/>
-  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 3"/>
-  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 3"/>
-  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 1 Accent 3"/>
-  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 2 Accent 3"/>
-  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 3"/>
-  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 3"/>
-  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 3"/>
-  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Dark List Accent 3"/>
-  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Shading Accent 3"/>
-  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful List Accent 3"/>
-  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Grid Accent 3"/>
-  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Shading Accent 4"/>
-  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light List Accent 4"/>
-  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Grid Accent 4"/>
-  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 4"/>
-  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 4"/>
-  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 1 Accent 4"/>
-  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 2 Accent 4"/>
-  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 4"/>
-  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 4"/>
-  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 4"/>
-  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Dark List Accent 4"/>
-  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Shading Accent 4"/>
-  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful List Accent 4"/>
-  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Grid Accent 4"/>
-  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Shading Accent 5"/>
-  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light List Accent 5"/>
-  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Grid Accent 5"/>
-  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 5"/>
-  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 5"/>
-  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 1 Accent 5"/>
-  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 2 Accent 5"/>
-  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 5"/>
-  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 5"/>
-  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 5"/>
-  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Dark List Accent 5"/>
-  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Shading Accent 5"/>
-  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful List Accent 5"/>
-  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Grid Accent 5"/>
-  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Shading Accent 6"/>
-  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light List Accent 6"/>
-  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Light Grid Accent 6"/>
-  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 6"/>
-  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 6"/>
-  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 1 Accent 6"/>
-  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium List 2 Accent 6"/>
-  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 6"/>
-  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 6"/>
-  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 6"/>
-  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Dark List Accent 6"/>
-  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Shading Accent 6"/>
-  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful List Accent 6"/>
-  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
-   UnhideWhenUsed="false" Name="Colorful Grid Accent 6"/>
-  <w:LsdException Locked="false" Priority="19" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="Subtle Emphasis"/>
-  <w:LsdException Locked="false" Priority="21" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="Intense Emphasis"/>
-  <w:LsdException Locked="false" Priority="31" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="Subtle Reference"/>
-  <w:LsdException Locked="false" Priority="32" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="Intense Reference"/>
-  <w:LsdException Locked="false" Priority="33" SemiHidden="false"
-   UnhideWhenUsed="false" QFormat="true" Name="Book Title"/>
-  <w:LsdException Locked="false" Priority="37" Name="Bibliography"/>
-  <w:LsdException Locked="false" Priority="39" QFormat="true" Name="TOC Heading"/>
- </w:LatentStyles>
-</xml><![endif]-->
-<style>
-<!--
- /* Font Definitions */
-@font-face
-	{font-family:"American Typewriter";
-	panose-1:2 9 6 4 2 0 4 2 3 4;
-	mso-font-charset:0;
-	mso-generic-font-family:auto;
-	mso-font-pitch:variable;
-	mso-font-signature:-1610612625 25 0 0 273 0;}
-@font-face
-	{font-family:"American Typewriter Light";
-	panose-1:2 9 3 4 2 0 4 2 3 4;
-	mso-font-charset:0;
-	mso-generic-font-family:auto;
-	mso-font-pitch:variable;
-	mso-font-signature:-1610612625 25 0 0 273 0;}
-@font-face
-	{font-family:AlMateen;
-	mso-font-alt:"Times New Roman";
-	mso-font-charset:128;
-	mso-generic-font-family:auto;
-	mso-font-pitch:variable;
-	mso-font-signature:0 0 0 0 0 0;}
- /* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{mso-style-unhide:no;
-	mso-style-qformat:yes;
-	mso-style-parent:"";
-	margin:0in;
-	margin-bottom:.0001pt;
-	mso-pagination:none;
-	mso-hyphenate:none;
-	font-size:10.0pt;
-	font-family:"Times New Roman";
-	mso-fareast-font-family:"Times New Roman";}
-h1
-	{mso-style-unhide:no;
-	mso-style-qformat:yes;
-	mso-style-parent:Heading;
-	mso-style-next:"Body Text";
-	margin-top:12.0pt;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:0in;
-	text-indent:0in;
-	mso-pagination:none;
-	page-break-after:avoid;
-	mso-outline-level:1;
-	mso-list:l0 level1 lfo1;
-	mso-hyphenate:none;
-	tab-stops:list 0in;
-	font-size:10.0pt;
-	font-family:"Times New Roman";
-	mso-font-kerning:0pt;
-	font-weight:normal;}
-h3
-	{mso-style-unhide:no;
-	mso-style-qformat:yes;
-	mso-style-parent:Heading;
-	mso-style-next:"Body Text";
-	margin-top:12.0pt;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:0in;
-	text-indent:0in;
-	mso-pagination:none;
-	page-break-after:avoid;
-	mso-outline-level:3;
-	mso-list:l0 level3 lfo1;
-	mso-hyphenate:none;
-	tab-stops:list 0in;
-	font-size:10.0pt;
-	font-family:"Times New Roman";
-	font-weight:normal;}
-p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
-	{mso-style-unhide:no;
-	margin:0in;
-	margin-bottom:.0001pt;
-	mso-pagination:none;
-	mso-hyphenate:none;
-	font-size:10.0pt;
-	font-family:"Times New Roman";
-	mso-fareast-font-family:"Times New Roman";}
-p.MsoCaption, li.MsoCaption, div.MsoCaption
-	{mso-style-unhide:no;
-	mso-style-qformat:yes;
-	margin-top:6.0pt;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:0in;
-	mso-pagination:no-line-numbers;
-	mso-hyphenate:none;
-	font-size:10.0pt;
-	font-family:"Times New Roman";
-	mso-fareast-font-family:"Times New Roman";}
-span.MsoCommentReference
-	{mso-style-unhide:no;
-	mso-style-parent:"";
-	mso-ansi-font-size:8.0pt;
-	mso-bidi-font-size:8.0pt;}
-p.MsoList, li.MsoList, div.MsoList
-	{mso-style-unhide:no;
-	mso-style-parent:"Body Text";
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:0in;
-	mso-pagination:none;
-	mso-hyphenate:none;
-	font-size:10.0pt;
-	font-family:"Times New Roman";
-	mso-fareast-font-family:"Times New Roman";}
-p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
-	{mso-style-unhide:no;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:0in;
-	mso-pagination:none;
-	mso-hyphenate:none;
-	font-size:10.0pt;
-	font-family:"Times New Roman";
-	mso-fareast-font-family:"Times New Roman";}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-noshow:yes;
-	mso-style-priority:99;
-	color:purple;
-	mso-themecolor:followedhyperlink;
-	text-decoration:underline;
-	text-underline:single;}
-p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
-	{mso-style-unhide:no;
-	mso-style-parent:"Comment Text";
-	mso-style-next:"Comment Text";
-	margin:0in;
-	margin-bottom:.0001pt;
-	mso-pagination:none;
-	mso-hyphenate:none;
-	font-size:10.0pt;
-	font-family:"Times New Roman";
-	mso-fareast-font-family:"Times New Roman";
-	font-weight:bold;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-unhide:no;
-	margin:0in;
-	margin-bottom:.0001pt;
-	mso-pagination:none;
-	mso-hyphenate:none;
-	font-size:10.0pt;
-	font-family:"Times New Roman";
-	mso-fareast-font-family:"Times New Roman";}
-span.WW8Num2z0
-	{mso-style-name:WW8Num2z0;
-	mso-style-unhide:no;
-	mso-style-parent:"";}
-span.Absatz-Standardschriftart
-	{mso-style-name:Absatz-Standardschriftart;
-	mso-style-unhide:no;
-	mso-style-parent:"";}
-span.WW-Absatz-Standardschriftart
-	{mso-style-name:WW-Absatz-Standardschriftart;
-	mso-style-unhide:no;
-	mso-style-parent:"";}
-span.WW8Num1z0
-	{mso-style-name:WW8Num1z0;
-	mso-style-unhide:no;
-	mso-style-parent:"";}
-span.WW-Absatz-Standardschriftart1
-	{mso-style-name:WW-Absatz-Standardschriftart1;
-	mso-style-unhide:no;
-	mso-style-parent:"";}
-span.WW-Absatz-Standardschriftart11
-	{mso-style-name:WW-Absatz-Standardschriftart11;
-	mso-style-unhide:no;
-	mso-style-parent:"";}
-span.Bullets
-	{mso-style-name:Bullets;
-	mso-style-unhide:no;
-	mso-style-parent:"";}
-span.NumberingSymbols
-	{mso-style-name:"Numbering Symbols";
-	mso-style-unhide:no;
-	mso-style-parent:"";}
-span.Teletype
-	{mso-style-name:Teletype;
-	mso-style-unhide:no;
-	mso-style-parent:"";}
-p.Heading, li.Heading, div.Heading
-	{mso-style-name:Heading;
-	mso-style-unhide:no;
-	mso-style-next:"Body Text";
-	margin-top:12.0pt;
-	margin-right:0in;
-	margin-bottom:6.0pt;
-	margin-left:0in;
-	mso-pagination:none;
-	page-break-after:avoid;
-	mso-hyphenate:none;
-	font-size:10.0pt;
-	font-family:"Times New Roman";
-	mso-fareast-font-family:"Times New Roman";}
-p.Index, li.Index, div.Index
-	{mso-style-name:Index;
-	mso-style-unhide:no;
-	margin:0in;
-	margin-bottom:.0001pt;
-	mso-pagination:no-line-numbers;
-	mso-hyphenate:none;
-	font-size:10.0pt;
-	font-family:"Times New Roman";
-	mso-fareast-font-family:"Times New Roman";}
-span.SpellE
-	{mso-style-name:"";
-	mso-spl-e:yes;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	mso-default-props:yes;
-	font-size:10.0pt;
-	mso-ansi-font-size:10.0pt;
-	mso-bidi-font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:56.7pt 56.7pt 56.7pt 56.7pt;
-	mso-header-margin:.5in;
-	mso-footer-margin:.5in;
-	mso-paper-source:0;}
-div.WordSection1
-	{page:WordSection1;}
-@page WordSection2
-	{size:8.5in 11.0in;
-	margin:56.7pt 56.7pt 56.7pt 56.7pt;
-	mso-header-margin:.5in;
-	mso-footer-margin:.5in;
-	mso-columns:2 even 0in;
-	mso-paper-source:0;}
-div.WordSection2
-	{page:WordSection2;}
-@page WordSection3
-	{size:8.5in 11.0in;
-	margin:56.7pt 56.7pt 56.7pt 56.7pt;
-	mso-header-margin:.5in;
-	mso-footer-margin:.5in;
-	mso-paper-source:0;}
-div.WordSection3
-	{page:WordSection3;}
-@page WordSection4
-	{size:8.5in 11.0in;
-	margin:56.7pt 56.7pt 56.7pt 56.7pt;
-	mso-header-margin:.5in;
-	mso-footer-margin:.5in;
-	mso-paper-source:0;}
-div.WordSection4
-	{page:WordSection4;}
- /* List Definitions */
-@list l0
-	{mso-list-id:1;
-	mso-list-template-ids:1;}
-@list l0:level1
-	{mso-level-number-format:none;
-	mso-level-suffix:none;
-	mso-level-text:"";
-	mso-level-tab-stop:0in;
-	mso-level-number-position:left;
-	margin-left:0in;
-	text-indent:0in;}
-@list l0:level2
-	{mso-level-number-format:none;
-	mso-level-suffix:none;
-	mso-level-text:"";
-	mso-level-tab-stop:0in;
-	mso-level-number-position:left;
-	margin-left:0in;
-	text-indent:0in;}
-@list l0:level3
-	{mso-level-number-format:none;
-	mso-level-suffix:none;
-	mso-level-text:"";
-	mso-level-tab-stop:0in;
-	mso-level-number-position:left;
-	margin-left:0in;
-	text-indent:0in;}
-@list l0:level4
-	{mso-level-number-format:none;
-	mso-level-suffix:none;
-	mso-level-text:"";
-	mso-level-tab-stop:0in;
-	mso-level-number-position:left;
-	margin-left:0in;
-	text-indent:0in;}
-@list l0:level5
-	{mso-level-number-format:none;
-	mso-level-suffix:none;
-	mso-level-text:"";
-	mso-level-tab-stop:0in;
-	mso-level-number-position:left;
-	margin-left:0in;
-	text-indent:0in;}
-@list l0:level6
-	{mso-level-number-format:none;
-	mso-level-suffix:none;
-	mso-level-text:"";
-	mso-level-tab-stop:0in;
-	mso-level-number-position:left;
-	margin-left:0in;
-	text-indent:0in;}
-@list l0:level7
-	{mso-level-number-format:none;
-	mso-level-suffix:none;
-	mso-level-text:"";
-	mso-level-tab-stop:0in;
-	mso-level-number-position:left;
-	margin-left:0in;
-	text-indent:0in;}
-@list l0:level8
-	{mso-level-number-format:none;
-	mso-level-suffix:none;
-	mso-level-text:"";
-	mso-level-tab-stop:0in;
-	mso-level-number-position:left;
-	margin-left:0in;
-	text-indent:0in;}
-@list l0:level9
-	{mso-level-number-format:none;
-	mso-level-suffix:none;
-	mso-level-text:"";
-	mso-level-tab-stop:0in;
-	mso-level-number-position:left;
-	margin-left:0in;
-	text-indent:0in;}
-@list l1
-	{mso-list-id:2;
-	mso-list-template-ids:2;
-	mso-list-name:WW8Num2;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:;
-	mso-level-tab-stop:.25in;
-	mso-level-number-position:left;
-	margin-left:.25in;
-	text-indent:-.25in;
-	mso-ansi-font-size:9.0pt;
-	mso-bidi-font-size:9.0pt;
-	mso-ascii-font-family:Symbol;
-	mso-hansi-font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	margin-left:.5in;
-	text-indent:-.25in;
-	mso-ansi-font-size:9.0pt;
-	mso-bidi-font-size:9.0pt;
-	mso-ascii-font-family:Symbol;
-	mso-hansi-font-family:Symbol;}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:;
-	mso-level-tab-stop:.75in;
-	mso-level-number-position:left;
-	margin-left:.75in;
-	text-indent:-.25in;
-	mso-ansi-font-size:9.0pt;
-	mso-bidi-font-size:9.0pt;
-	mso-ascii-font-family:Symbol;
-	mso-hansi-font-family:Symbol;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	margin-left:1.0in;
-	text-indent:-.25in;
-	mso-ansi-font-size:9.0pt;
-	mso-bidi-font-size:9.0pt;
-	mso-ascii-font-family:Symbol;
-	mso-hansi-font-family:Symbol;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:;
-	mso-level-tab-stop:1.25in;
-	mso-level-number-position:left;
-	margin-left:1.25in;
-	text-indent:-.25in;
-	mso-ansi-font-size:9.0pt;
-	mso-bidi-font-size:9.0pt;
-	mso-ascii-font-family:Symbol;
-	mso-hansi-font-family:Symbol;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	margin-left:1.5in;
-	text-indent:-.25in;
-	mso-ansi-font-size:9.0pt;
-	mso-bidi-font-size:9.0pt;
-	mso-ascii-font-family:Symbol;
-	mso-hansi-font-family:Symbol;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:;
-	mso-level-tab-stop:1.75in;
-	mso-level-number-position:left;
-	margin-left:1.75in;
-	text-indent:-.25in;
-	mso-ansi-font-size:9.0pt;
-	mso-bidi-font-size:9.0pt;
-	mso-ascii-font-family:Symbol;
-	mso-hansi-font-family:Symbol;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	margin-left:2.0in;
-	text-indent:-.25in;
-	mso-ansi-font-size:9.0pt;
-	mso-bidi-font-size:9.0pt;
-	mso-ascii-font-family:Symbol;
-	mso-hansi-font-family:Symbol;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:;
-	mso-level-tab-stop:2.25in;
-	mso-level-number-position:left;
-	margin-left:2.25in;
-	text-indent:-.25in;
-	mso-ansi-font-size:9.0pt;
-	mso-bidi-font-size:9.0pt;
-	mso-ascii-font-family:Symbol;
-	mso-hansi-font-family:Symbol;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
--->
-</style>
-<!--[if gte mso 10]>
-<style>
- /* Style Definitions */
-table.MsoNormalTable
-	{mso-style-name:"Table Normal";
-	mso-tstyle-rowband-size:0;
-	mso-tstyle-colband-size:0;
-	mso-style-noshow:yes;
-	mso-style-priority:99;
-	mso-style-parent:"";
-	mso-padding-alt:0in 5.4pt 0in 5.4pt;
-	mso-para-margin:0in;
-	mso-para-margin-bottom:.0001pt;
-	mso-pagination:widow-orphan;
-	font-size:10.0pt;
-	font-family:"Times New Roman";}
-</style>
-<![endif]--><!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext="edit" spidmax="1027"/>
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext="edit">
-  <o:idmap v:ext="edit" data="1"/>
- </o:shapelayout></xml><![endif]-->
+
 </head>
 
 <body lang=EN-US link="#000000" vlink=purple style='tab-interval:35.45pt'>
 
 <div class=WordSection1>
 
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:22.0pt;font-family:AlMateen;mso-fareast-font-family:"Times New Roman";
+<p align=center style='text-align:center'><span
+style='font-size:22.0pt;font-family:AlMateen;mso-fareast-
 mso-hansi-font-family:AlMateen'>Applied Environmental Statistics<span
-style="mso-spacerun:yes">  </span>GE 509<o:p></o:p></span></p>
+style="mso-spacerun:yes"> </span>GE 509<o:p></o:p></span></p>
 
-<p class=MsoNormal align=center style='text-align:center'><span
-style='font-size:22.0pt;font-family:AlMateen;mso-fareast-font-family:"Times New Roman";
+<p align=center style='text-align:center'><span
+style='font-size:22.0pt;font-family:AlMateen;mso-fareast-
 mso-hansi-font-family:AlMateen'>Course syllabus<o:p></o:p></span></p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
 </div>
-
-<span style='font-size:10.0pt;font-family:"Times New Roman";mso-fareast-font-family:
-"Times New Roman";mso-ansi-language:EN-US;mso-fareast-language:EN-US;
-mso-bidi-language:AR-SA'><br clear=all style='page-break-before:auto;
-mso-break-type:section-break'>
-</span>
 
 <div class=WordSection2>
 
-<p class=MsoNormal><b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'>Instructor:<o:p></o:p></span></b></p>
+<p><b><span style='font-size:14.0pt'>Instructor:<o:p></o:p></span></b></p>
 
-<p class=MsoNormal>Michael C. Dietze</p>
+<p>Michael C. Dietze</p>
 
-<p class=MsoNormal><a href="mailto:dietze@bu.edu">dietze@bu.edu</a></p>
+<p><a href="mailto:dietze@bu.edu">dietze@bu.edu</a></p>
 
-<p class=MsoNormal>STO 457A</p>
+<p>STO 457A</p>
 
-<p class=MsoNormal>Office hours by appointment</p>
+<p>Office hours by appointment</p>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal><b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></b></p>
-
-<p class=MsoNormal><b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></b></p>
 
 </div>
 
-<span style='font-size:10.0pt;font-family:"Times New Roman";mso-fareast-font-family:
-"Times New Roman";mso-ansi-language:EN-US;mso-fareast-language:EN-US;
-mso-bidi-language:AR-SA'><br clear=all style='page-break-before:auto;
-mso-break-type:section-break'>
-</span>
-
 <div class=WordSection3>
 
-<p class=MsoNormal><b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></b></p>
+<p><b><span style='font-size:14.0pt'>Goals:<o:p></o:p></span></b></p>
 
-<p class=MsoNormal><b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'>Goals:<o:p></o:p></span></b></p>
+<p>The primary focus of this course is on probability-based statistical methods employed in the environmental, earth, and ecological sciences. Students in this class will explore a variety of statistical modeling topics from both a likelihood and Bayesian perspective, building progressively from simple models to sophisticated analyses. Students will be exposed to the concepts behind these approaches, the computational techniques to implement them, and their application to common problems in environmental science.Throughout the focus will be on how to construct statistical models that allow us to confront theory with data. The first third of the course will cover foundational concepts. The middle third will work from simple linear regression up to general linear mixed models and hierarchical models with particular emphasis on the complexities common to environmental data: heteroskedasticity, missing data, latent variables, errors in variables, and multiple sources of variability at different spatial,temporal, and taxonomic scales. The last third will cover time-series and spatial data, both of which are ubiquitous in the environmental and earth sciences. Attention throughout the course will be given to environmental applications, and in particular data and models unique (e.g. mark-recapture, matrix population models) or particularly important (e.g. kriging, CAR) to earth and environmental science.</p>
 
-<p class=MsoNormal><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+<p><b><span style='font-size:14.0pt'>Contact
+hours/week:</span></b><span style='font-size:14.0pt'>
+</span>Three 50-min lectures and one 2-hr computer lab</p>
 
-<p class=MsoNormal>The primary focus of this course is on probability-based
-statistical methods employed in the environmental, earth, and ecological
-sciences.<span style="mso-spacerun:yes">  </span>Students in this class will
-explore a variety of statistical modeling topics from both a likelihood and
-Bayesian perspective, building progressively from simple models to sophisticated
-analyses.<span style="mso-spacerun:yes">  </span>Students will be exposed to
-the concepts behind these approaches, the computational techniques to implement
-them, and their application to common problems in environmental science.<span
-style="mso-spacerun:yes">  </span>Throughout the focus will be on how to
-construct statistical models that allow us to confront theory with data. The
-first third of the course will cover foundational concepts. The middle third
-will work from simple linear regression up to general linear mixed models and
-hierarchical models with particular emphasis on the complexities common to
-environmental data: heteroskedasticity, missing data, latent variables, errors
-in variables, and multiple sources of variability at different spatial,
-temporal, and taxonomic scales. The last third will cover time-series and spatial
-data, both of which are ubiquitous in the environmental and earth sciences.
-Attention throughout the course will be given to environmental applications,
-and in particular data and models unique (e.g. mark-recapture, matrix
-population models) or particularly important (e.g. <span class=SpellE>kriging</span>,
-CAR) to earth and environmental science.</p>
-
-<p class=MsoNormal><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><span
-style="mso-spacerun:yes"> </span><o:p></o:p></span></p>
-
-<p class=MsoNormal><b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'>Contact
-hours/week:</span></b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'>
-</span>Three 50-min lectures and one 3-hr computer lab</p>
-
-<p class=MsoNormal><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
-
-<p class=MsoNormal><b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'>Prerequisites:</span></b><span
-style='font-size:14.0pt;mso-bidi-font-size:10.0pt'> <span style='mso-tab-count:
+<p><b><span style='font-size:14.0pt'>Prerequisites:</span></b><span
+style='font-size:14.0pt'> <span style='mso-tab-count:
 1'>    </span></span>Introductory statistics (CAS MA115/116 or MA213/124 or equivalent)
 and</p>
 
-<p class=MsoNormal><span style='mso-tab-count:3'>                                   </span>Calculus
+<p><span style='mso-tab-count:3'>                                   </span>Calculus
 I (CAS MA121 or CAS MA123 or equivalent) and</p>
 
-<p class=MsoNormal><span style='mso-tab-count:3'>                                   </span>Probability
+<p><span style='mso-tab-count:3'>                                   </span>Probability
 (CAS MA581)</p>
 
-<p class=MsoNormal style='margin-left:70.9pt;text-indent:35.45pt'>or consent of
+<p style='margin-left:70.9pt;text-indent:35.45pt'>or consent of
 the instructor</p>
 
-<p class=MsoNormal><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+<p><b><span style='font-size:14.0pt'>Course Materials:<o:p></o:p></span></b></p>
 
-<p class=MsoNormal><b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'>Course
-Materials:<o:p></o:p></span></b></p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal>Required Text:<span style="mso-spacerun:yes">  </span>Models
+<p>Required Text: Models
 for Ecological Data: An Introduction.<span style="mso-spacerun:yes"> 
-</span>2007.<span style="mso-spacerun:yes">  </span>James S. Clark<span
-style="mso-spacerun:yes">  </span>ISBN: 9780691121789<br>
+</span>2007. James S. Clark ISBN: 9780691121789<br>
 <span style='mso-tab-count:2'>                       </span>Book is available
 at the university bookstore or can be purchased online</p>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+<p>The primary text will be supplemented with PDFs of select readings from additional textbooks and the primary literature. Literature readings focus on examples of the application of statistical models in the environmental literature rather than methods papers. These “case studies” will also serve as the focus for the analysis problems in the lab component.</p>
 
-<p class=MsoNormal>The primary text will be supplemented with PDFs of select
-readings from additional textbooks <span class=MsoCommentReference><span
-style='font-size:8.0pt;display:none;mso-hide:all'><span
-style="mso-spacerun:yes"> </span></span></span>and the primary literature.<span
-style="mso-spacerun:yes">  </span>Literature readings focus on examples of the
-application of statistical models in the environmental literature rather than
-methods papers.<span style="mso-spacerun:yes">  </span>These “case studies”
-will also serve as the focus for the analysis problems in the lab component.</p>
+<p>Students will also make extensive use of the following statistical software (which is freely available on the internet) in order to complete assignments:</p>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal>Students will also make extensive use of the following
-statistical software (which is freely available on the internet) in order to
-complete assignments:</p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal><span style='mso-tab-count:1'>            </span>R<span
+<p><span style='mso-tab-count:1'>            </span>R<span
 style='mso-tab-count:2'>                     </span><a
 href="http://www.r-project.org/">http://www.r-project.org/</a></p>
 
-<p class=MsoNormal><span style='mso-tab-count:1'>            </span><span
+<p><span style='mso-tab-count:1'>            </span><span
 class=SpellE>RStudio</span><span style='mso-tab-count:2'>                        </span>http://www.rstudio.com/</p>
 
-<p class=MsoNormal><span style='mso-tab-count:1'>            </span>BUGS<span
+<p><span style='mso-tab-count:1'>            </span>BUGS<span
 style='mso-tab-count:1'>   </span><span style='mso-tab-count:1'>            </span><a
 href="http://www.openbugs.net">http://www.openbugs.net</a></p>
 
-<p class=MsoNormal><span style='mso-tab-count:1'>            </span><span
+<p><span style='mso-tab-count:1'>            </span><span
 class=SpellE>GitHub</span><span style='mso-tab-count:2'>             </span>http://github.com</p>
 
-<p class=MsoNormal><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><span
-style='mso-tab-count:1'>         </span><o:p></o:p></span></p>
+<p style='page-break-before:always'><b><span style='font-size:
+14.0pt'>Grading:<o:p></o:p></span></b></p>
 
-<p class=MsoNormal><b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></b></p>
-
-<p class=MsoNormal style='page-break-before:always'><b><span style='font-size:
-14.0pt;mso-bidi-font-size:10.0pt'>Grading:<o:p></o:p></span></b></p>
-
-<p class=MsoNormal><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
-
-<p class=MsoNormal>Grading will be based on lab reports/problem sets, a
+<p>Grading will be based on lab reports/problem sets, a
 semester-long project, and four exams.</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2;
-tab-stops:.25in'><![if !supportLists]><span style='font-size:9.0pt;font-family:
-Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>Lab reports/problem sets (10 points each)<span
-style='mso-tab-count:1'>         </span><span style="mso-spacerun:yes"> 
-</span>= 150</p>
+<table>
+<tr>
+  <td>Lab reports/problem sets (10 points each)</td><td>= 150</td>  
+</tr>
+<tr>
+  <td>Semester project (Grad only)</td><td>= 95</td>
+</tr>
+<tr>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;project proposal (10)</td><td></td>
+</tr>
+<tr>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model description (15)</td><td></td>
+</tr>
+<tr>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preliminary analysis (20)</td><td></td>
+</tr>
+<tr>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final report (50)</td><td></td>
+</tr>
+<tr>
+  <td>Exams (25, 30, 30, 30 points )</td><td> = 115</td>
+</tr>
+<tr>
+  <td>Total, Grad</td><td>= 360</td>
+</tr>
+<tr>
+  <td>Total, Undergrad</td><td>= 265</td>
+</tr> 
+</table>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2;
-tab-stops:.25in'><![if !supportLists]><span style='font-size:9.0pt;font-family:
-Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>Semester project (Grad only)<span
-style='mso-tab-count:1'>  </span><span style='mso-tab-count:2'>                       </span>
-<span style="mso-spacerun:yes"> </span>=<span style="mso-spacerun:yes"> 
-</span>95</p>
+<p><b><span style='font-size:14.0pt'>Lectures/Labs<o:p></o:p></span></b></p>
 
-<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level2 lfo2;
-tab-stops:.5in'><![if !supportLists]><span style='font-size:9.0pt;font-family:
-Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>project proposal (10)</p>
+<p>Please refer to the course website for the schedule of lecture/lab topics and the assigned readings that go with these. Students are expected to complete readings before class. </p>
 
-<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level2 lfo2;
-tab-stops:.5in'><![if !supportLists]><span style='font-size:9.0pt;font-family:
-Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>model description (15)</p>
+<p><b>Lab attendance is <i><u>mandatory.</u></i></b> Lab reports will not be accepted for labs missed due to unexcused absences. Lab reports are due by the start of lab the following week and will be penalized 10%/day if turned in late. Lab materials will be made available in the GitHub repository https://github.com/mdietze/EE509.Details on what needs to be turned in will be provided with each lab.</p>
 
-<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level2 lfo2;
-tab-stops:.5in'><![if !supportLists]><span style='font-size:9.0pt;font-family:
-Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>preliminary analysis (20)</p>
+<p>You may discuss lab assignments with other students, but you each must turn in your own written report and code. </p>
+ 
+<p><b><span style='font-size:14.0pt'>Semester Project (Graduate Students only)<o:p></o:p></span></b></p>
 
-<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level2 lfo2;
-tab-stops:.5in'><![if !supportLists]><span style='font-size:9.0pt;font-family:
-Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>final report (50)</p>
+<p>The core component that separates the undergraduate from the graduate version of this course is a semester-long independent analysis and write-up. There are a number of benchmarks over the course of the semester to ensure adequate progress is being made and to provide you with feedback. A more detailed description will be provided before each task is due.</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2;
-tab-stops:.25in'><![if !supportLists]><span style='font-size:9.0pt;font-family:
-Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol'><span
-style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]>Exams (25, 30, 30, 30 points )<span
-style='mso-tab-count:2'>                      </span><span
-style="mso-spacerun:yes">            </span><span
-style="mso-spacerun:yes">    </span>= 115</p>
+<p><u>Project Proposal:</u> 1-2 pages double-spaced. Students are expected to describe the data set they intend to analyze and present the <u>scientific question</u> that motivates their analysis. Students are encouraged to make use of their own data sets for the semester project.</p>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+<p><u>Model description:</u> 1-2 pages double-spaced. A brief description of <i>how</i> the data will be analyzed. Should include a mathematical specification of the process model(s), the data model, and the parameter model and a figure of how these relate to one another.</p>
 
-<p class=MsoNormal><span style='mso-tab-count:2'>                       </span><span
-style='mso-tab-count:1'>            </span>Total, Grad<span style='mso-tab-count:
-1'>        </span><span style="mso-spacerun:yes">             </span><span
-style="mso-spacerun:yes">   </span>= 360</p>
+<p><u>Preliminary Analysis:</u> 1-3 pages double space text <i>plus</i> R/BUGS code <i>plus</i> a minimum of 5 <b><i>results</i></b> figures with legends. At this point analysis should
+be mostly complete. Text should briefly describe the computational methods of the analysis and any modifications of the model description (i.e. what did you actually end up doing).</p>
 
-<p class=MsoNormal><span style='mso-tab-count:3'>                                   </span>Total,
-Undergrad <span style='mso-tab-count:1'>           </span><span
-style="mso-spacerun:yes">  </span>= 265</p>
+<p><u>Final Report:</u> The final report should be written <u>in the style and tone of a scholarly publication</u>, though with greater emphasis on the results and statistical methods employed and less on introduction and discussion. Specifically, we will be using the <i>Ecology Letters</i> format: no more than 5000 words in length and no more than 6 figures or tables. For more detailed guidelines see sections 8 and 9 of http://onlinelibrary.wiley.com/journal/10.1111/%28ISSN%291461-0248/homepage/ForAuthors.html</p>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+<p>Project Due Dates:</p>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal><b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'>Lectures/Labs<o:p></o:p></span></b></p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal>Please refer to the course website for the schedule of
-lecture/lab topics and the assigned readings that go with these.<span
-style="mso-spacerun:yes">  </span>Students are expected to complete readings
-before class. </p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal><b>Lab attendance is <i><u>mandatory.</u></i></b><span
-style="mso-spacerun:yes">  </span>Lab reports will not be accepted for labs
-missed due to unexcused absences.<span style="mso-spacerun:yes">  </span>Lab
-reports are due by the start of lab the following week and will be penalized
-10%/day if turned in late.<span style="mso-spacerun:yes">  </span>Lab materials
-will be made available in the <span class=SpellE>GitHub</span> repository
-https://github.com/mdietze/EE509.<span style="mso-spacerun:yes"> 
-</span>Details on what needs to be turned in will be provided with each lab.</p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal>You may discuss lab assignments with other students, but you
-each must turn in your own written report and code. </p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal><b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'>Semester
-Project (Graduate Students only)<o:p></o:p></span></b></p>
-
-<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
-
-<p class=MsoNormal>The core component that separates the undergraduate from the
-graduate version of this course is a semester-long independent analysis and write-up.<span
-style="mso-spacerun:yes">  </span>There are a number of benchmarks over the
-course of the semester to ensure adequate progress is being made and to provide
-you with feedback.<span style="mso-spacerun:yes">  </span>A more detailed
-description will be provided before each task is due.</p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal><u>Project Proposal:</u><span style="mso-spacerun:yes"> 
-</span>1-2 pages double-spaced.<span style="mso-spacerun:yes">  </span>Students
-are expected to describe the data set they intend to analyze and present the <u>scientific
-question</u> that motivates their analysis.<span style="mso-spacerun:yes"> 
-</span>Students are encouraged to make use of their own data sets for the
-semester project.</p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal><u>Model description:</u><span style="mso-spacerun:yes"> 
-</span>1-2 pages double-spaced.<span style="mso-spacerun:yes">  </span>A brief
-description of <i>how</i> the data will be analyzed.<span
-style="mso-spacerun:yes">  </span>Should include a mathematical specification
-of the process model(s), the data model, and the parameter model and a figure
-of how these relate to one another.</p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal style='page-break-before:always'><u>Preliminary Analysis:</u><span
-style="mso-spacerun:yes">  </span>1-3 pages double space text <i>plus</i>
-R/BUGS code <i>plus</i> a minimum of 5 <b><i>results</i></b> figures with
-legends.<span style="mso-spacerun:yes">  </span>At this point analysis should
-be mostly complete.<span style="mso-spacerun:yes">  </span>Text should briefly
-describe the computational methods of the analysis and any modifications of the
-model description (i.e. what did you actually end up doing).</p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal><u>Final Report:</u> The final report should be written <u>in
-the style and tone of a scholarly publication</u>, though with greater emphasis
-on the results and statistical methods employed and less on introduction and
-discussion.<span style="mso-spacerun:yes">  </span>Specifically, we will be
-using the <i>Ecology Letters</i> format: no more than 5000 words in length and
-no more than 6 figures or tables.<span style="mso-spacerun:yes">  </span>For
-more detailed guidelines see sections 8 and 9 of
-http://onlinelibrary.wiley.com/journal/10.1111/%28ISSN%291461-0248/homepage/ForAuthors.html
-</p>
-
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
-
-<p class=MsoNormal>Project Due Dates:</p>
-
-<p class=MsoNormal>Project Proposal<span style='mso-tab-count:4'>                                    </span><span
+<p>Project Proposal<span style='mso-tab-count:4'>                                    </span><span
 style='mso-tab-count:1'>            </span>10/1</p>
 
-<p class=MsoNormal>Model Description<span style='mso-tab-count:4'>                                             </span>10/29</p>
+<p>Model Description<span style='mso-tab-count:4'>                                             </span>10/29</p>
 
-<p class=MsoNormal>Preliminary Analysis<span style='mso-tab-count:4'>                                          </span>11/19</p>
+<p>Preliminary Analysis<span style='mso-tab-count:4'>                                          </span>11/19</p>
 
-<p class=MsoNormal>Final Report<span style='mso-tab-count:4'>                                         </span><span
+<p>Final Report<span style='mso-tab-count:4'>                                         </span><span
 style='mso-tab-count:1'>            </span>Before Exam 4</p>
 
-<p class=MsoNormal><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
 
-<p class=MsoNormal><b><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'>Exams<o:p></o:p></span></b></p>
+<p><b><span style='font-size:14.0pt'>Exams<o:p></o:p></span></b></p>
 
-<p class=MsoNormal><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><o:p>&nbsp;</o:p></span></p>
+<p>Exams will be a combination of short answer and multiple choice. The final exam will be non-cumulative.</p>
 
-<p class=MsoNormal>Exams will be a combination of short answer and multiple
-choice.<span style="mso-spacerun:yes">  </span>The final exam will be
-non-cumulative.</p>
+<p>Midterm I<span style='mso-tab-count:5'>                                                        </span>9/19</p>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+<p>Midterm II<span style='mso-tab-count:5'>                                                       </span>10/14</p>
 
-<p class=MsoNormal>Midterm I<span style='mso-tab-count:5'>                                                        </span>9/19</p>
+<p>Midterm III<span style='mso-tab-count:5'>                                                      </span>11/10</p>
 
-<p class=MsoNormal>Midterm II<span style='mso-tab-count:5'>                                                       </span>10/14</p>
-
-<p class=MsoNormal>Midterm III<span style='mso-tab-count:5'>                                                      </span>11/10</p>
-
-<p class=MsoNormal>Final<span style='mso-tab-count:6'>                                                               </span>Final
+<p>Final<span style='mso-tab-count:6'>                                                               </span>Final
 Exam period</p>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+<p><b><span style='font-size:14.0pt'>Lecture Schedule<o:p></o:p></span></b></p>
 
-<p class=MsoNormal><span style='font-size:14.0pt'><o:p>&nbsp;</o:p></span></p>
-
-<p class=MsoNormal><b><span style='font-size:14.0pt'>Lecture Schedule<o:p></o:p></span></b></p>
-
-<p class=MsoNormal><b><span style='font-size:14.0pt'><o:p>&nbsp;</o:p></span></b></p>
-
-<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=478
- style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
- mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
- mso-border-right-alt:solid #6D6D6D 1.0pt;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+<table border=1 cellspacing=0 cellpadding=0 width=678>
  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Date</p>
-  </td>
-  <td width=200 style='width:200.4pt;border:solid #6D6D6D 1.0pt;border-left:
-  none;mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Topics</p>
-  </td>
-  <td width=176 style='width:175.5pt;border:solid #6D6D6D 1.0pt;border-left:
-  none;mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal style='margin-top:0in;margin-right:.55in;margin-bottom:
-  0in;margin-left:-.95in;margin-bottom:.0001pt;text-indent:1.0in'>Reading</p>
-  </td>
-  <td width=63 style='width:63.0pt;border:solid #6D6D6D 1.0pt;border-left:none;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Project</p>
-  </td>
+  <td width=39><p>Date</p></td>
+  <td width=300><p>Topics</p></td>
+  <td width=276><p>Reading</p></td>
+  <td width=63><p>Project</p></td>
  </tr>
  <tr style='mso-yfti-irow:1'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/3</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Introduction to model-based inference</p>
-  <p class=MsoNormal>Case: synthesis of field data, remote sensing, and
-  mechanistic models</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Clark: Chapter 1</p>
-  <p class=MsoNormal>Optional: <a
-  href="http://mdietze-3.igb.uiuc.edu/video/MathReview.pdf">Otto and Day: Math
-  Review</a></p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson01_intro.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>9/3</p></td>
+  <td><p>Introduction to model-based inference<br>Case: synthesis of field data, remote sensing, and mechanistic models</p></td>
+  <td><p>Clark: Chapter 1<br>Optional: Otto and Day:<a href="http://mdietze-3.igb.uiuc.edu/video/MathReview.pdf"> Math Review</a><br><a href="http://people.bu.edu/dietze/Lectures2012/Lesson01_intro.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:2'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/5</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Probability theory: joint, conditional, and marginal
-  distributions</p>
-  <p class=MsoNormal>Case: Island Biogeography</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><a href="http://mdietze-3.igb.uiuc.edu/video/HM003.pdf"><span
-  class=SpellE>Hilborn</span> and <span class=SpellE>Mangel</span> <span
-  class=SpellE>Ch</span> 3</a> p39-62</p>
-  <p class=MsoNormal>Optional: Clark Appendix D</p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson02_Probability.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>9/5</p></td>
+  <td><p>Probability theory: joint, conditional, and marginal distributions<br>Case: Island Biogeography</p></td>
+  <td><p><a href="http://mdietze-3.igb.uiuc.edu/video/HM003.pdf">Hilborn and Mangel Ch 3</a> p39-62<br>Optional: Clark Appendix D<br><a href="http://people.bu.edu/dietze/Lectures2012/Lesson02_Probability.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:3'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/8</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Probability theory: discrete and continuous distributions</p>
-  <p class=MsoNormal>Case: Zero-inflated census data</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><a href="http://mdietze-3.igb.uiuc.edu/video/HM003.pdf"><span
-  class=SpellE>Hilborn</span> and <span class=SpellE>Mangel</span> <span
-  class=SpellE>Ch</span> 3</a> p62-93</p>
-  <p class=MsoNormal>Optional: Clark Appendix F </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson03_CommonDistributions.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>9/8</p></td>
+  <td><p>Probability theory: discrete and continuous distributions<br>Case: Zero-inflated census data</p></td>
+  <td><p><a href="http://mdietze-3.igb.uiuc.edu/video/HM003.pdf">Hilborn and Mangle Ch 3</a> p62-93<br>Optional: Clark Appendix F <br><a href="http://people.bu.edu/dietze/Lectures2012/Lesson03_CommonDistributions.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:4'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/10</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Maximum Likelihood</p>
-  <p class=MsoNormal>Case: Censured mortality data</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 3.1-3.2</p>
-  <p class=MsoNormal>Optional: Chapter 2</p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson04_Likelihood.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>9/10</p></td>
+  <td><p>Maximum Likelihood<br>Case: Censured mortality data</p></td>
+  <td><p>Chapter 3.1-3.2<br>Optional: Chapter 2<br><a href="http://people.bu.edu/dietze/Lectures2012/Lesson04_Likelihood.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:5'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/12</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Point estimation by MLE</p>
-  <p class=MsoNormal>Case: Survival analysis, population growth rate</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 3.3-3.5</p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson05_MLE_PointEst.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>9/12</p></td>
+  <td><p>Point estimation by MLE<br>Case: Survival analysis, population growth rate</p></td>
+  <td><p>Chapter 3.3-3.5<br>
+    <a href="http://people.bu.edu/dietze/Lectures2012/Lesson05_MLE_PointEst.pdf">old slides</a></p></td>
+  <td> </td>
  </tr>
  <tr style='mso-yfti-irow:6'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/15</p>
+  <td><p>9/15</p></td>
+  <td><p>Analytically tractable MLEs<br>
+      Case: Bestiary of response functions</p></td>
+  <td><p>Chapter 3.6-3.9 <br>
+      Optional: Bolker <a href="http://people.biology.ufl.edu/bolker/emdbook/chap3A.pdf">Ch 3</a> <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson06_MLE3.pdf">old slides</a></p>
   </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Analytically tractable MLEs</p>
-  <p class=MsoNormal>Case: Bestiary of <span class=SpellE>env</span>. response
-  functions</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 3.6-3.9 </p>
-  <p class=MsoNormal>Optional: <span class=SpellE>Bolker</span> <a
-  href="http://people.biology.ufl.edu/bolker/emdbook/chap3A.pdf"><span
-  class=SpellE>Ch</span> 3</a> </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson06_MLE3.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:7'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/17</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Intractable MLEs and basic numerical optimization</p>
-  <p class=MsoNormal>Case: <span class=SpellE>Michaelis-Menton</span> kinetics</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 3.10-3.13 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson07_Optim.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>9/17</p></td>
+  <td><p>Intractable MLEs and basic numerical optimization<br>
+      Case: Michaelis-Menton kinetics</p></td>
+  <td><p>Chapter 3.10-3.13 <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson07_Optim.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:8'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/19</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><b>EXAM 1:</b></p>
-  <p class=MsoNormal>Probability Theory, Maximum Likelihood</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>9/19</p></td>
+  <td><p><b>EXAM 1:</b> Probability Theory, Maximum Likelihood</p></td>
+  <td></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:9'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/22</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Bayes Theorem</p>
-  <p class=MsoNormal>Case: Detecting climate warming</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 4.1</p>
-  <p class=MsoNormal><a
-  href="http://mdietze-3.igb.uiuc.edu/video/Ellison2004.pdf">Ellison 2004</a> </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson08_Bayes.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>9/22</p></td>
+  <td><p>Bayes Theorem<br>
+      Case: Detecting climate warming</p></td>
+  <td><p>Chapter 4.1<br>
+      <a href="http://mdietze-3.igb.uiuc.edu/video/Ellison2004.pdf">Ellison 2004</a><br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson08_Bayes.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:10'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/24</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Point estimation using Bayes</p>
-  <p class=MsoNormal>Case: Normal mean and variance</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 4.2 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson09_Bayes2.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>9/24</p></td>
+  <td><p>Point estimation using Bayes<br>
+      Case: Normal mean and variance</p></td>
+  <td><p>Chapter 4.2 <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson09_Bayes2.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:11'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/26</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>TBD</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>9/26</p></td>
+  <td><p>TBD</p></td>
+  <td></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:12'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/29</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Analytically-tractable Bayes: <span class=SpellE>conjugacy</span>
-  and priors</p>
-  <p class=MsoNormal>Case: Plant trait databases</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 4.3, Appendix G </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson10_Priors.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>9/29</p></td>
+  <td><p>Analytically-tractable Bayes: conjugacy and priors<br>
+      Case: Plant trait databases</p></td>
+  <td><p>Chapter 4.3, Appendix G <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson10_Priors.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:13'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/1</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Numerical methods for Bayes: MCMC</p>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 7.1-7.2, 7.3 intro </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson11_MCMC.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/ProjectProposal.2012.pdf"><b>Project
-  Proposals</b></a></p>
-  </td>
+  <td><p>10/1</p></td>
+  <td><p>Numerical methods for Bayes: MCMC</p></td>
+  <td><p>Chapter 7.1-7.2, 7.3 intro <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson11_MCMC.pdf">old slides</a></p></td>
+  <td><p><a href="http://people.bu.edu/dietze/Lectures2012/ProjectProposal.2012.pdf"><b>Project Proposals</b></a></p></td>
  </tr>
  <tr style='mso-yfti-irow:14'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/3</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>MCMC: Metropolis-Hastings</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>7.3.1, 7.3.2, 7.5 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson12_Metropolis.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>10/3</p></td>
+  <td><p>MCMC: Metropolis-Hastings</p></td>
+  <td><p>7.3.1, 7.3.2, 7.5 <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson12_Metropolis.pdf"></a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:15'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/6</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>MCMC: Gibbs sample</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 7.3.3, 7.3.4 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson13_Gibbs.pdf"></a></p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Regression_Template.odc">BUGS
-  code</a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>10/6</p></td>
+  <td><p>MCMC: Gibbs sample</p></td>
+  <td><p>Chapter 7.3.3, 7.3.4 <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson13_Gibbs.pdf">old slides</a><br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Regression_Template.odc">BUGS code</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:16'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/8</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Interval Estimation: Bayesian credible intervals</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 5 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson14_CI.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>10/8</p></td>
+  <td><p>Interval Estimation: Bayesian credible intervals</p></td>
+  <td><p>Chapter 5 <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson14_CI.pdf">old slides</a><br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson15_CI_part2.pdf">part 2</a>
+      </p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:17'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/10</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><b>EXAM 2:</b></p>
-  <p class=MsoNormal>Bayes</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson15_CI_part2.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>10/10</p></td>
+  <td><p><b>EXAM 2:</b> Bayes</p></td>
+  <td></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:18'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/14</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><span class=SpellE>Frequentist</span> confidence intervals
-  I</p>
-  <p class=MsoNormal><span style="mso-spacerun:yes">   </span>Likelihood
-  profile, Fisher information</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 5 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson16_CI_part3.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>10/14</p></td>
+  <td><p>Frequentist confidence intervals I: Likelihood profile, Fisher information</p></td>
+  <td><p>Chapter 5 <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson16_CI_part3.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:19'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/15</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><span class=SpellE>Frequentist</span> confidence intervals
-  II</p>
-  <p class=MsoNormal><span style="mso-spacerun:yes">  </span>Bootstrapping</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 5 </p>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>10/15</p></td>
+  <td><p>Frequentist confidence intervals II: Bootstrapping</p></td>
+  <td><p>Chapter 5</td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:20'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/17</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Model Selection: Likelihood ratio test, AIC</p>
-  <p class=MsoNormal>Case: Southern Brown Frog</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><span class=SpellE>Hilborn</span> and <span class=SpellE>Mangel</span>
-  <a href="http://mdietze-3.igb.uiuc.edu/video/HM_ch2.pdf">Chapter 2 <o:p></o:p></a></p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson17_AIC.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>10/17</p></td>
+  <td><p>Model Selection: Likelihood ratio test, AIC<br>
+      Case: Southern Brown Frog</p></td>
+  <td><p>Hilborn and Mangel <a href="http://mdietze-3.igb.uiuc.edu/video/HM_ch2.pdf">Chapter 2</a><br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson17_AIC.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:21'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/20</p>
+  <td><p>10/20</p></td>
+  <td><p>Model Selection: DIC, predictive loss, model averaging<br>
+      Case: Multi-model weather forecasting</p></td>
+  <td><p>Chapter 6 <br>
+    <a href="http://people.bu.edu/dietze/Lectures2012/Lesson18_DIC.pdf"></a></p>
   </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Model Selection: DIC, predictive loss, model averaging</p>
-  <p class=MsoNormal>Case: Multi-model weather forecasting</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 6 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson18_DIC.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:22'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/22</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>TBD</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>10/22</p></td>
+  <td><p>TBD</p></td>
+  <td></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:23'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/24</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Errors in variables, heteroskedasticity</p>
-  <p class=MsoNormal>Case: Time-domain <span class=SpellE>reflectometry</span></p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 5.4 &amp; 7.4 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson19_regression.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>10/24</p></td>
+  <td><p>Errors in variables, heteroskedasticity<br>
+     Case: Time-domain reflectometry</p></td>
+  <td><p>Chapter 5.4 &amp; 7.4 <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson19_regression.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:24'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/27</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Latent variables, Missing data models</p>
-  <p class=MsoNormal>Case: Carbon flux towers</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 7.6, 7.7, 8.1 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson20_regression2.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>10/27</p></td>
+  <td><p>Latent variables, Missing data models<br>
+      Case: Carbon flux towers</p></td>
+  <td><p>Chapter 7.6, 7.7, 8.1 <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson20_regression2.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:25'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/29</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Logistic regression</p>
-  <p class=MsoNormal>Case: Pollution and mortality risk</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 8.2-8.2.3 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson21_GLM.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/ModelDescription.2012.pdf"><b>Model
-  Description</b></a></p>
-  </td>
+  <td><p>10/29</p></td>
+  <td><p>Logistic regression<br>
+      Case: Pollution and mortality risk</p></td>
+  <td><p>Chapter 8.2-8.2.3 <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson21_GLM.pdf">old slides</a></p></td>
+  <td><p><a href="http://people.bu.edu/dietze/Lectures2012/ModelDescription.2012.pdf"><b>Model Description</b></a></p></td>
  </tr>
  <tr style='mso-yfti-irow:26'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/31</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>GLMs</p>
-  <p class=MsoNormal>Case: Plot count data (Poisson regression)</p>
-  <p class=MsoNormal>Case: Canopy position data (Multinomial)</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 8.2-8.2.3</p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>10/31</p></td>
+  <td><p>GLMs<br>
+      Case: Plot count data (Poisson regression)<br>
+      Case: Canopy position data (Multinomial)</p></td>
+  <td><p>Chapter 8.2-8.2.3</p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:27'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/3</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Mixed Models</p>
-  <p class=MsoNormal>Case: RITES and species coexistence</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 8.2.4</p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson22_HB.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>11/3</p></td>
+  <td><p>Mixed Models<br>
+      Case: RITES and species coexistence</p></td>
+  <td><p>Chapter 8.2.4<br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson22_HB.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:28'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/5</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Multivariate Regression</p>
-  <p class=MsoNormal>Case: Canopy and biomass <span class=SpellE>allometries</span></p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson22.5_Classical_regression.pdf"></a></p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson22.5_Classical_regression_demo.r">R
-  demo</a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>11/5</p></td>
+  <td><p>Multivariate Regression<br>
+      Case: Canopy and biomass allometries</p></td>
+  <td><p><a href="http://people.bu.edu/dietze/Lectures2012/Lesson22.5_Classical_regression.pdf"></a><br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson22.5_Classical_regression_demo.r">R demo</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:29'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/7</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Hierarchical Bayes</p>
-  <p class=MsoNormal>Case: Coho salmon</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 8.2.5 - 8.3 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson23_HB2.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>11/7</p></td>
+  <td><p>Hierarchical Bayes<br>
+      Case: Coho salmon</p></td>
+  <td><p>Chapter 8.2.5 - 8.3 <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson23_HB2.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:30'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/10</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Nonlinear models</p>
-  <p class=MsoNormal>Case: Photosynthetic responses to light, CO2</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 8.4</p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson24_Nonlinear.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>11/10</p></td>
+  <td><p>Nonlinear models<br>
+      Case: Photosynthetic responses to light, CO2</p></td>
+  <td><p>Chapter 8.4<br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson24_Nonlinear.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:31'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/12</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Applications of random effects models</p>
-  <p class=MsoNormal>Case: Remote sensing</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 8.5-8.7</p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson25_HB3.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>11/12</p></td>
+  <td><p>Applications of random effects models<br>
+      Case: Remote sensing</p></td>
+  <td><p>Chapter 8.5-8.7<br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson25_HB3.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:32'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/14</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><b>EXAM 3</b></p>
-  <p class=MsoNormal>GLMM, HB</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>11/14</p></td>
+  <td><p><b>EXAM 3</b> GLMM, HB</p></td>
+  <td></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:33'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/17</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>TBD</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>11/17</p></td>
+  <td><p>TBD</p></td>
+  <td></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:34'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/19</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Time series: Basics and State-Space</p>
-  <p class=MsoNormal>Case: Moose population fluctuations</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapters 9.1, 9.2, 9.6</p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson27.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/PrelimAnalysis.pdf"><b>Preliminary
-  Analysis</b></a></p>
-  </td>
+  <td><p>11/19</p></td>
+  <td><p>Time series: Basics and State-Space<br>
+      Case: Moose population fluctuations</p></td>
+  <td><p>Chapters 9.1, 9.2, 9.6<br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson27.pdf">old slides</a></p></td>
+  <td><p><a href="http://people.bu.edu/dietze/Lectures2012/PrelimAnalysis.pdf"><b>Preliminary Analysis</b></a></p></td>
  </tr>
  <tr style='mso-yfti-irow:35'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/21</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Time series: Mark-Recapture</p>
-  <p class=MsoNormal>Case: Black <span class=SpellE>Noddy</span></p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 9.7, 9.8, 9.16 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson28_StateSpace.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>11/21</p></td>
+  <td><p>Time series: Mark-Recapture<br>
+      Case: Black Noddy</span></p></td>
+  <td><p>Chapter 9.7, 9.8, 9.16 <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson28_StateSpace.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:36'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/24</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Time series: ARMA</p>
-  <p class=MsoNormal>Case: Fire in the Everglades</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 9.3, 9.5 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson29_ARIMA.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>11/24</p></td>
+  <td><p>Time series: ARMA<br>
+      Case: Fire in the Everglades</p></td>
+  <td><p>Chapter 9.3, 9.5 <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson29_ARIMA.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:37'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>12/1</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Time Series: Repeated Measures</p>
-  <p class=MsoNormal>Case: Soil Respiration</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 9.10, 9.14, 9.15 </p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson31_RepMeas.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>12/1</p></td>
+  <td><p>Time Series: Repeated Measures<br>
+      Case: Soil Respiration</p></td>
+  <td><p>Chapter 9.10, 9.14, 9.15 <br>
+      <a
+  href="http://people.bu.edu/dietze/Lectures2012/Lesson31_RepMeas.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:38'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>12/3</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Spatial: point-referenced (<span class=SpellE>geostatistical</span>)
-  data &amp; <span class=SpellE>Kriging</span></p>
-  <p class=MsoNormal>Case: Mapping soil moisture</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 10.7</p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson34_PointSpatial.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>12/3</p></td>
+  <td><p>Spatial: point-referenced (geostatistical) data &amp; Kriging</span><br>
+      Case: Mapping soil moisture</p></td>
+  <td><p>Chapter 10.7<br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson34_PointSpatial.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:39'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>12/5</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Spatial: Markov Random Field</p>
-  <p class=MsoNormal>Case: Superfund monitoring</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 10.8</p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson35_CAR.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>12/5</p></td>
+  <td><p>Spatial: Markov Random Field<br>
+      Case: Superfund monitoring</p></td>
+  <td><p>Chapter 10.8<br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson35_CAR.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:40'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>12/8</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Spatial: block-referenced data and misalignment</p>
-  <p class=MsoNormal>Case: relating ozone &amp; census data</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 10.9</p>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/Lesson36_SpaceTime.pdf"></a></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>12/8</p></td>
+  <td><p>Spatial: block-referenced data and misalignment<br>
+      Case: relating ozone &amp; census data</p></td>
+  <td><p>Chapter 10.9<br>
+  <a href="http://people.bu.edu/dietze/Lectures2012/Lesson36_SpaceTime.pdf">old slides</a></p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:41'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>12/10</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Spatial: conditional autoregressive models (CAR)</p>
-  <p class=MsoNormal>Case: South African biodiversity</p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Chapter 10.10</p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td><p>12/10</p></td>
+  <td><p>Spatial: conditional autoregressive models (CAR)<br>
+      Case: South African biodiversity</p></td>
+  <td><p>Chapter 10.10</p></td>
+  <td></td>
  </tr>
  <tr style='mso-yfti-irow:42;mso-yfti-lastrow:yes'>
-  <td width=39 style='width:39.0pt;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>TBD</p>
-  </td>
-  <td width=200 style='width:200.4pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><b>EXAM 4</b></p>
-  </td>
-  <td width=176 style='width:175.5pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
-  <td width=63 style='width:63.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><a
-  href="http://people.bu.edu/dietze/Lectures2012/FinalProject.pdf"><b>FINAL
-  PROJECT</b></a></p>
-  </td>
+  <td><p>TBD</p></td>
+  <td><p><b>EXAM 4</b></p></td>
+  <td></td>
+  <td><p><a href="http://people.bu.edu/dietze/Lectures2012/FinalProject.pdf"><b>FINAL PROJECT</b></a></p></td>
  </tr>
 </table>
 
-<p class=MsoNormal><b><span style='font-size:14.0pt'><o:p>&nbsp;</o:p></span></b></p>
+<p><b><span style='font-size:14.0pt'><o:p>&nbsp;</o:p></span></b></p>
 
-<p class=MsoNormal><b><span style='font-size:14.0pt'>Lab Syllabus<o:p></o:p></span></b></p>
+<p><b><span style='font-size:14.0pt'>Lab Syllabus<o:p></o:p></span></b></p>
 
-<p class=MsoNormal><b><span style='font-size:14.0pt'><o:p>&nbsp;</o:p></span></b></p>
-
-<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
- style='border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
- mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
- mso-border-right-alt:solid #6D6D6D 1.0pt;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
- <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Lab</p>
-  </td>
-  <td width=45 style='width:45.0pt;border:solid #6D6D6D 1.0pt;border-left:none;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Week</p>
-  </td>
-  <td width=283 style='width:282.6pt;border:solid #6D6D6D 1.0pt;border-left:
-  none;mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Topics</p>
-  </td>
-  <td width=70 style='width:70.0pt;border:solid #6D6D6D 1.0pt;border-left:none;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Software</p>
-  </td>
+<table border=1 cellspacing=0 cellpadding=0>
+ <tr>
+  <td width=32> <p>Lab</p> </td>
+  <td width=45><p>Week</p></td>
+  <td width=283><p>Topics</p></td>
+  <td width=70><p>Software</p></td>
  </tr>
  <tr style='mso-yfti-irow:1'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>1</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/3</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Introduction to R</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>R</p>
-  </td>
+  <td width=32><p>1</p></td>
+  <td width=45><p>9/8</p></td>
+  <td width=283><p>Introduction to R</p></td>
+  <td width=70><p>R</p></td>
  </tr>
  <tr style='mso-yfti-irow:2'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>2</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/10</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Probability distributions and sampling</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>R</p>
-  </td>
+  <td width=32><p>2</p></td>
+  <td width=45><p>9/15</p>
+  </td><td width=283><p>Probability distributions and sampling</p></td>
+  <td width=70><p>R</p></td>
  </tr>
  <tr style='mso-yfti-irow:3'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>3</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/17</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Fire return intervals: Maximum likelihood basics</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>R</p>
-  </td>
+  <td width=32><p>3</p></td>
+  <td width=45><p>9/22</p></td>
+  <td width=283><p>Fire return intervals: Maximum likelihood basics</p></td>
+  <td width=70><p>R</p></td>
  </tr>
  <tr style='mso-yfti-irow:4'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>4</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9/24</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Ecosystem responses to CO2: ML numerical optimization</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>R</p>
-  </td>
+  <td width=32><p>4</p></td>
+  <td width=45><p>9/29</p></td>
+  <td width=283><p>Ecosystem responses to CO2: ML numerical optimization</p></td>
+  <td width=70><p>R</p></td>
  </tr>
  <tr style='mso-yfti-irow:5'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>5</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/1</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Forest stand characteristics: Intro to BUGS</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>BUGS</p>
-  </td>
+  <td width=32><p>5</p></td>
+  <td width=45><p>10/6</p></td>
+  <td width=283><p>Forest stand characteristics: Intro to BUGS</p></td>
+  <td width=70><p>BUGS</p></td>
  </tr>
  <tr style='mso-yfti-irow:6'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>6</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/8</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Regression: Gibbs sampler</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>R</p>
-  </td>
+  <td width=32><p>6</p></td>
+  <td width=45><p><b>10/14*</b></p></td>
+  <td width=283><p>Regression: Gibbs sampler</p></td>
+  <td width=70><p>R</p></td>
  </tr>
  <tr style='mso-yfti-irow:7'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>7</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/15</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Nonlinear plant growth: Metropolis Algorithm</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>R</p>
-  </td>
+  <td width=32><p>7</p></td>
+  <td width=45><p>10/20</p></td>
+  <td width=283><p>Nonlinear plant growth: Metropolis Algorithm</p></td>
+  <td width=70><p>R</p></td>
  </tr>
  <tr style='mso-yfti-irow:8'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>8</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/22</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>CO2 revisited: Interval estimation and model selection</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>R</p>
-  </td>
+  <td width=32><p>8</p></td>
+  <td width=45><p>10/27</p></td>
+  <td width=283><p>CO2 revisited: Interval estimation and model selection</p></td>
+  <td width=70><p>R</p></td>
  </tr>
  <tr style='mso-yfti-irow:9'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>9</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10/29</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Understory Regeneration: Random effects</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Both</p>
-  </td>
+  <td width=32><p>9</p></td>
+  <td width=45><p>11/3</p></td>
+  <td width=283><p>Understory Regeneration: Random effects</p></td>
+  <td width=70><p>Both</p></td>
  </tr>
  <tr style='mso-yfti-irow:10'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>10</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/5</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Mosquito abundance: Hierarchical modeling</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><span class=SpellE>WinBUGS</span></p>
-  </td>
+  <td width=32><p>10</p></td>
+  <td width=45><p>11/10</p></td>
+  <td width=283><p>Mosquito abundance: Hierarchical modeling</p></td>
+  <td width=70><p>WinBUGS</p></td>
  </tr>
  <tr style='mso-yfti-irow:11'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/12</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Moose population fluctuations: State-space time series</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><span class=SpellE>WinBUGS</span></p>
-  </td>
+  <td width=32><p>11</p></td>
+  <td width=45><p>11/17</p></td>
+  <td width=283><p>Moose population fluctuations: State-space time series</p></td>
+  <td width=70><p>WinBUGS</p></td>
  </tr>
  <tr style='mso-yfti-irow:12'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>12</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>11/19</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Peer Assessment of projects</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><o:p>&nbsp;</o:p></p>
-  </td>
+  <td width=32><p>12</p></td>
+  <td width=45><p>11/24</p></td>
+  <td width=283><p>Peer Assessment of projects</p></td>
+  <td width=70><p><o:p>&nbsp;</o:p></p></td>
  </tr>
  <tr style='mso-yfti-irow:13'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>13</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>12/3</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>Ozone: Space/time exploratory data analysis</p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>R</p>
-  </td>
+  <td width=32><p>13</p>
+  </td><td width=45><p>12/1</p></td>
+  <td width=283><p>Ozone: Space/time exploratory data analysis</p></td>
+  <td width=70><p>R</p></td>
  </tr>
  <tr style='mso-yfti-irow:14;mso-yfti-lastrow:yes'>
-  <td width=32 style='width:.45in;border:solid #6D6D6D 1.0pt;border-top:none;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>14</p>
-  </td>
-  <td width=45 style='width:45.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>12/10</p>
-  </td>
-  <td width=283 style='width:282.6pt;border-top:none;border-left:none;
-  border-bottom:solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;
-  mso-border-top-alt:solid #6D6D6D 1.0pt;mso-border-left-alt:solid #6D6D6D 1.0pt;
-  padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal>South African biodiversity: Spatial CAR and <span
-  class=SpellE>Kriging</span></p>
-  </td>
-  <td width=70 style='width:70.0pt;border-top:none;border-left:none;border-bottom:
-  solid #6D6D6D 1.0pt;border-right:solid #6D6D6D 1.0pt;mso-border-top-alt:solid #6D6D6D 1.0pt;
-  mso-border-left-alt:solid #6D6D6D 1.0pt;padding:0in 5.4pt 0in 5.4pt'>
-  <p class=MsoNormal><span class=SpellE>WinBUGS</span></p>
-  </td>
+  <td width=32><p>14</p></td>
+  <td width=45><p>12/8</p></td>
+  <td width=283><p>South African biodiversity: Spatial CAR and Kriging</p></td>
+  <td width=70><p>WinBUGS</p></td>
  </tr>
 </table>
 
-<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+<p><b><o:p>&nbsp;</o:p></b></p>
 
-<p class=MsoNormal style='margin-top:2.9pt;margin-right:0in;margin-bottom:2.9pt;
+<p style='margin-top:2.9pt;margin-right:0in;margin-bottom:2.9pt;
 margin-left:0in;line-height:12.0pt;mso-line-height-rule:exactly;mso-layout-grid-align:
-none;text-autospace:none'><b><span style='font-size:14.0pt;mso-bidi-font-family:
+none;text-autospace:none'><b><span style='font-size:14.0pt;
 "American Typewriter";color:black'>Academic Code<o:p></o:p></span></b></p>
 
-<p class=MsoNormal style='margin-top:2.9pt;margin-right:0in;margin-bottom:2.9pt;
+<p style='margin-top:2.9pt;margin-right:0in;margin-bottom:2.9pt;
 margin-left:0in;line-height:12.0pt;mso-line-height-rule:exactly;mso-layout-grid-align:
-none;text-autospace:none'><span style='mso-bidi-font-family:"American Typewriter Light";
+none;text-autospace:none'><span style='"American Typewriter Light";
 color:black'>It is your responsibility to know and understand the provisions of
 the CAS Academic Conduct Code. Copies are available in CAS 105. Suspected cases
 of academic misconduct will be referred to the Dean’s Office.<span
 style="mso-spacerun:yes">  </span>See </span><a
 href="http://www.bu.edu/academics/resources/academic-conduct-code"><span
-style='mso-bidi-font-family:Helvetica'>http://www.bu.edu/academics/resources/academic-conduct-code</span></a><span
-style='mso-bidi-font-family:Helvetica;color:#003E9F'> </span><span
-style='mso-bidi-font-family:"American Typewriter Light";color:black'>for
+style='Helvetica'>http://www.bu.edu/academics/resources/academic-conduct-code</span></a><span
+style='color:#003E9F'> </span><span
+style='"American Typewriter Light";color:black'>for
 conduct information for undergraduates and </span><a
 href="http://www.bu.edu/cas/students/graduate/forms-policies-procedures/academic-discipline-procedures/"><span
-style='mso-bidi-font-family:"American Typewriter Light"'>http://www.bu.edu/cas/students/graduate/forms-policies-procedures/academic-discipline-procedures/</span></a><span
-style='mso-bidi-font-family:"American Typewriter Light";color:black'> for
+style='"American Typewriter Light"'>http://www.bu.edu/cas/students/graduate/forms-policies-procedures/academic-discipline-procedures/</span></a><span
+style='"American Typewriter Light";color:black'> for
 graduate student conduct requirements.<o:p></o:p></span></p>
 
-<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+<p><b><o:p>&nbsp;</o:p></b></p>
 
-<p class=MsoNormal><b><o:p>&nbsp;</o:p></b></p>
+<p><b><o:p>&nbsp;</o:p></b></p>
 
-<p class=MsoNormal><b><span style='font-size:14.0pt'>Additional Resources<o:p></o:p></span></b></p>
+<p><b><span style='font-size:14.0pt'>Additional Resources<o:p></o:p></span></b></p>
 
-<p class=MsoNormal><b><span style='font-size:14.0pt'><o:p>&nbsp;</o:p></span></b></p>
+<p><b><span style='font-size:14.0pt'><o:p>&nbsp;</o:p></span></b></p>
 
-<p class=MsoNormal><b>Books<o:p></o:p></b></p>
+<p><b>Books<o:p></o:p></b></p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level1 lfo1'><i
+<p style='margin-left:0in;text-indent:0in;'><i
 style='mso-bidi-font-style:normal'><o:p>&nbsp;</o:p></i></p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level1 lfo1'><i
+<p style='margin-left:0in;text-indent:0in;'><i
 style='mso-bidi-font-style:normal'>Ecological Perspectives<o:p></o:p></i></p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
-class=SpellE>Hilborn</span>, R., M. <span class=SpellE>Mangel</span>. 1997. The
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
+class=SpellE>Hilborn</span>, R., M. Mangel</span>. 1997. The
 Ecological Detective. Princeton University Press.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
 class=SpellE>Bolker</span>, B. 2008. <a
 href="http://people.biology.ufl.edu/bolker/emdbook/index.html">Ecological
 Models and Data and R</a></p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>Clark,
-J.S. &amp; A. E. <span class=SpellE>Gelfand</span>. 2006. Hierarchical <span
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>Clark,
+J.S. &amp; A. E. Gelfand</span>. 2006. Hierarchical <span
 class=SpellE>Modelling</span> for the Environmental Sciences: Statistical
 Methods and Applications. Oxford University Press.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>McCarthy,
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>McCarthy,
 M. 2007. Bayesian methods for Ecology. Cambridge University Press.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level1 lfo1'><o:p>&nbsp;</o:p></p>
+<p style='margin-left:0in;text-indent:0in;'><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level1 lfo1'><o:p>&nbsp;</o:p></p>
+<p style='margin-left:0in;text-indent:0in;'><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level1 lfo1'><span
+<p style='margin-left:0in;text-indent:0in;'><span
 class=SpellE><i style='mso-bidi-font-style:normal'>WinBUGS</i></span><i
 style='mso-bidi-font-style:normal'> examples<o:p></o:p></i></p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
-class=SpellE>Congdon</span>, P. 2001. Bayesian Statistical <span class=SpellE>Modelling</span>.
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
+class=SpellE>Congdon</span>, P. 2001. Bayesian Statistical Modelling</span>.
 John Wiley &amp; Sons.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
-class=SpellE>Congdon</span>, P. 2003. Applied Bayesian <span class=SpellE>Modelling</span>.
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
+class=SpellE>Congdon</span>, P. 2003. Applied Bayesian Modelling</span>.
 John Wiley &amp; Sons.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
 class=SpellE>Congdon</span>, P. 2005. Bayesian Models for Categorical Data.
 John Wiley &amp; Sons.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level1 lfo1'><o:p>&nbsp;</o:p></p>
+<p style='margin-left:0in;text-indent:0in;'><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level1 lfo1'><i
+<p style='margin-left:0in;text-indent:0in;'><i
 style='mso-bidi-font-style:normal'>Intro Bayesian &amp; Hierarchical Bayes<o:p></o:p></i></p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
 class=SpellE>Bolstad</span>, W. M. 2007. Introduction to Bayesian Statistics,
 2nd Edition. John Wiley &amp; Sons, Inc., Hoboken, NJ.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
 class=SpellE>Gelman</span>, A., J.B. Carlin, H.S. Stern, D.B. Rubin. 2003.
 Bayesian Data Analysis, 2nd Edition. Chapman &amp; Hall/CRC Press.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
 class=SpellE>Gelman</span>, A. &amp; J. Hill. 2007. Data Analysis Using
 Regression and Multilevel/Hierarchical Models. Cambridge University Press, Cambridge.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>Silvia,
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>Silvia,
 D.S. &amp; Skilling J. 2006. Data Analysis: A Bayesian Tutorial, 2nd Edition.
 Oxford University Press, Oxford.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>Winkler,
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>Winkler,
 R.L. 2003. An Introduction to Bayesian Inference and Decision. Probabilistic
 Publishing, Gainesville, FL.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level1 lfo1'><o:p>&nbsp;</o:p></p>
+<p style='margin-left:0in;text-indent:0in;'><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level1 lfo1'><i
+<p style='margin-left:0in;text-indent:0in;'><i
 style='mso-bidi-font-style:normal'>Statistical books<o:p></o:p></i></p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>Albert,
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>Albert,
 J. 2008. Bayesian Computation with R. Springer. 270 pages.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>Carlin,
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>Carlin,
 B.P., T.A. Louis. 2000. Bayes and Empirical Bayes Methods for Data Analysis. <span
 class=SpellE>Chapmall</span> &amp; Hall/CRC.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
 class=SpellE>Gamerman</span>, D., H. F. Lopes 2006. Markov Chain Monte Carlo:
 Stochastic Simulation for Bayesian Inference, 2nd Edition. Chapman &amp;
 Hall/CRC.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
-class=SpellE>Gilks</span>, W.R., S. Richardson, D.J. <span class=SpellE>Spiegelhalter</span>.
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><span
+class=SpellE>Gilks</span>, W.R., S. Richardson, D.J. Spiegelhalter</span>.
 1996. Markov Chain Monte Carlo in Practice. Chapman &amp; Hall/CRC.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>Marin,
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'>Marin,
 J.-M., C. P. Robert. 2007. Bayesian Core: A Practical Approach to Computational
 Bayesian Statistics. Springer, New York.</p>
 
-<p class=MsoNormal style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><o:p>&nbsp;</o:p></p>
+<p style='margin-left:0in;text-indent:0in;mso-list:l0 level2 lfo1'><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal><b>General review articles<o:p></o:p></b></p>
+<p><b>General review articles<o:p></o:p></b></p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
-style='font-size:9.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>-<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Special
+<p style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
+style='font-size:9.0pt;
+'>-<span
+style='font:7.0pt '>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Special
 issue in Ecology. 2003. Ecological Uncertainty and Forecasting. Vol. 84(6):
 1349-1414.</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
-style='font-size:9.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>-<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Special
+<p style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
+style='font-size:9.0pt;
+'>-<span
+style='font:7.0pt '>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Special
 issue in Ecological Applications. 1996. Bayesian Inference. Vol. 6(4): 1034+.</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
-style='font-size:9.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>-<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Special
+<p style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
+style='font-size:9.0pt;
+'>-<span
+style='font:7.0pt '>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Special
 issue in Ecological Applications. 2006. Deepening Ecological Insights Using
 Contemporary Statistics. Vol. 16(1): 3-124.</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
-style='font-size:9.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>-<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Forum
+<p style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
+style='font-size:9.0pt;
+'>-<span
+style='font:7.0pt '>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Forum
 articles in Ecological Applications. 2008. Forum-Hierarchical Statistical
 Models in Ecology. Vol. 19(3): 551-596.</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
-style='font-size:9.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>-<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Ellison
+<p style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
+style='font-size:9.0pt;
+'>-<span
+style='font:7.0pt '>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Ellison
 (2004) Bayesian inference in ecology. Ecology Letters 7:509-520.</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
-style='font-size:9.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>-<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Clark
+<p style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
+style='font-size:9.0pt;
+'>-<span
+style='font:7.0pt '>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Clark
 (2005) Why Environmental scientists are becoming Bayesians. Ecology Letters
 8:2-14.</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
-style='font-size:9.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>-<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Clark
-&amp; <span class=SpellE>Gelfand</span> (2006) A future for models and data in
+<p style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
+style='font-size:9.0pt;
+'>-<span
+style='font:7.0pt '>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Clark
+&amp; Gelfand</span> (2006) A future for models and data in
 environmental sciences. Trends in Ecology &amp; Evolution 21:375-380.</p>
 
-<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
-style='font-size:9.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
-mso-bidi-font-family:Symbol'><span style='mso-list:Ignore'>-<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Ogle
+<p style='margin-left:.25in;text-indent:-.25in;mso-list:l1 level1 lfo2'><![if !supportLists]><span
+style='font-size:9.0pt;
+'>-<span
+style='font:7.0pt '>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>Ogle
 &amp; Barber (2008) Bayesian data-model integration in plant physiological and
 ecosystem ecology. Progress in Botany Vol. 69:281-311.</p>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+<p><o:p>&nbsp;</o:p></p>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+<p><o:p>&nbsp;</o:p></p>
 
 </div>
 
-<span style='font-size:10.0pt;font-family:"Times New Roman";mso-fareast-font-family:
-"Times New Roman";mso-ansi-language:EN-US;mso-fareast-language:EN-US;
+<span style='font-size:10.0pt;
+;mso-ansi-language:EN-US;mso-fareast-language:EN-US;
 mso-bidi-language:AR-SA'><br clear=all style='page-break-before:auto;
 mso-break-type:section-break'>
 </span>
 
 <div class=WordSection4>
 
-<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+<p><o:p>&nbsp;</o:p></p>
 
 </div>
 
