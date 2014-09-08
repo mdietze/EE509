@@ -83,7 +83,7 @@ lines(x,pnorm(x,-1,2),col=3)
 abline(v=-1,col=3)
 ```
 
-Using the CDF we can calculate Pr(X ≤ x) for our data point
+Using the CDF we can calculate $Pr(X /leq x)$ for our data point
 
 ```{r}
 pnorm(0.5,0,1)
@@ -91,7 +91,7 @@ pnorm(0.5,2,1)
 pnorm(0.5,-1,2)
 ```
 
-If the value 0.5 here corresponded to some hypothesis, the CDF could be use to calculate a p-value associated with the one-sided test. Would any be significant at α=0.05 significance? At α=0.1?
+If the value 0.5 here corresponded to some hypothesis, the CDF could be use to calculate a p-value associated with the one-sided test. Would any be significant at $\alpha$=0.05 significance? At $\alpha$=0.1?
 
 Next let's look at the function qnorm.  Since the input to this function is a quantile, the x-values for the plot are restricted to the range [0,1].
 
@@ -195,7 +195,7 @@ The Beta is an interesting distribution because it is bound on the range 0 <= X 
 $$Beta(x \mid a,b) \propto x^{a-1} (1-x)^{b-1}$$
 $$Binom(x \mid n,p) \propto p^x (1-p)^{n-p}$$
 
-The critical difference between the two is that in the Beta the random variable X is in the base while in the Binomial it is in the exponent.  Unlike many distributions you may be have used in the past, the two shape parameters in the Beta do not define the mean and variance, but these can be calculated as simple functions of α and β.  The Beta does have an interesting property of symmetry though, whereby Beta(α,β) is the reflection of Beta(β,α).
+The critical difference between the two is that in the Beta the random variable X is in the base while in the Binomial it is in the exponent.  Unlike many distributions you may be have used in the past, the two shape parameters in the Beta do not define the mean and variance, but these can be calculated as simple functions of $\alpha$ and $\beta$.  The Beta does have an interesting property of symmetry though, whereby Beta($\alpha$, $\beta$) is the reflection of Beta($\beta$,$\alpha$).
 
 ```{r}
 plot(p,dbeta(p,5,5),type='l')
@@ -270,7 +270,7 @@ lines(x,dlnorm(x,2,1),col=4)
 
 ## Exponential & Laplace
 
-The exponential distribution arises naturally as the time it takes for an event to occur when the average rate of occurrence, *r*, is constant.  The exponential is a special case of the Gamma (discussed next) where $Exp(X \mid r) = Gamma(X \mid 1,r)$.  The exponential is also a special case of the Weibull, $Exp(X \min r) = Weibull(X \mid r,1)$, where the Weibull is a generalization of the exponential that allows the rate parameter *r* to increase or decrease with time.  The Laplace is basically a two-sided exponential and arises naturally if one is dealing with absolute deviation, $\abs{x-m}$, rather than squared deviation, $(x-m)^2$, as is done with the normal.
+The exponential distribution arises naturally as the time it takes for an event to occur when the average rate of occurrence, *r*, is constant.  The exponential is a special case of the Gamma (discussed next) where $Exp(X \mid r) = Gamma(X \mid 1,r)$.  The exponential is also a special case of the Weibull, $Exp(X \min r) = Weibull(X \mid r,1)$, where the Weibull is a generalization of the exponential that allows the rate parameter *r* to increase or decrease with time.  The Laplace is basically a two-sided exponential and arises naturally if one is dealing with absolute deviation, $|x-m|$, rather than squared deviation, $(x-m)^2$, as is done with the normal.
 
 ```{r}
 ## changing the mean
