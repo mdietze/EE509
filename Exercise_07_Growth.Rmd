@@ -1,0 +1,298 @@
+---
+title: "Lab 07 - Growth Curve"
+author: "GE 509"
+date: "October 17, 2014"
+output: html_document
+---
+
+The objective of this week’s lab is to continue to look at the details of how MCMC works by investigating a model of slightly greater complexity.  This model is nonlinear and uses non-conjugate priors and thus not all steps can be sampled using Gibbs Sampling.  To sample for these parameters we will instead use Metropolis-Hastings methods.  In the course of this lab we will explore the choice of jump variance and how that affects the rate of convergence and mixing.  We will also see how there is a trade-off in the time spent specifying the model (Metropolis steps are easier to specify because we don’t need to solve for the conditional) vs the run-time of the model (Metropolis requires many more MCMC steps).
+
+**Note: This lab assumes you have your script from Lab 6 available.  We'll start by making a copy of that code and then modifying it for Lab 7**
+
+## Case Study:  Sapling Growth
+
+  One of the most important characteristics of trees used to explain forest dynamics is shade-tolerance.  Qualitatively, shade-tolerance refers to the ability for a species to survive and grow in typical understory light conditions (~1-5% full sunlight).  Important trade-offs have been hypothesized about the relationship between growth and survival at high light vs growth and survival at low light.  It is generally held that shade-intolerant species will have high growth and survival in high light environments and low growth and survival in the shade, while shade-tolerant species will grow and survive better in the shade than the shade intolerant species but will be out-competed by the shade-intolerant species when grown in the sun.  Throw in the occasional disturbance to ensure there are always patches of both high and low light and you've got the basic idea behind the dominant ecological theories about how forests work – how tree species coexist, what species will be present at a certain aged stand (succession), etc.
+
+## Model Specification
+
+To move from a qualitative description of shade tolerance to a quantitative one requires that we quantify the relationship between light and growth for understory trees.  One of the most common model's used to fit this relationship is the Michaelis-Menton function (aka Monod) 
+
+_Process Model_
+$$\mu_i = \beta_0 + \beta_1 {{L_i}\over{\theta + L_i}} $$					
+
+The Michaelis Menton function is a ratio function that starts at b0 and saturates at b0 + b1.  Here we take L to be light level and $\mu$ to be the expected growth rate. $\theta$is the half-saturation constant, with is the light level at which growth is expected to be half way between its minimum and it's maximum.  For our analysis today we'll be using light data derived from the analysis of canopy photos that estimates the total annual light budget at a site normalized by the amount of light received if there was no shade from other trees.  In other words, L varies from 0-1 and can be interpreted as the proportion of full sun.  Growth will be assessed in terms of change in height (cm/year) based on repeated measurements of the height of individuals during annual censuses at the end of the growing season.
+
+For our data model we will assume that variability in growth is Normally distributed
+
+_Data Model_
+$$y_i \sim N(\mu_i,\sigma^2)$$
+
+While initially one may object to the choice of the Normal based on the argument that growth must be positive, in fact trees can genuinely loose height due to either dieback or can appear to loose height due to measurement error.
+
+To make our job of fitting this model easier, note that if we define a variable z 
+
+$$z_i = {L_i}\over{\theta + L_i}$$
+
+Then the rest of the model takes on the linear form
+
+$$\mu_i = \beta_0 + \beta_1 z_i$$
+
+which is equivalent to our regression model from Lab 6.  Note that since $\theta$ is unknown and has to be estimated, z is not a fixed quantity but needs to be recomputed in each step of the MCMC.  Additional information on this model and how we “linearized” it can be found in textbook section 7.4.4.  Further embellishes can be found in Clark et al 2003 Ecology.
+
+For the first part of the lab we'll assume priors on $\beta$ and the variance that are Normal and Inverse Gamma respectively, which will allow us to sample for these three parameters using a Gibbs Sampler based on the existing code from Lab 6.
+
+To add the nonlinear portion of the model we need to specify a prior on $\theta$.  Since L is bound on 0-1 and $\theta$ is interpreted as a light level that corresponds to half maximal growth we'll assume that $\theta$ is also bound on 0-1.  Given this constraint the Beta distribution ends up being a logical choice for the prior.
+
+Combining all the parts of the model, this gives us a posterior:
+
+$$p(\beta,\theta,\sigma^2 \vert y, L) \propto N_n \left( y \vert \beta_0 + \beta_1 {{L_i}\over{\theta + L_i}} , \sigma^2 \right) N_2(\beta \vert \beta_0, V_b) IG(\sigma^2 \vert s_1,s_2) Beta(\theta \vert a,b)$$
+
+##Set Up
+
+As in Lab 6, the first section of R code is used to set up the analysis
+
+1. load data
+2. specify parameters for the priors
+3. set up variables to store MCMC
+4. specify initial conditions
+5. specify jump distribution
+
+The following sections will highlight the modifications of Lab 6 rather than provide the full code in its entirety.  At this point you should make a copy of your Lab 6 script and open it up in R.
+
+**1) Load Data**: The data for this analysis is stored in binary Rdata format.  There are two variables defined: “L” is the light level (0-1) and “grow” is the height growth rate (cm/yr).
+
+```{r}
+load("data/Lab7.RData")
+library(mvtnorm)
+```
+
+Once you've loaded this data you can use ls() to verify that two new variables, “grow” and “L”, have been created.  This one line should replace the first part of Lab 6, where we generated pseudodata from a known model.  That code up to but not including “##specify priors” can be deleted.
+
+### Lab Report Task 1
+
+A) Plot the data (growth vs light)
+B) Determine sensible initial conditions for the process model and add a plot of this curve to the data plot.  Variables to define are the regression parameter vector “beta”, the variance “sg”, and the half saturation “theta”.
+
+```{r}
+theta=1.0
+sg=1000
+beta=c(0,0)
+```
+
+
+**2) Specify priors:**  The uninformative priors for beta (bprior,vinvert) and for sigma (s1,s2) can be retained from Lab 6. 
+
+```{r}
+bprior <- as.vector(c(0,0))
+vinvert <- solve(diag(1000,2))
+s1 <- 0.1
+s2 <- 0.1
+```
+
+
+The Beta prior for theta is taken to have parameters 
+
+```{r}
+a1 = 1.91
+a2 = 10.17
+```
+
+which corresponds to prior information of the half-saturation constant having a 95% CI between 0.02 and 0.35.  You'll also want to delete the first two of the precomputed values used in Lab 6 (XX and XY) because the 'x' in this case varies with each MCMC loop, but keep Vb.
+
+```{r}
+Vb <- vinvert %*% bprior
+```
+
+
+**3) Set up variables to store MCMC:**  In addition to the existing code that defines bgibbs and sgibbs you will want to add a vector, tgibbs, to store theta
+
+```{r}
+##storage for MCMC
+ngibbs <- 10    			## number of updates
+bgibbs <- matrix(0.0,nrow=ngibbs,ncol=2) 	## storage for beta
+sgibbs <- rep(sg,ngibbs)			## storage for sigma2
+tgibbs <- rep(theta,ngibbs)
+```
+
+
+**4) Specify Initial Conditions:** Use the values defined in Task 1B.  In addition you'll want to precompute z and X and define the sample size n.
+
+```{r}
+sinv = 1/sg
+n <- length(L)
+z <- L/(L+theta)
+X <- cbind(rep(1,n),z)
+```
+
+
+**5) Specify Jump distribution:** With the Metropolis algorithm we need to decide on the distribution we will use for proposing new values.  Since the variable we need to sample from, theta, is defined on 0-1 we are much more limited in our options of Jump distributions because only proposals in the correct range are valid.  Thus far the only distribution we've learned about that meets this criteria is the Beta.  The disadvantage of the Beta as a jump distribution is that it is difficult to center over the current value while holding the variance constant because the Beta's parameters are not a mean and variance.  However, there are other distributions that also meet this criteria that are easier to interpret.  We will make use of one of these, the truncated Normal, as our jump.  Because the truncated normal is not predefined in R we will write the functions we need based on the standard Normal.  For the truncated Normal density function we have to re-normalize the Normal PDF based on the proportion of the Normal density that falls between 0 and 1.  Since in practice we will be using the log of the density we will go ahead and define the density in the log domain.
+
+```{r}
+## jump
+dtnorm <- function(x,mu,sd){
+  y = dnorm(x,mu,sd,log=TRUE)-log(pnorm(1,mu,sd)-pnorm(0,mu,sd))
+  y[x<0 | x > 1] = -Inf
+  return(y)
+}
+xseq = seq(-0.5,1,length=100)
+plot(xseq,exp(dtnorm(xseq,0.25,0.3)),type='l')
+lines(xseq,dnorm(xseq,0.25,0.3),col=2)
+```
+
+Since we are using this distribution as a jump distribution we will also need a way of generating random numbers from the truncated normal.  We will take the inelegant but effective implementation based on proposing random Normal variables and rejecting and redrawing those that fail to meet our criteria of falling between 0 and 1.  In this function definition we'll introduce the “which” function that tells us the vector indices where a logical criteria is true.  We also introduce the logical OR, denoted by |, that returns TRUE if either the first OR the second criteria is true. 
+
+```{r}
+rtnorm <- function(n,mu,sd){
+  x <- rnorm(n,mu,sd)
+  sel <- which(x < 0 | x > 1)
+  while(length(sel)> 0){
+    x[sel] <- rnorm(length(sel),mu,sd)
+    sel <- which(x < 0 | x > 1)
+  }
+  return(x)
+}
+```
+
+
+Finally, we'll need to define the standard deviation for our jump distribution
+
+```{r}
+JumpSD <- 0.1
+```
+
+
+## MCMC loop
+
+Within the MCMC loop we will iteratively sample from the conditional posterior distributions for each parameter.  Below we will define the samplers for each of these.  The first two are very similar to the regression model defined last week
+
+```{r}
+## sample regression parameters
+  bigV    <- solve(sinv*crossprod(X) + vinvert)
+  littlev <- sinv*crossprod(X,grow) + Vb
+  b <- t(rmvnorm(1,bigV %*% littlev,bigV))
+
+  ## sample variance
+  u1 <- s1 + n/2
+  u2 <- s2 + 0.5*crossprod(grow-X%*%b)
+  sinv <- rgamma(1,u1,u2)
+  sg <- 1/sinv
+```
+
+The third section in the MCMC, which samples for theta, requires a way of sampling from the following conditional distribution:
+
+$$p(\theta \vert \beta,\sigma^2, y, L) \propto N_n \left( y \vert \beta_0 + \beta_1 {{L_i}\over{\theta + L_i}} , \sigma^2 \right) Beta(\theta \vert a,b)$$
+
+This conditional posterior is based on selecting the terms from the full posterior (above) that include theta.  Since this clearly a non-standard distribution we will sample from it using Metropolis-Hasting.  We will be using the Metropolis-Hastings algorithm rather than the simpler Metropolis because our truncated Normal distribution is non-symmetric.
+
+```{r}
+ ##theta
+  tnew <- rtnorm(1,theta,JumpSD)  		##propose new theta
+  znew <- L/(L+tnew)					## calculate new z
+  Xnew <- cbind(rep(1,n),znew)				## calculate new X
+  anum <- dmvnorm(grow,Xnew%*%b,diag(sg,n),log=TRUE) + 	##likelihood
+	        dbeta(tnew,a1,a2,log=TRUE)			##prior
+  jnum <- dtnorm(tnew,theta,JumpSD)				##jump
+  aden <- dmvnorm(grow,X%*%b,diag(sg,n),log=TRUE) +	##likelihood
+		      dbeta(theta,a1,a2,log=TRUE)			##prior
+  jden <- dtnorm(theta,tnew,JumpSD)				##jump
+  a <- exp((anum-jnum)-(aden-jden))			## acceptance criteria
+  if(a > runif(1)){					## accept with probability a
+    theta <- tnew						## update theta if step accepted
+    X <- Xnew						## update X if step accepted
+  }
+```
+
+In the first line of this code we propose a new theta value based on the jump distribution  centered on the current value (theta) and with the specified jump standard deviation (JumpSD).  The next two lines define two variables used to simplify the calculation of the likelihood.  The next three lines calculate the log posterior probability of the new theta, anew, and the log jump probability of jumping to that value from the current theta, jnum.  The following three lines calculate the equivalent probabilities for the current value of theta.  Finally, we calculate $a$
+
+$$a = {p(\theta^* \vert y) J(\theta^* \vert \theta^c)}\over{p(\theta^c \vert y) J(\theta^c \vert \theta^*)}$$
+
+This calculation is first done in the log domain and then converted back to the linear domain using the exponential.  In the last bit of code we decide if we accept or reject the proposed step based on a random uniform draw from 0 to 1.  If a is greater than this value then the step is accepted and we replace the current values of theta and X with the proposed values.  If a is > 1 then the step is always accepted.
+
+Finally, in the “storage” section of the MCMC you'll want to add a line to store the current of value of theta to tgibbs.
+
+Once the MCMC loop is defined you'll want to run the code.  Start with some small number of samples (e.g. 10) to make sure the code runs.  Then move up to an intermediate number of steps (e.g. 500-1000) and check the acceptance rate for theta.  You may want to adjusting the JumpSD a few times in order to achieve an efficient mixing rate (30-70% acceptance) (see Task 2D).
+
+### Lab Report Task 2
+
+C) Report parameter estimates and evaluate the convergence of the model parameters.  This should include but is not limited to:
+
+1. A parameter summary table
+2. History and density plots
+3. Record and justify the burn-in and thin values you used
+
+D) Report the different JumpSD that you tried, the acceptance rate achieved with each, and the value you used for your final run
+
+## Evaluation
+
+	In the evaluation section, the basic diagnostics (Task 2C) remain the same as the last two labs.  Again we will also want to look at the credible interval and predictive intervals for the overall model.  This is particularly important for non-linear models because the mean prediction of the model is not the same as the prediction from the model if we plug in the posterior mean values for each parameter (Jensen's Inequality).
+	The interval estimation code looks very similar to the previous lab, the main difference just being in the specification of the process model
+
+```{r}
+## credible and prediction intervals
+xpred <- seq(0,1,length=30)
+npred <- length(xpred)
+ypred <- matrix(NA,nrow=ngibbs,ncol=npred)
+ycred <- matrix(NA,nrow=ngibbs,ncol=npred)
+
+for(g in 1:ngibbs){
+  Ey <- bgibbs[g,1] + bgibbs[g,2] * xpred/(xpred + tgibbs[g])
+  ycred[g,] <- Ey
+  ypred[g,] <- rnorm(npred,Ey,sqrt(sgibbs[g]))
+}
+ci <- apply(ycred,2,quantile,c(0.025,0.5,0.975))
+pi <- apply(ypred,2,quantile,c(0.025,0.975))
+
+plot(L,grow)
+lines(xpred,ci[2,],col=3,lwd=2)  ## median model
+lines(xpred,ci[1,],col=3,lty=2)	## model CI
+lines(xpred,ci[3,],col=3,lty=2)
+lines(xpred,pi[1,],col=4,lty=2)	## model PI
+lines(xpred,pi[2,],col=4,lty=2)
+```
+
+
+## Implementation in BUGS
+
+In practice both the regression model we developed last week and the Michaelis-Menton model this week are simpler to implement in BUGS than in R.  Still, it is important to understand the R implementation to gain a better understanding of how MCMC works and how to implement such a model in R in case you develop a model that is beyond what BUGS can handle.  In this last section of the lab we will quickly reimplement these models in BUGS to make sure you understand the implementation in both.  Let’s begin with the regression model.  Open up a script window from within BUGS and enter the following
+
+```
+model{
+
+beta[1] ~ dnorm(0,0.001)  	## priors
+beta[2] ~ dnorm(0,0.001)
+prec      ~dgamma(0.1,0.1)
+
+    for(i in 1:n){
+	Eg[i] <- beta[1] + beta[2]*L[i]   	## process model
+	grow[i] ~ dnorm(Eg[i],prec)		## data model
+	Pg[i]     ~ dnorm(Eg[i],prec)		## prediction
+     }
+}
+```
+
+
+To specify the data for this model, lets begin by getting R to output the data in list format
+
+```{r}
+dput(list(grow=grow,L=L,n=n))
+```
+
+Within the “list” above, the first element in each pair is the name the variable will have in the list and the second element in each pair is the variable in R.  The output from this command is a long text string that you'll want to cut and paste from R into the BUGS script.  The R list format has a bit more complicated than BUGS knows how to interpret so you'll want to snip off the leading “structure(“ and the trailing “, .Names = c("grow", "L", "n"))”.  You'll also want to change n from 130L to just 130.
+
+Run this model in BUGS and initially track the variables beta and prec.  Once the model has converged, add Eg and Pg to the list of variables you track.  For the diagnostics you'll only want to look at beta and prec but we'll use Eg and Pg to construct the model credible interval and predictive interval.  Also after convergence go to the Inference>DIC menu and click the “set” button.  Now run the model longer to collect posterior samples for Eg, Pg, and DIC.  DIC is a model comparison metric similar to AIC that we'll use to compare the fit of the regression model to the Michaelis-Menton model.  Once the sampler has run longer go to the DIC Tool and click on “stats”.  Save the info in this table for later, in particular the total DIC value.
+
+We'll next use the Comparision Tool (Inference>Compare) to make our model credible and predictive intervals.  Within this tool let's first set “node” to Eg, “other” to grow, and “axis” to L and then hit the “model fit” button.  This will make a plot of 'node' vs 'axis' and then add a scatter plot of 'other' vs 'axis'.  Since this plot is based on Eg, which just included parameter error, the resulting figure is the credible interval.  Repeat this sequence but this time set node to Pg.  The resultant graph now depicts the predictive interval because it includes the uncertainty from the data model.
+
+**Note:** If at this point you want to shift to working with the R libraries for calling OpenBUGS or JAGS you can complete the portion above and Task 3 within R.
+
+### Lab Report Task 3:
+
+E) Implement the Michaelis-Menton model in BUGS based on the regression code above.  This only requires adding one line (specify the prior on theta) and modifying another line (change the process model).  Run this model and then include the following in your lab report:
+
+1. BUGS code
+2. Posterior history plot, density plot, burn-in, and thin
+3. Parameter summary table (make sure you have an adequate number of posterior samples)
+4. Model credible interval and predictive interval plots
+5. Comparison of the Michaelis-Menton DIC to the regression DIC (lowest DIC “wins”)
+
+F) Compare the R and BUGS outputs.  Make sure you can match up the plots and statistics made in one with the equivalent plots/statistics from the other.  Are any of the estimates substantially different?
