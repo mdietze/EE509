@@ -31,7 +31,7 @@ While initially one may object to the choice of the Normal based on the argument
 
 To make our job of fitting this model easier, note that if we define a variable z 
 
-$$z_i = {L_i}\over{\theta + L_i}$$
+$$z_i = {{L_i}\over{\theta + L_i}}$$
 
 Then the rest of the model takes on the linear form
 
@@ -45,7 +45,7 @@ To add the nonlinear portion of the model we need to specify a prior on $\theta$
 
 Combining all the parts of the model, this gives us a posterior:
 
-$$p(\beta,\theta,\sigma^2 \vert y, L) \propto N_n \left( y \vert \beta_0 + \beta_1 {{L_i}\over{\theta + L_i}} , \sigma^2 \right) N_2(\beta \vert \beta_0, V_b) IG(\sigma^2 \vert s_1,s_2) Beta(\theta \vert a,b)$$
+$$p(\beta,\theta,\sigma^2 \vert y, L) \propto N_n \left( y \vert \beta_0 + \beta_1 {{L_i}\over{\theta + L_i}} , \sigma^2 \right) N_2(\beta \vert beta0, V_b) IG(\sigma^2 \vert s_1,s_2) Beta(\theta \vert a,b)$$
 
 ##Set Up
 
@@ -204,7 +204,7 @@ This conditional posterior is based on selecting the terms from the full posteri
 
 In the first line of this code we propose a new theta value based on the jump distribution  centered on the current value (theta) and with the specified jump standard deviation (JumpSD).  The next two lines define two variables used to simplify the calculation of the likelihood.  The next three lines calculate the log posterior probability of the new theta, anew, and the log jump probability of jumping to that value from the current theta, jnum.  The following three lines calculate the equivalent probabilities for the current value of theta.  Finally, we calculate $a$
 
-$$a = {p(\theta^* \vert y) J(\theta^* \vert \theta^c)}\over{p(\theta^c \vert y) J(\theta^c \vert \theta^*)}$$
+$$a = {{p(\theta^* \vert y) J(\theta^* \vert \theta^c)}\over{p(\theta^c \vert y) J(\theta^c \vert \theta^*)}}$$
 
 This calculation is first done in the log domain and then converted back to the linear domain using the exponential.  In the last bit of code we decide if we accept or reject the proposed step based on a random uniform draw from 0 to 1.  If a is greater than this value then the step is accepted and we replace the current values of theta and X with the proposed values.  If a is > 1 then the step is always accepted.
 
