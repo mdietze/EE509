@@ -1,0 +1,131 @@
+---
+title: "Lab 10 - Hierarchical Bayes"
+author: "GE 509"
+date: "October 20, 2014"
+output: html_document
+---
+
+The objective of this lab is to begin to explore hierarchical models.  We will focus on the most common class of hierarchical models, which are linear mixed models.  Mixed models refer to models that include both hierarchical “random” effects and non-hierarchical “fixed” effects.  Everything that we apply below to linear models can also be applied to generalized linear models (e.g. logistic and poisson regression) and thus falls within the class of models referred to as GLMM (generalized linear mixed models) for which all of our traditional non-hierarchical linear and GLM exist as a special case.  While we have focused on random effects from the Bayesian perspective, special cases on GLMM can also be solved from the Maximum Likelihood perspective. However, it is much harder to generalize Maximum Likelihood random effects models if you need to relax additional assumptions or if you have a nonlinear model.
+
+R2WinBUGS
+
+  The other thing that will be introduced in this lab is the technique of calling WinBUGS directly from R.  While I would like you to **TRY** this approach at least once for the example below, if you then prefer to work with the WinBUGS graphical user interface you are welcome to do so for the rest of the lab.  The advantages of calling BUGS from R (or calling JAGS for Mac and Linux users) are that you don't have to work as hard to get your data into BUGS, that you are freed of continually having to hit the same sequence of buttons every time you want to run the model, and that you get the full MCMC chain back, which allows you to do further computation with the output.  The disadvantages are that you get less information back when debugging (though there are ways around this), you loose the “click of a button” graphs, and you loose the instant feedback on the progress of the MCMC sampler.
+
+To be able to call WinBUGS from R we need to load up the appropriate libraries
+
+```{r}
+Mac = Sys.info()['sysname'] == 'Darwin'
+if(Mac){
+  library(rjags)
+} else{
+library(R2WinBUGS)
+library(BRugs)  ## only required if using OpenBUGS
+}
+```
+
+Next, lets consider the simple BUGS model for fitting the mean and precision of a normal distribution. To be able pass this model to BUGS we're going to define it as a string within R.
+
+```{r}
+FitNorm = "
+model {
+  mu ~ dnorm(0,0.001)
+	prec ~ dgamma(0.1,0.1)
+	for(i in 1:n){
+	  x[i] ~ dnorm(mu,prec)
+	}
+}
+"
+```
+  
+The next step is to then to send the model to BUGS/JAGS using the “openbugs” or "jags.model" function.   This function call is complicated so I recommend typing ?openbugs and/or ?jags.model at the command line to see all the options and arguments.
+
+```{r}
+x = rnorm(10,3,0.5)               ## pseudo-data
+data = list(x=x,n=10)
+init = NULL
+if(Mac){
+  ## compile JAGS model
+  j.model   <- jags.model (file = textConnection(FitNorm),
+                           data = data,
+                           inits = init,
+                           n.chains = 3)
+  ## burn-in
+  b1   <- coda.samples (model = j.model,
+                              variable.names = c("mu","prec"),
+                              n.iter = 2000)
+} else {
+  b1 = openbugs(data=data,  ## data passed to the model
+  init=init,		## initial conditions, NULL is equivalent to “gen inits”
+	model.file=textConnection(FitNorm),  ## file name of our BUGS file 
+	n.chains=3,		## number of MCMC chains
+	n.iter=2000,		## length of each chain
+	n.burnin=100,		## burn in to exclude
+	n.thin = 2,		## thin
+	parameters.to.save=c("mu","prec")  ## parameters we want to track
+)
+}
+```
+
+Data is passed to this function as a list that is structured the same way as we were outputting data previously.  If you want to specify the initial conditions there are two options.  First they could be specified in a list of lists.  For example
+
+```{r}
+init.cond1 <- list()
+init.cond1[[1]] = list(mu=0,prec=1)
+init.cond1[[2]] = list(mu=5,prec=2)
+init.cond1[[3]] = list(mu=10,prec=0.5)
+```
+
+Alternatively, the initial conditions can be specified by a function that returns a list.  This function can either be deterministic or generate initial conditions randomly
+
+```{r}
+init.cond2 <- function(){  ## starts each chain from the same initial conditions
+	list(mu=5,prec=2) }
+init.cond3  <- function(){	## generates random initial conditions
+	list(mu=rnorm(1,5,2),prec=runif(1,0.5,2.0))  }
+```
+
+The data object returned by *openbugs* is complicated and has many components.  I recommend using names(b1) to see what is returned and then to take a look at each of the components.  The “sims” components (matrix, list, and array) are the raw MCMC chains stored in three different formats.  Since these parts are large I recommend against looking at them directly.  Probably the most useful format for the raw MCMC is sims.array which is a 3D array that is structured by (sample, chain,parameter).  The BUGS data object can be converted to a CODA object using the function as.mcmc.list, and then you can use all the functions from Labs 6 and 7 to produce your standard diagnostics. By constrast, JAGS alreay returns the MCMC sample formated as an mcmc.list
+
+```{r}
+## diagnostics of the MCMC
+if(Mac){
+  bmcmc = b1
+}else{
+  bmcmc <- as.mcmc.list(b1)  ## convert to MCMC object
+}
+plot(bmcmc)			## mcmc history and density plot
+autocorr.plot(bmcmc)		## autocorrelation
+cumuplot(bmcmc)		## quantile plot
+gelman.plot(bmcmc)		## GRB statistic
+summary(bmcmc)		## summary table
+```
+
+You can also calculate quantiles explicitly, for example for use in plotting model CI and PI.
+ 
+```{r}
+mu = as.data.frame(as.matrix(bmcmc))$mu
+quantile(mu,c(0.025,0.5,0.975))
+```
+
+
+## Case Study: Mosquito population size
+
+For this lab we will look at data on mosquito abundance.  The data file “Mosquito.csv” contains ten years worth of data for each of 5 replicate traps (Reminder: the function read.csv can be used to read comma-separated text files).   We will begin with the simplest possible model to explain this data and incrementally add complexity.
+
+ 
+Hint 1:  When converting the mosquito data to be 'x' you need to shave off the “time” column for this to have the correct dimensions and indexing.
+Hint 2: If using R2WinBUGS you will want to name the output BUGS object (e.g. b1 in the above exampel) something different for each model you construct so that you don't have to re-run the model if you find you need additional information from it later (e.g. DIC, values to use as initial conditions in more complex models, etc.).
+
+Random time effect
+
+From the graphs in Task 1 it should be apparent that there is systematic year-to-year variability that is unexplained by just a simple mean.  Since at this point we don't know the cause of this variability we can begin by adding a random effect for year.  Adding year effect requires, first, that we add the random effects, alpha.t, to the process model and, second, that we also specify a prior on random effects variance
+ 
+In the above model the “data” consists of the mosquito data, x, in a year-by-rep matrix, and the constants nt and nrep
+ 
+
+
+Mixed Effects
+
+You are discussing your research with a colleague and mention that your random effects model showed that one year, 2002, had notably lower mosquito abundance.  He suggests that the driver may be exogenous and sends you a data file, met.csv, that contains the mean annual temperature (°C), precipitation (mm/year), and relative humidity (%) for the last 15 years.
+ 
+
