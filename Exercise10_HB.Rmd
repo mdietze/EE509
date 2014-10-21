@@ -7,9 +7,9 @@ output: html_document
 
 The objective of this lab is to begin to explore hierarchical models.  We will focus on the most common class of hierarchical models, which are linear mixed models.  Mixed models refer to models that include both hierarchical “random” effects and non-hierarchical “fixed” effects.  Everything that we apply below to linear models can also be applied to generalized linear models (e.g. logistic and poisson regression) and thus falls within the class of models referred to as GLMM (generalized linear mixed models) for which all of our traditional non-hierarchical linear and GLM exist as a special case.  While we have focused on random effects from the Bayesian perspective, special cases on GLMM can also be solved from the Maximum Likelihood perspective. However, it is much harder to generalize Maximum Likelihood random effects models if you need to relax additional assumptions or if you have a nonlinear model.
 
-R2WinBUGS
+## R2WinBUGS
 
-  The other thing that will be introduced in this lab is the technique of calling WinBUGS directly from R.  While I would like you to **TRY** this approach at least once for the example below, if you then prefer to work with the WinBUGS graphical user interface you are welcome to do so for the rest of the lab.  The advantages of calling BUGS from R (or calling JAGS for Mac and Linux users) are that you don't have to work as hard to get your data into BUGS, that you are freed of continually having to hit the same sequence of buttons every time you want to run the model, and that you get the full MCMC chain back, which allows you to do further computation with the output.  The disadvantages are that you get less information back when debugging (though there are ways around this), you loose the “click of a button” graphs, and you loose the instant feedback on the progress of the MCMC sampler.
+The other thing that will be introduced in this lab is the technique of calling WinBUGS directly from R.  While I would like you to **TRY** this approach at least once for the example below, if you then prefer to work with the WinBUGS graphical user interface you are welcome to do so for the rest of the lab.  The advantages of calling BUGS from R (or calling JAGS for Mac and Linux users) are that you don't have to work as hard to get your data into BUGS, that you are freed of continually having to hit the same sequence of buttons every time you want to run the model, and that you get the full MCMC chain back, which allows you to do further computation with the output.  The disadvantages are that you get less information back when debugging (though there are ways around this), you loose the “click of a button” graphs, and you loose the instant feedback on the progress of the MCMC sampler.
 
 To be able to call WinBUGS from R we need to load up the appropriate libraries
 
@@ -112,20 +112,53 @@ quantile(mu,c(0.025,0.5,0.975))
 
 For this lab we will look at data on mosquito abundance.  The data file “Mosquito.csv” contains ten years worth of data for each of 5 replicate traps (Reminder: the function read.csv can be used to read comma-separated text files).   We will begin with the simplest possible model to explain this data and incrementally add complexity.
 
- 
-Hint 1:  When converting the mosquito data to be 'x' you need to shave off the “time” column for this to have the correct dimensions and indexing.
-Hint 2: If using R2WinBUGS you will want to name the output BUGS object (e.g. b1 in the above exampel) something different for each model you construct so that you don't have to re-run the model if you find you need additional information from it later (e.g. DIC, values to use as initial conditions in more complex models, etc.).
+*** Lab Report Task 1: 
 
-Random time effect
+8.  Plot mosquito abundance as a function of time in a way that distinguishes the reps (e.g. with lines, colors, or symbols)
+9.	Fit the overall mean and standard deviation, reporting summary statistics for both (hint: you can use the BUGS code above, but remember that your “x” is a matrix of year-by-rep and thus you will need to loop over both year and rep rather than just looping 'i in 1:n')
+10.	Add posterior CI and PI to the plot
+
+Hint 1:  When converting the mosquito data to be 'x' you need to shave off the “time” column for this to have the correct dimensions and indexing.
+Hint 2: If using R2WinBUGS you will want to name the output BUGS object (e.g. b1 in the above example) something different for each model you construct so that you don't have to re-run the model if you find you need additional information from it later (e.g. DIC, values to use as initial conditions in more complex models, etc.).
+
+## Random time effect
 
 From the graphs in Task 1 it should be apparent that there is systematic year-to-year variability that is unexplained by just a simple mean.  Since at this point we don't know the cause of this variability we can begin by adding a random effect for year.  Adding year effect requires, first, that we add the random effects, alpha.t, to the process model and, second, that we also specify a prior on random effects variance
- 
+
+```
+model{
+  mu ~ dnorm(0,0.001)   	## prior mean
+  sigma ~ dgamma(0.001,0.001)	## prior residual precision
+  tau.t ~ dgamma(0.001,0.001)	## prior year-effect precision
+  
+  for(t in 1:nt){			## loop over years
+    alpha.t[t] ~ dnorm(0,tau.t)		## random year effect
+    Ex[t] <- mu + alpha.t[t]		## process model (does not vary with rep i)
+    for(i in 1:nrep){			## loop over reps
+        x[t,i] ~ dnorm(Ex[t],sigma)	## data model
+    }
+    px[t] ~ dnorm(Ex[t],sigma)	## predictive interval
+  }
+}
+
+```
+
 In the above model the “data” consists of the mosquito data, x, in a year-by-rep matrix, and the constants nt and nrep
- 
 
+**Lab Report Task 2**
 
-Mixed Effects
+6.  Fit the random-time model and turn in a plot like in (1) with the posterior CI and PI plotted against the data.
+7.	Based on the posterior mean estimates from this model, approximately what percentage of the variance in the mosquito densities is explained by the year effects? Which parameters (and from which models) do you need to look at to assess this?
+
+## Mixed Effects
 
 You are discussing your research with a colleague and mention that your random effects model showed that one year, 2002, had notably lower mosquito abundance.  He suggests that the driver may be exogenous and sends you a data file, met.csv, that contains the mean annual temperature (°C), precipitation (mm/year), and relative humidity (%) for the last 15 years.
  
+**Lab Report Task 3:**
+
+1.  As an exploratory analysis of this hypothesis, plot the posterior mean of your random year effect (alpha.t) versus each of the three met variables.  Turn in figures and note which variable(s) are worth exploring further.
+2.	Convert the random effects model to a mixed effects model by converting the mean, mu, to a linear model, beta0 + beta1*y[i] where y is the meteorological covariate you want to include, while keeping the random year effect.  Cut-and-paste your BUGS model into your lab report.
+3.	Fit your mixed effects model and plot the model CI and PI vs the data
+4.	Create a summary table that provides the posterior parameter means and CI for all 3 models and their DIC scores.
+5.	Extra Credit: Use the best fitting model to forecast the next 5 years (2005-2009) of mosquito abundance including an uncertainty estimate (predictive interval). Turn in both a graph and table of your forecast.
 
