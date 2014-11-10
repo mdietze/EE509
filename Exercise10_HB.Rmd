@@ -26,6 +26,7 @@ library(BRugs)  ## only required if using OpenBUGS
 Next, lets consider the simple BUGS model for fitting the mean and precision of a normal distribution. To be able pass this model to BUGS we're going to define it as a string within R.
 
 ```{r}
+if(Mac){
 FitNorm = "
 model {
   mu ~ dnorm(0,0.001)
@@ -33,8 +34,17 @@ model {
 	for(i in 1:n){
 	  x[i] ~ dnorm(mu,prec)
 	}
+}"
+} else {
+FitNorm <- function(){
+  mu ~ dnorm(0,0.001)
+  prec ~ dgamma(0.1,0.1)
+	for(i in 1:n){
+	  x[i] ~ dnorm(mu,prec)
+	}
 }
-"
+
+}
 ```
   
 The next step is to then to send the model to BUGS/JAGS using the “openbugs” or "jags.model" function.   This function call is complicated so I recommend typing ?openbugs and/or ?jags.model at the command line to see all the options and arguments.
@@ -54,9 +64,10 @@ if(Mac){
                               variable.names = c("mu","prec"),
                               n.iter = 2000)
 } else {
+  write.model(FitNorm,"FitNorm.txt")
   b1 = openbugs(data=data,  ## data passed to the model
   init=init,		## initial conditions, NULL is equivalent to “gen inits”
-	model.file=textConnection(FitNorm),  ## file name of our BUGS file 
+	model.file="FitNorm.txt",  ## file name of our BUGS file 
 	n.chains=3,		## number of MCMC chains
 	n.iter=2000,		## length of each chain
 	n.burnin=100,		## burn in to exclude
