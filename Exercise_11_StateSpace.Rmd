@@ -71,12 +71,18 @@ Finally, unlike many of your previous labs that converge quickly and are insensi
 ## Lab Report Tasks
 
 Lab Report Task 1
+
 1.  Write out and run the BUGS code for the exponential growth model.  Include the BUGS code in your lab report.  Also include the following plots:
 a) Plots of the time series data on both the LOG and LINEAR scales that include the model mean and credible intervals.
 b) Density plots for the predicted values for the missing data
 c) Density plots of the intrinsic growth rate, the observation error variance, and the process model error variance
+
 2.	Modify the exponential growth process model in the BUGS code to instead be the Ricker growth model.  Rerun including your BUGS code and the same figures as in part 1 plus plots for both the prior and posterior density on the carrying capacity.
+
 3.	Construct a summary table that includes the parameters in both models, their 95% CI, and the model DIC scores.
+
 4.	Briefly give an interpretation of your results.  Be sure to comment on which model is a better fit, what you can interpret about the importance of density dependence in regulating this population, and whether the population is at its carrying capacity.  
+
 5.	What can you infer about the relative importance of autogenic vs exogenous factors in regulating this population?
+
 6.	**Extra Credit**: An alternative to fitting this model as a time-series would have been to fit the data to the general solution for the model (e.g. for the exponential growth model, this would have been $N[1]*exp[r*t]$  ), which would have ignored the process varibility.  To approximate the difference in the resulting prediction, generate a plot for the best fitting model (Exponential or Ricker) that contains both (1) the posterior mean model from your Bayesian fit, and (2) the prediction from the process model using the posterior mean of the parameters and ignoring process error.  Comment on the difference between these two lines.
