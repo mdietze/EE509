@@ -28,6 +28,7 @@ Recall that spatial analysis, like time series analysis, assumes second order st
  
 ```{r}
 surf0 <- surf.ls(0,dat$Lon,dat$Lat,dat$Mean)   ## 0-degree polynomial surface
+summary(surf0)                                 ## ANOVA stats & AIC
 tr0 <- trmat(surf0,-125,-65,25,50,50)          ## project a 50x50 matrix within region
 image(tr0,asp=70/50)                           ## make an color image map of the surface
 map("state",add=TRUE)
