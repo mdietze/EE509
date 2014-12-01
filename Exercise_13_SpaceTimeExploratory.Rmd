@@ -88,7 +88,7 @@ legend("topright",legend=c("Exponential","Gaussian","Spherical"),col=1:3,lwd=2)
 ## Lab Report Task 2
 
 2.  **EXTRA CREDIT**: There are two other correlation functions built into the spatial package, the Gaussian covariance *gaucov* and the spherical covariance *sphercov*.  Derive MLE for these two functions via numerical optimization.  Turn in an AIC table for the models you fit and identify the best fitting model that you will use for Kriging
-3.	Explain the figure generated from the previous box of code. What is being plotted (axes, data, model)? How would you interpret this figure? What is the range? Note: you do not need to include the Gaussian and spherical lines if you did not fit them in the previous step.
+3.	Explain the figure generated from the previous box of code. What is being plotted (axes, data, model)? How would you interpret this figure? How would you interpret the parameters of the best-fit model? What is the range? Note: you do not need to include the Gaussian and spherical lines if you did not fit them in the previous step.
 
 Now that we have a covariance function we are ready to proceed with Kriging.  The code below is based on the expcov covariance function and a 0th order polynomial, but **you should use the polynomial you selected previously (and the optimal covariance function, if you completed the extra credit task)**.
  
