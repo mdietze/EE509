@@ -33,6 +33,11 @@ install:
 
 r_packages:
  - rjags
+ - knitr
+ - mvtnorm
+ - maps
+ - spatial
+ - coda
 
 env:
   global:
