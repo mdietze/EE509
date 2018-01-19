@@ -14,7 +14,7 @@ script:
     - Rscript -e "require(knitr); fname = 'Exercise_06_MCMC.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_07_Growth.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_08_CI.Rmd'; knit(fname); purl(fname)"
-    - Rscript -e "require(knitr); fname = 'Exercise_09_CLM.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_09_GLM.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_10_HB.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_11_StateSpace.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_13_SpaceTimeExploratory.Rmd'; knit(fname); purl(fname)"
