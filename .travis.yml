@@ -28,6 +28,7 @@ install:
     - wget https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-4.1.0.tar.gz
     - tar -xvzf JAGS-4.1.0.tar.gz
     - (cd JAGS-4.1.0; ./configure; make; sudo make install)
+    - Rscript -e "install.packages(c('coda','mvtnorm','rjags','knitr','maps','spatial'))"
 #install:
 #    - ./travis-tool.sh install_deps
 
