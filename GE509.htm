@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://people.bu.edu/dietze/lab_style.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="read_more.js"></script>
+<title>Applied Environmental Statistics  GE 509</title>
+
+</head>
+
+<body>
+
+<h1 align=center>GE 509: Applied Environmental Statistics</h1>
+
+<h2 align=center>Course syllabus</h2>
+
+
+<p><b>Instructor:</b></p>
+
+<p>Michael C. Dietze</p>
+
+<p><a href="mailto:dietze@bu.edu">dietze@bu.edu</a></p>
+
+<p>STO 457A</p>
+
+<p>Office hours by appointment</p>
+
+
+<p><b>Goals:</b></p>
+
+<p>The primary focus of this course is on probability-based statistical methods employed in the environmental, earth, and ecological sciences. Students in this class will explore a variety of statistical modeling topics from both a likelihood and Bayesian perspective, building progressively from simple models to sophisticated analyses. Students will be exposed to the concepts behind these approaches, the computational techniques to implement them, and their application to common problems in environmental science.Throughout the focus will be on how to construct statistical models that allow us to confront theory with data. The first third of the course will cover foundational concepts. The middle third will work from simple linear regression up to general linear mixed models and hierarchical models with particular emphasis on the complexities common to environmental data: heteroskedasticity, missing data, latent variables, errors in variables, and multiple sources of variability at different spatial,temporal, and taxonomic scales. The last third will cover time-series and spatial data, both of which are ubiquitous in the environmental and earth sciences. Attention throughout the course will be given to environmental applications, and in particular data and models unique (e.g. mark-recapture, matrix population models) or particularly important (e.g. kriging, CAR) to earth and environmental science.</p>
+
+<p><b>Contact
+hours/week:</b>
+Three 50-min lectures and one 2-hr computer lab</p>
+
+<p><b>Prerequisites:</b></p>
+
+<p>Introductory statistics (CAS MA115/116 or MA213/124 or equivalent) and</p>
+
+<p>Calculus I (CAS MA121 or CAS MA123 or equivalent) and</p>
+
+<p>Probability(CAS MA581) or consent of the instructor</p>
+
+<p><b>Course Materials:</b></p>
+
+<p>Required Text: Models for Ecological Data: An Introduction. 2007. James S. Clark ISBN: 9780691121789<br>
+Book is available at the university bookstore or can be purchased online</p>
+
+<p>The primary text will be supplemented with PDFs of select readings from additional textbooks and the primary literature. Literature readings focus on examples of the application of statistical models in the environmental literature rather than methods papers. These “case studies” will also serve as the focus for the analysis problems in the lab component.</p>
+
+<p>Students will also make extensive use of the following statistical software (which is freely available on the internet) in order to complete assignments:</p>
+
+<ul>
+  <li><a href="http://www.r-project.org/">R</a></li>
+
+  <li><a href="http://www.rstudio.com/">RStudio</a></li>
+
+  <li><a href="http://mcmc-jags.sourceforge.net/">JAGS</a></li>
+
+  <li><a href="http://github.com/mdietze/EE509">Gitub</a></li>
+</ul>
+
+<p><b>Grading:</b></p>
+
+<p>Grading will be based on lab reports/problem sets, a
+semester-long project, and four exams.</p>
+
+<table>
+<tr>
+  <td>Lab reports/problem sets (10 points each)</td><td>= 150</td>  
+</tr>
+<tr>
+  <td>Semester project (Grad only)</td><td>= 95</td>
+</tr>
+<tr>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;project proposal (10)</td><td></td>
+</tr>
+<tr>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model description (15)</td><td></td>
+</tr>
+<tr>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preliminary analysis (20)</td><td></td>
+</tr>
+<tr>
+  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final report (50)</td><td></td>
+</tr>
+<tr>
+  <td>Exams (30, 25, 30, 30 points )</td><td> = 115</td>
+</tr>
+<tr>
+  <td>Total, Grad</td><td>= 360</td>
+</tr>
+<tr>
+  <td>Total, Undergrad</td><td>= 265</td>
+</tr> 
+</table>
+
+<p><b>Lectures/Labs</b></p>
+
+<p>Please refer to the course website for the schedule of lecture/lab topics and the assigned readings that go with these. Students are expected to complete readings before class. </p>
+
+<p><b>Lab attendance is <i><u>mandatory.</u></i></b> Lab reports will not be accepted for labs missed due to unexcused absences. Lab reports are due by the start of lab the following week and will be penalized 10%/day if turned in late. Lab materials will be made available in the <a href="https://github.com/mdietze/EE509">GitHub repository</a>. Details on what needs to be turned in will be provided with each lab.</p>
+
+<p>You may discuss lab assignments with other students, but you each must turn in your own written report and code. </p>
+ 
+<p><b>Semester Project (Graduate Students only)</b></p>
+
+<p>The core component that separates the undergraduate from the graduate version of this course is a semester-long independent analysis and write-up. There are a number of benchmarks over the course of the semester to ensure adequate progress is being made and to provide you with feedback. A more detailed description will be provided before each task is due.</p>
+
+<p><u>Project Proposal:</u> 1-2 pages double-spaced. Students are expected to describe the data set they intend to analyze and present the <u>scientific question</u> that motivates their analysis. Students are encouraged to make use of their own data sets for the semester project.</p>
+
+<p><u>Model description:</u> 1-2 pages double-spaced. A brief description of <i>how</i> the data will be analyzed. Should include a mathematical specification of the process model(s), the data model, and the parameter model and a figure of how these relate to one another.</p>
+
+<p><u>Preliminary Analysis:</u> 1-3 pages double space text <i>plus</i> R/BUGS code <i>plus</i> a minimum of 5 <b><i>results</i></b> figures with legends. At this point analysis should
+be mostly complete. Text should briefly describe the computational methods of the analysis and any modifications of the model description (i.e. what did you actually end up doing).</p>
+
+<p><u>Final Report:</u> The final report should be written <u>in the style and tone of a scholarly publication</u>, though with greater emphasis on the results and statistical methods employed and less on introduction and discussion. Specifically, we will be using the <i>Ecology Letters</i> format: no more than 5000 words in length and no more than 6 figures or tables. For more detailed guidelines see http://onlinelibrary.wiley.com/journal/10.1111/%28ISSN%291461-0248/homepage/ForAuthors.html</p>
+
+<p>Project Due Dates:</p>
+
+<p>Project Proposal: 2/19</p>
+
+<p>Model Description: 3/23</p>
+
+<p>Preliminary Analysis: 4/20</p>
+
+<p>Final Report: Before Exam 4 (Final)</p>
+
+<p><b>Exams</b></p>
+
+<p>Exams will be a combination of short answer and multiple choice. The final exam will be non-cumulative.</p>
+
+<p>Midterm I: 2/14</p>
+
+<p>Midterm II: 3/16</p>
+
+<p>Midterm III: 4/11</p>
+
+<p>Final: 5/7</p>
+
+<p><b>Lecture Schedule</b></p>
+
+<table border=1 cellspacing=0 cellpadding=0 width=698>
+ <tr>
+  <td width=39><p>Date</p></td>
+  <td width=330><p>Topics</p></td>
+  <td width=266><p>Reading</p></td>
+  <td width=63><p>Project</p></td>
+ </tr>
+ <tr>
+  <td><p>9/3</p></td>
+  <td><p>Introduction to model-based inference<br>Case: synthesis of field data, remote sensing, and mechanistic models</p></td>
+  <td><p>Clark: Chapter 1<br>Optional: Otto and Day:<a href="http://people.bu.edu/dietze/Bayes2018/MathReview.pdf"> Math Review</a><br></p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>1/22</p></td>
+  <td><p>Probability theory: joint, conditional, and marginal distributions<br>Case: Island Biogeography</p></td>
+  <td><p><a href="http://people.bu.edu/dietze/Bayes2018/HM003.pdf">Hilborn and Mangel Ch 3</a> p39-62<br>Optional: Clark Appendix D<br></p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>1/24</p></td>
+  <td><p>Probability theory: discrete and continuous distributions<br>Case: Zero-inflated census data</p></td>
+  <td><p><a href="http://people.bu.edu/dietze/Bayes2018/HM003.pdf">Hilborn and Mangle Ch 3</a> p62-93<br>Optional: Clark Appendix F <br></p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>1/26</p></td>
+  <td><p>Maximum Likelihood<br>Case: Censured mortality data</p></td>
+  <td><p>Chapter 3.1-3.2<br>Optional: Chapter 2<br></p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>1/29</p></td>
+  <td><p>Point estimation by MLE<br>Case: Survival analysis, population growth rate</p></td>
+  <td><p>Chapter 3.3-3.5<br>
+    </p></td>
+  <td> </td>
+ </tr>
+ <tr>
+  <td><p>1/31</p></td>
+  <td><p>Analytically tractable MLEs<br>
+      Case: Bestiary of response functions</p></td>
+  <td><p>Chapter 3.6-3.9 <br>
+      Optional: Bolker <a href="http://people.biology.ufl.edu/bolker/emdbook/chap3A.pdf">Ch 3</a> <br>
+      </p>
+  </td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>2/2</p></td>
+  <td><p>Intractable MLEs and basic numerical optimization<br>
+      Case: Michaelis-Menton kinetics</p></td>
+  <td><p>Chapter 3.10-3.13 <br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>2/5</p></td>
+  <td><p>Bayes Theorem<br>
+      Case: Detecting climate warming</p></td>
+  <td><p>Chapter 4.1<br>
+      <a href="http://people.bu.edu/dietze/Bayes2018/Ellison2004.pdf">Ellison 2004</a><br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>2/7</p></td>
+  <td><p>Point estimation using Bayes<br>
+      Case: Normal mean and variance</p></td>
+  <td><p>Chapter 4.2 <br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>2/9</p></td>
+  <td><p>Analytically-tractable Bayes: conjugacy and priors<br>
+      Case: Plant trait databases</p></td>
+  <td><p>Chapter 4.3, Appendix G <br>
+      </p></td>
+  <td></td>
+ </tr>
+  <tr>
+  <td><p>2/12</p></td>
+  <td><p>TBD</p></td>
+  <td></td>
+  <td></td>
+ </tr>
+   <tr>
+  <td><p>2/14</p></td>
+  <td><p><b>EXAM 1:</b> Probability Theory, Maximum Likelihood, Bayes Theorem</p></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>2/16</p></td>
+  <td><p>Numerical methods for Bayes: MCMC</p></td>
+  <td><p>Chapter 7.1-7.2, 7.3 intro <br>
+        <a href="http://www.nytimes.com/2014/09/30/science/the-odds-continually-updated.html?_r=0">NY Times article</a>
+      </p></td>
+  <td></p></td>
+ </tr>
+ <tr>
+  <td><p>2/19</p></td>
+  <td><p>MCMC: Metropolis-Hastings</p></td>
+  <td><p>7.3.1, 7.3.2, 7.5 <br>
+      </p>
+      </td>
+  <td><p><a href="http://people.bu.edu/dietze/Bayes2018/ProjectProposal.2014.pdf"><b>Project Proposals</b></a></td>
+ </tr>
+ <tr>
+  <td><p>2/21</p></td>
+  <td><p>MCMC: Gibbs sample</p></td>
+  <td><p>Chapter 7.3.3, 7.3.4 <br>
+      <br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Regression_Template.odc">BUGS code</a></p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>2/23</p></td>
+  <td><p>Interval Estimation: Bayesian credible intervals</p></td>
+  <td><p>Chapter 5 <br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>2/26</p></td>
+  <td><p>Frequentist confidence intervals I: Likelihood profile, Fisher information</p></td>
+  <td><p>Chapter 5 <br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>2/28</p></td>
+  <td><p>Frequentist confidence intervals II: Bootstrapping</p></td>
+  <td><p>Chapter 5</td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>3/2</p></td>
+  <td><p>Model Selection: Likelihood ratio test, AIC<br>
+      Case: Southern Brown Frog</p></td>
+  <td><p>Hilborn and Mangel <a href="http://people.bu.edu/dietze/Bayes2018/HM_ch2.pdf">Chapter 2</a><br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>3/12</p></td>
+  <td><p>Model Selection: DIC, predictive loss, model averaging<br>
+      Case: Multi-model weather forecasting</p></td>
+  <td><p>Chapter 6 <br>
+    </p>
+  </td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>3/14</p></td>
+  <td><p>TBD</p></td>
+  <td></td>
+  <td></td>
+ </tr>
+  <tr>
+  <td><p>3/16</p></td>
+  <td><p><b>EXAM 2:</b> MCMC, Intervals, Selection</p></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>3/19</p></td>
+  <td><p>Errors in variables, heteroskedasticity<br>
+     Case: Time-domain reflectometry</p></td>
+  <td><p>Chapter 5.4 &amp; 7.4 <br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>3/21</p></td>
+  <td><p>Latent variables, Missing data models<br>
+      Case: Carbon flux towers</p></td>
+  <td><p>Chapter 7.6, 7.7, 8.1 <br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>3/23</p></td>
+  <td><p>Logistic regression<br>
+      Case: Pollution and mortality risk</p></td>
+  <td><p>Chapter 8.2-8.2.3 <br>
+      </p></td>
+  <td><p><a href="http://people.bu.edu/dietze/Lectures2012/ModelDescription.2012.pdf"><b>Model Description</b></a></p></td>
+ </tr>
+ <tr>
+  <td><p>3/26</p></td>
+  <td><p>GLMs<br>
+      Case: Plot count data (Poisson regression)<br>
+      Case: Canopy position data (Multinomial)</p></td>
+  <td><p>Chapter 8.2-8.2.3</p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>3/28</p></td>
+  <td><p>Mixed Models<br>
+      Case: RITES and species coexistence</p></td>
+  <td><p>Chapter 8.2.4<br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>3/30</p></td>
+  <td><p>Multivariate Regression<br>
+      Case: Canopy and biomass allometries</p></td>
+  <td><p><br>
+      <a href="http://people.bu.edu/dietze/Lectures2012/Lesson22.5_Classical_regression_demo.r">R demo</a></p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>4/2</p></td>
+  <td><p>Hierarchical Bayes<br>
+      Case: Coho salmon</p></td>
+  <td><p>Chapter 8.2.5 - 8.3 <br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>4/4</p></td>
+  <td><p>Nonlinear models<br>
+      Case: Photosynthetic responses to light, CO2</p></td>
+  <td><p>Chapter 8.4<br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>4/6</p></td>
+  <td><p>Applications of random effects models<br>
+      Case: Remote sensing</p></td>
+  <td><p>Chapter 8.5-8.7<br>
+      </p></td>
+  <td></td>
+ </tr>
+  <tr>
+  <td><p>4/9</p></td>
+  <td><p>TBD</p></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>4/11</p></td>
+  <td><p><b>EXAM 3</b> GLMM, HB</p></td>
+  <td></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>4/13</p></td>
+  <td><p>Time series: Basics and State-Space<br>
+      Case: Moose population fluctuations</p></td>
+  <td><p>Chapters 9.1, 9.2, 9.6<br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>4/18</p></td>
+  <td><p>Time series: Mark-Recapture<br>
+      Case: Black Noddy</p></td>
+  <td><p>Chapter 9.7, 9.8, 9.16 <br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>4/20</p></td>
+  <td><p>Time series: ARMA<br>
+      Case: Fire in the Everglades</p></td>
+  <td><p>Chapter 9.3, 9.5 <br>
+      </p></td>
+  <td><p><a href="http://people.bu.edu/dietze/Lectures2012/PrelimAnalysis.pdf"><b>Preliminary Analysis</b></a></p></td>
+ </tr>
+ <tr>
+  <td><p>4/23</p></td>
+  <td><p>Time Series: Repeated Measures<br>
+      Case: Soil Respiration</p></td>
+  <td><p>Chapter 9.10, 9.14, 9.15 <br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>4/25</p></td>
+  <td><p>Spatial: point-referenced (geostatistical) data &amp; Kriging<br>
+      Case: Mapping soil moisture</p></td>
+  <td><p>Chapter 10.7<br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>4/27</p></td>
+  <td><p>Spatial: Markov Random Field<br>
+      Case: Superfund monitoring</p></td>
+  <td><p>Chapter 10.8<br>
+      </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>4/30</p></td>
+  <td><p>Spatial: block-referenced data and misalignment<br>
+      Case: relating ozone &amp; census data</p></td>
+  <td><p>Chapter 10.9<br>
+  </p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>5/2</p></td>
+  <td><p>Spatial: conditional autoregressive models (CAR)<br>
+      Case: South African biodiversity</p></td>
+  <td><p>Chapter 10.10</p></td>
+  <td></td>
+ </tr>
+ <tr>
+  <td><p>5/7</p></td>
+  <td><p><b>EXAM 4, 9-11AM</b></p></td>
+  <td></td>
+  <td><p><a href="http://people.bu.edu/dietze/Lectures2012/FinalProject.pdf"><b>FINAL PROJECT</b></a></p></td>
+ </tr>
+</table>
+
+<p><b>&nbsp;</b></p>
+
+<p><b>Lab Syllabus</b></p>
+
+<table border=1 cellspacing=0 cellpadding=0>
+ <tr>
+  <td width=32> <p>Lab</p> </td>
+  <td width=45><p>Week</p></td>
+  <td width=283><p>Topics</p></td>
+  <td width=70><p>Software</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>1</p></td>
+  <td width=45><p>1/22</p></td>
+  <td width=283><p>Introduction to R</p></td>
+  <td width=70><p>R</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>2</p></td>
+  <td width=45><p>1/29</p>
+  </td><td width=283><p>Probability distributions and sampling</p></td>
+  <td width=70><p>R</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>3</p></td>
+  <td width=45><p>2/5</p></td>
+  <td width=283><p>Fire return intervals: Maximum likelihood basics</p></td>
+  <td width=70><p>R</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>4</p></td>
+  <td width=45><p>2/12</p></td>
+  <td width=283><p>Ecosystem responses to CO2: ML numerical optimization</p></td>
+  <td width=70><p>R</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>5</p></td>
+  <td width=45><p>2/19</p></td>
+  <td width=283><p>Forest stand characteristics: Intro to BUGS</p></td>
+  <td width=70><p>JAGS</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>6</p></td>
+  <td width=45><p><b>2/26</b></p></td>
+  <td width=283><p>Regression: Gibbs sampler</p></td>
+  <td width=70><p>R</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>7</p></td>
+  <td width=45><p>3/12</p></td>
+  <td width=283><p>Nonlinear plant growth: Metropolis Algorithm</p></td>
+  <td width=70><p>R</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>8</p></td>
+  <td width=45><p>3/19</p></td>
+  <td width=283><p>CO2 revisited: Interval estimation and model selection</p></td>
+  <td width=70><p>R</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>9</p></td>
+  <td width=45><p>3/26</p></td>
+  <td width=283><p>Understory Regeneration: Random effects</p></td>
+  <td width=70><p>Both</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>10</p></td>
+  <td width=45><p>4/2</p></td>
+  <td width=283><p>Mosquito abundance: Hierarchical modeling</p></td>
+  <td width=70><p>JAGS</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>11</p></td>
+  <td width=45><p>4/9</p></td>
+  <td width=283><p>Moose population fluctuations: State-space time series</p></td>
+  <td width=70><p>JAGS</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>12</p></td>
+  <td width=45><p>4/16</p></td>
+  <td width=283><p>Peer Assessment of projects</p></td>
+  <td width=70><p>&nbsp;</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>13</p>
+  </td><td width=45><p>4/23</p></td>
+  <td width=283><p>Ozone: Space/time exploratory data analysis</p></td>
+  <td width=70><p>R</p></td>
+ </tr>
+ <tr>
+  <td width=32><p>14</p></td>
+  <td width=45><p>4/30</p></td>
+  <td width=283><p>South African biodiversity: Spatial CAR and Kriging</p></td>
+  <td width=70><p>WinBUGS</p></td>
+ </tr>
+</table>
+
+<p><b>&nbsp;</b></p>
+
+<p><b>Academic Code</b></p>
+
+<p>It is your responsibility to know and understand the provisions of
+the CAS Academic Conduct Code. Copies are available in CAS 105. Suspected cases
+of academic misconduct will be referred to the Dean’s Office. See <a
+href="http://www.bu.edu/academics/resources/academic-conduct-code">http://www.bu.edu/academics/resources/academic-conduct-code</a> for
+conduct information for undergraduates and <a
+href="http://www.bu.edu/cas/students/graduate/forms-policies-procedures/academic-discipline-procedures/">http://www.bu.edu/cas/students/graduate/forms-policies-procedures/academic-discipline-procedures/</a> for
+graduate student conduct requirements.</p>
+
+
+
+</body>
+
+</html>
