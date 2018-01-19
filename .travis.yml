@@ -1,0 +1,32 @@
+language: c
+# To build on OSX, switch the previous line to
+# language: objective-c
+sudo: required
+
+script: 
+    - Rscript -e "require(knitr); fname = 'Exercise_01_RPrimer.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_02_Distributions.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_03_Fire_MLE.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_04.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_05_JAGS.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_06_MCMC.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_07_Growth.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_08_CI.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_09_CLM.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_10_HB.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_11_StateSpace.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_13_SpaceTimeExploratory.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_14_CAR.Rmd'; knit(fname); purl(fname)"  
+
+before_install:
+    - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+    - chmod 755 ./travis-tool.sh
+    - ./travis-tool.sh bootstrap
+    - wget https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-4.1.0.tar.gz
+    - tar -xvzf JAGS-4.1.0.tar.gz
+    - (cd JAGS-4.1.0; ./configure; make; sudo make install)
+install:
+    - ./travis-tool.sh install_deps
+env:
+  global:
+    - BOOTSTRAP_LATEX="1"  
