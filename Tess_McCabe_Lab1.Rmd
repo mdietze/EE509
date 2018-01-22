@@ -1,0 +1,43 @@
+---
+title: "Tess McCabe's Lab 1"
+output: html_notebook
+---
+
+Promt 1:
+```{r, echo=TRUE}
+3+12  		    ## addition
+5 - pi			  ## subtraction
+2*8			      ## multiplication
+14/5			    ## division
+14 %/% 5		  ## integer division
+14 %% 5		    ## modulus (a.k.a. remainder)
+sqrt(25)		  ## square root
+z = 5			    ## assignment to a variable
+z			        ## value of a variable
+y = sqrt(36)	## square root
+y
+```
+
+Prompt 2: 
+
+```{r, echo=TRUE}
+10^2  			        ## power
+exp(1)				      ## exponential
+log(10)			        ## natural logarithm (i.e. ln)
+log10(10)			      ## log base 10
+log2(10)            ## log base 2
+sin(pi/2)			      ## sine
+cos(pi)			        ## cosine
+tan(pi/4)			      ## tangent
+asin(0.5)			      ## arc-sine
+acos(0.5)			      ## arc-cosine
+atan(1)*180/pi			## arc-tangent
+atan2(-1,-1)*180/pi	## arc-tangent (alternate version)
+factorial(10)			  ## factorial
+```
+
+Prompt 3: 
+```{r, echo=FALSE}
+help.search("mantel")
+
+```
