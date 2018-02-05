@@ -5,7 +5,7 @@ date: "September 17, 2014"
 output: html_document
 ---
 
-In this lab we will be looking at ways to implement Maximum Likelihood analyses in R, making use of both analytical solutions and numerical optimization.  This lab will present two “case study” examples and then ask you to work through a third example on your own.  This lab report will require you to come up with your own R code much more than the previous two, therefore you are strongly encourage to look at the assignment at the end before you start so that you know what you will be asked to do.  You will have all the tools you need to solve the assignment after the first case study so you might consider starting the assignment then so you have a greater chance of finishing the final independent part before the lab ends.
+In this lab we will be looking at ways to implement Maximum Likelihood analyses in R, making use of both analytical solutions and numerical optimization.  This lab will present two `case study` examples and then ask you to work through a third example on your own.  This lab report will require you to come up with your own R code much more than the previous two, therefore you are strongly encourage to look at the assignment at the end before you start so that you know what you will be asked to do.  You will have all the tools you need to solve the assignment after the first case study so you might consider starting the assignment then so you have a greater chance of finishing the final independent part before the lab ends.
 
 ## Case study 1: Survival Analysis
 
@@ -44,7 +44,7 @@ $$ -log(L) = -n \cdot log(\rho) + \rho \sum_{i=1}^{n} a_i$$
 -n*log(rho_mle) + rho_mle*sum(dat)
 ```
 
-We can compare this likelihood with those for other possible values for $\rho$ by plotting the likelihood profile.  In order to do this lets define a function in R that calculates the negative log likelihood 
+We can compare this likelihood with those for other possible values for $\rho$ by plotting the likelihood profile.  To help do this lets define a function in R that calculates the negative log likelihood 
 
 ```{r}
 ## Negative log LiKelihood function for the EXPonential model
@@ -85,7 +85,7 @@ While if we wanted the likelihoods of all the data-points we could calculate
 dexp(dat,rho_mle)
 ```
 
-We can express these values in terms of log-likelihoods by passing the optional argument “log = TRUE” to the PDF
+We can express these values in terms of log-likelihoods by passing the optional argument `log = TRUE` to the PDF
 
 ```{r}
 dexp(dat,rho_mle,log=TRUE)
@@ -104,7 +104,7 @@ lkexp2 <- function(rho){
 lkexp2(rho_mle)
 ```
 
-One important difference between lkexp2 and the original lkexp is that lkexp2 only makes sense if it’s passed a single value for $\rho$, while with lkexp we could pass a whole vector of rhos, rseq, in order to plot the likelihood.  If one passed a vector of rhos to lkexp2 then dexp would be applied to a vector of rhos and a vector of data simultaneously and by default R will compute the likelihood of the first data point given the first $\rho$, the second data point given the second $\rho$, etc. which is NOT what we're looking for. Fortunately R has a simple function -- “sapply” -- that allows you to apply a function to each value in a vector, which IS what we want.
+One important difference between lkexp2 and the original lkexp is that lkexp2 only makes sense if it’s passed a single value for $\rho$, while with lkexp we could pass a whole vector of rhos, rseq, in order to plot the likelihood.  If one passed a vector of rhos to lkexp2 then dexp would be applied to a vector of rhos and a vector of data simultaneously and by default R will compute the likelihood of the first data point given the first $\rho$, the second data point given the second $\rho$, etc. which is NOT what we're looking for. Fortunately R has a simple function -- `sapply -- that allows you to apply a function to each value in a vector, which IS what we want.
 
 ```{r}
 llk2 <- sapply(rseq,lkexp2)
@@ -124,7 +124,7 @@ lines(rseq,exp(-llk2),col=2)
 abline(v=rho_mle,lty=2)
 ```
 
-If we are dealing with a likelihood function that doesn't have an analytical solution, we can also approximate the solution using numerical optimization algorithms.  Fortunately, R has a number of such algorithms already built in.  One of these is “optimize”.
+If we are dealing with a likelihood function that doesn't have an analytical solution, we can also approximate the solution using numerical optimization algorithms.  Fortunately, R has a number of such algorithms already built in.  One of these is `optimize`.
 
 ```{r}
 ## numerical optimization
@@ -132,7 +132,7 @@ fit <- optimize(lkexp,lower=0.01,upper=0.5,maximum=F)
 fit
 ```
 
-Here the first argument of the optimize function is the function we want to optimize.  The next two specify the lower and upper bounds for the region we want to search.  The final argument specifies that we're looking for the minimum rather than the maximum – remember that minimizing the negative log likelihood is equivalent to maximizing the likelihood.  The optimize function returns two values: the “minimum,” which is the rho that minimizes the function, and the “objective” which is the value of the function at its minimum.  Since for this problem we know the analytical solution we can then compare the exact solution with the numerical approximation
+Here the first argument of the `optimize` function is the function we want to optimize.  The next two specify the lower and upper bounds for the region we want to search.  The final argument specifies that we're looking for the minimum rather than the maximum – remember that minimizing the negative log likelihood is equivalent to maximizing the likelihood.  The optimize function returns two values: the `minimum`, which is the rho that minimizes the function, and the `objective` which is the value of the function at its minimum.  Since for this problem we know the analytical solution we can then compare the exact solution with the numerical approximation
 
 ```{r}
 fit$minimum - rho_mle
@@ -143,15 +143,15 @@ abline(v=rho_mle,lty=2)
 abline(v=fit$minimum,lty=2,col=2)
 ```
 
-An alternative optimization function in R is “nlm” (nonlinear minimization).  The arguments for “nlm” are slightly different from “optimize”, the first still being the function to optimize but the second being a vector of the initial conditions the same length as the number of dimensions – the initial best guess of the parameters is used as the starting place for the optimization.
+An alternative optimization function in R is `nlm` (nonlinear minimization).  The arguments for `nlm` are slightly different from `optimize`, the first still being the function to optimize but the second being a vector of the initial conditions the same length as the number of dimensions – the initial best guess of the parameters is used as the starting place for the optimization.
 
 ```{r}
 fit2 <- nlm(lkexp,0.03)
 fit2
 ```
 
-The output from “nlm” is mostly the same as for “optimize” but it includes a few other pieces of information.  The “gradient” is the numerical estimate of the slope at the numerical optimum (remember that at the optimum the slope should be zero).  The “code” indicates under what conditions the algorithm stopped.  Generally a 1 or 2 indicates that “nlm” is confident that it found a minimum, while values of 3-5 indicate failure for some reason.  Finally “iterations” reports the number of loops the algorithm performed in finding the solution.
-  An important difference between “nlm” and “optimize” is that “optimize” is designed to work for 1-D problems (i.e. models with one parameter), while “nlm” will work on multi-parameter models.  In the second case study we will also introduce a third optimization function, “optim” that also works with multivariate problems.  Most of the time it doesn't matter which optimization routine you use, though they each work slightly differently, so if one approach fails it can be useful to check another.
+The output from `nlm` is mostly the same as for `optimize` but it includes a few other pieces of information.  The `gradient` is the numerical estimate of the slope at the numerical optimum (remember that at the optimum the slope should be zero).  The `code` indicates under what conditions the algorithm stopped.  Generally a 1 or 2 indicates that `nlm` is confident that it found a minimum, while values of 3-5 indicate failure for some reason.  Finally `iterations` reports the number of loops the algorithm performed in finding the solution.
+  An important difference between `nlm` and `optimize` is that `optimize` is designed to work for 1-D problems (i.e. models with one parameter), while `nlm` will work on multi-parameter models.  In the second case study we will also introduce a third optimization function, `optim` that also works with multivariate problems. You can visit the CRAN Optimization Task View to see many more options https://cran.r-project.org/web/views/Optimization.html. Most of the time it doesn't matter which optimization routine you use, though they each work slightly differently, so if one approach fails it can be useful to check another.
 	As discussed in lecture, remember that all numerical optimization algorithms can get stuck in local minima.  For this reason it is good practice to run such routines multiple times starting from multiple different initial locations to ensure they are all converging to the same point.  Obviously this does not guarantee that they are not all converging to the same local minima but it does reduce the risk, especially if the initial conditions are well distributed in parameter space rather than being too close together.  Different search methods have different sensitivities to local minima so if you suspect this is a problem you'll want to look up different methods and choose your algorithm carefully.  Finally, numerical methods can also run into trouble if the surface is not smooth and continuous (fortunately most likelihoods meet these criteria).
 
 ### Lab Questions
@@ -166,7 +166,7 @@ Fire ecologists summarize information on the distribution of intervals between f
 
 $$f(x \vert c, \lambda) = \left({{c}\over{\lambda}}\right)\left( {x \over \lambda} \right)^{c-1} exp\left( -\left( {x\over \lambda} \right)^c \right)$$
 
-The Weibull is a generalization of the Exponential where the rate parameter either increases or decreases with time according to the parameter c.  You can see in the above PDF that when c=1 we recover the functional form for the Exponential.  In R the parameter c is called the “shape” while the parameter $\lambda$ is referred to as the “scale”.
+The Weibull is a generalization of the Exponential where the rate parameter either increases or decreases with time according to the parameter c.  You can see in the above PDF that when c=1 we recover the functional form for the Exponential.  In R the parameter c is called the `shape` while the parameter $\lambda$ is referred to as the `scale`.
 
 ```{r}
 age = 0:160
@@ -178,11 +178,11 @@ lines(age,dweibull(age,.5,50),col="green")
 ### Lab Questions
 
 ```
-2) Does increasing the “shape” parameter cause fire risk to increase or decrease with age?
+2) Does increasing the `shape` parameter cause fire risk to increase or decrease with age?
 3) Extra Credit: Plot the CDF of these 3 distributions. What is significant about the scale parameter? What is the analytical solution for the CDF at this point? Add these lines to your CDF plot.
 ```
 
-Let’s begin by loading up the data set and take a quick look at it.  The data are actually stored as the number of times each return interval was observed, so our first step is to use “rep” to reconstruct the observations
+Let’s begin by loading up the data set and take a quick look at it.  The data are actually stored as the number of times each return interval was observed, so our first step is to use `rep` to reconstruct the observations
 
 ```{r}
 ### Fire scar example
@@ -243,7 +243,7 @@ for(i in 1:nstep){					## loop over the first dimension
 }
 ```
 
-We then use the R function “contour” to make a contour plot of the two dimensional likelihood surface.    Contour plots are read the same way that topo maps are, though in this case we're looking at the hills and valleys of the likelihood surface.
+We then use the R function `contour` to make a contour plot of the two dimensional likelihood surface.    Contour plots are read the same way that topo maps are, though in this case we're looking at the hills and valleys of the likelihood surface.
 
 ```{r}
 contour(rp*out$par[1],rp*out$par[2],z,levels=c(350,360,370,380)
@@ -268,7 +268,7 @@ y = sum(surv)
 
 We again want to estimate the per-capita daily mortality rate, $\rho$, but this time we will instead use the combined binomal/exponential model covered in Section 3.4 of the text.
 
-As a reminder we start with the binomial model expressed in terms of q, the probability of surviving to the census at day 20
+As a reminder we start with the binomial model expressed in terms of $\theta$, the probability of surviving to the census at day 20
  
 $$L = Binom(y \vert N, \theta) \propto \theta^y (1-\theta)^{N-y}$$
 
