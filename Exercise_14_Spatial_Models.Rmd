@@ -1,7 +1,6 @@
 ---
-title: "Lab 13 - Exploratory Data Analysis in Time and Space"
+title: "Lab 14 - Spatial Models"
 author: "GE 509"
-date: "December 1, 2014"
 output: html_document
 ---
 
@@ -89,6 +88,7 @@ legend("topright",legend=c("Exponential","Gaussian","Spherical"),col=1:3,lwd=2)
 ## Lab Report Task 2
 
 2.  **EXTRA CREDIT**: There are two other correlation functions built into the spatial package, the Gaussian covariance *gaucov* and the spherical covariance *sphercov*.  Derive MLE for these two functions via numerical optimization.  Turn in an AIC table for the models you fit and identify the best fitting model that you will use for Kriging
+
 3.	Explain the figure generated from the previous box of code. What is being plotted (axes, data, model)? How would you interpret this figure? How would you interpret the parameters of the best-fit model? What is the range? Note: you do not need to include the Gaussian and spherical lines if you did not fit them in the previous step.
 
 Now that we have a covariance function we are ready to proceed with Kriging.  The code below is based on the expcov covariance function and a 0th order polynomial, but **you should use the polynomial you selected previously (and the optimal covariance function, if you completed the extra credit task)**.
@@ -113,86 +113,3 @@ The *surf.gls* function is similar to the *surf.ls* function but it differs in t
 5.	Generate a second map of mean US ozone but this time include contours based on the error matrix rather than the prediction matrix.  Where are ozone levels most uncertain?
 6.	There are a few reasons that one might be skeptical of this initial exploratory map.  Name at least two and describe ways the model could be improved (without collecting additional data).
 
-## Part 2: National Ozone Time Series
-
-The .Rdata file you loaded previously contained a second data table, *ozone*, which contains nationally averaged ozone data for 1980-2008.  While the previous data was expressed in terms of average hourly concentration (ppb), this data is expressed in terms of the 4th Maximum 8-Hour Average, which is an odd statistic but one relevant to regulatory criteria.
-
-Let's begin by plotting the data:
-
-```{r}
-xt <- ts(ozone$Mean,start=1980,end=2008)  ## convert data to a time series object
-plot(xt,type='b',ylab="ppm",xlab="Year",main="National Ozone Concentrations")
-
-```
-
-Next let’s look at a couple of approaches for smoothing the data.  First lets try a weighted moving average with a window of size 5.  This calculates an average value within the window that moves over the time series one point at a time.  Recall that to do a weighted moving average in R we use the more general filter function and then specify a vector of weights (aka the kernel) that is symmetric and sums to 1.
-
-```{r}
-k <- c(0.1,0.2,0.4,0.2,0.1)      ## kernel
-fx <- filter(xt,k)               ## weighted moving average
-plot(xt,type='b',ylab="ppm",xlab="Year",main="National Ozone Concentrations")
-lines(fx,col=3)
-```
-
-Second, let’s look at a lowess curve.  Recall that a lowess curve also uses a moving window, but instead of an average it calculates a weighted regression model.  The second parameter to the lowess, f, is the window size expressed as a fraction of the whole time series.  In general, window sizes are much larger with the lowess approach than the moving window because we're fitting a curve through the points.  Feel free to play around with the size of f to see how it affects the smoothness of the curve.
- 
-```{r}
-lx <- lowess(xt,f=1/3)
-plot(xt,type='b',ylab="ppm",xlab="Year",main="National Ozone Concentrations")
-lines(fx,col=3)
-lines(lx,col=2)
-```
-
-### Lab Report Task 4
-
-7.  Include the above time series plot and briefly describe the features of the overall trend in ozone concentrations.
-
-Now that we've estimated the trend in the data we can remove that trend by subtracting the smoothed time series from the raw time series and look at the characteristics of the residuals.  Remember that after detrending the time series residuals should meet the assumptions of second-order stationarity—mean zero with homeskedastic variance.  For this example lets use the lowess curve as our trend.
-
-```{r}
-rx = xt - lx$y        ## residuals around lowess curve
-plot(rx)              ## check for homoskedasticity
-abline(h=0,lty=2)
-hist(rx,10)              ## check for a normal distribution with mean=zero
-## Quantile-Quantile plot (by hand)
-n = length(rx)
-qseq = seq(0.5/n,length=n,by=1/n)
-plot(qnorm(qseq,0,sd(rx)),sort(rx),main="Quantile-Quantile")
-abline(0,1,lty=2)
-```
-
-As an alternative to detrending we can also look at the difference series for the time series.  Differencing a time series can also be used to remove the trend.  In addition, we often conceive of our process models in terms of changes over time rather than absolute magnitudes. 
- 
-```{r}
-dxt = diff(xt)
-plot(dxt)
-hist(dxt,10)
-```
-
-### Lab Report Task 5
-8.  Does the detrended data meet the assumptions of second order stationarity? Why or why not?
-9.	Does the first-difference time series meet the assumptions of second order stationarity?  Why or why not?
-
-Next let's evaluate the autocorrelation and partial autocorrelation in the time series.  You've seen ACFs quite frequently in MCMCs so you should be fairly familiar with their interpretation.  A partial ACF is a variant of ACF where at each lag we're looking at the autocorrelation after having accounted for the autocorrelation at shorter lags.  The number of significant lags in the partial ACF can be a very useful guide to the number of lags that should be included when modeling the system, for example with an ARIMA model.
- 
-```{r}
-acf(xt)    ## ACF on the original time series
-acf(rx)    ## ACF on the detrended data
-acf(dxt)   ## ACF on the first difference series
-pacf(xt)   ## Partial ACF of the time series
-pacf(rx)   ## Partial ACF of the detrended data
-pacf(dxt)  ## Partial ACF of the first differences
-```
- 
-Now that we've calculated a number of diagnostics, let’s explore how me might structure our time-series model.  The flow chart below serves as an aid to help suggest what order of the ARIMA(p,d,q) model is likely to be a good description of the data.  You should have already calculated all of the plots necessary in order to work through this flowchart.  As a reminder, the ARIMA(p,d,q) is the general case of the autoregressive model, the moving average model, and the integrated model.  The degree of each of these models are such that an AR(p) model and a MA(q) model are ones that have p or q lags respectively.  An I(d) model is one where we're modeling a data set that has been differenced d times.  Therefore, as examples, an AR(1) model is equivalent to an ARIMA(1,0,0) model, and an MA(1) model on the first-differences of a time series would be an ARIMA(0,1,1).
- 
-![ARIMA Flow Chart](images/ts002.jpg)
- 
- ### Lab Report Task 7
-12.  Based on the diagnostics you have already performed, what ARIMA model is likely to perform best? What orders should p, d, and q be? Why? Should you fit the model to xt or rx?
-13.	Fit the arima model you proposed using the function arima: 
-```
-arima(xt,c(p,d,q))
-```
-
-Then propose alternative models that are similar to the one you fit (e.g. increase or decrease orders by 1).  Based on AIC scores what model provides the best fit?  Provide a table of models you tried and their AIC scores.
