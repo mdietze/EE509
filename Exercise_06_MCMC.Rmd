@@ -160,6 +160,9 @@ var.mat      <- as.matrix(var.out)
 ## Pairwise scatter plots & correlation
 pairs(var.mat)	## pairs plot to evaluate parameter correlation
 cor(var.mat)
+
+GBR <- gelman.plot(jags.out)
+burnin <- GBR$last.iter[tail(which(apply(GBR$shrink[,,2]>1.05,1,any)),1)+1]
 ```
 
 ### Lab Report Task 1
@@ -261,6 +264,7 @@ An important question in experimental design is what sample size is required in 
 * A plot with the pseudo-data, the true model, the 95% credible interval on the model, and the 95% prediction interval.
 
 _Overall also provide the following_:
+
 * Plots showing how the estimate of the parameter mean and the 95% CI around that mean changes with sample size.  Sample size should be on the x-axis _on a log scale_.  Make plots for each of the 3 parameters
 * Describe how sample size affects the ability to estimate the true model parameters.  Does the 95% CI or PI ever fail to encompass the true model? How does the width of the CI change as a function of sample size?
 * What is the (approximate) minimum sample size that would be required to reject the hypothesis that the slope of this line is 3/2 with 95% confidence.

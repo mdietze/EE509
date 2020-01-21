@@ -78,6 +78,7 @@ b) Density plots for the predicted values for the missing data
 c) Density plots of the intrinsic growth rate, the observation error variance, and the process model error variance
 
 2.	Modify the exponential growth process model in the JAGS code to instead be the Ricker growth model.  Rerun including your JAGS code and the same figures as in part 1 plus plots for both the prior and posterior density on the carrying capacity.
+Hint: when implementing the Ricker model, don't forget that N and X are on different scales.
 
 3.	Construct a summary table that includes the parameters in both models, their 95% CI, and the model DIC scores.
 

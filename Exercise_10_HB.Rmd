@@ -29,9 +29,9 @@ To add the random year effect:
 
 1. Add the random year effect to the process model.
 ```
-   Ex[t] <- mu + alpha.t[t]		## process model (does not vary with rep i)
+   Ex[t] <- mu + alpha.t[t]		## process model (does not vary with rep)
 ```
-Note that the expected value of X, `Ex`, varies with time, t, but not replicate, i. Therefore you'll want to make sure that you JAGS code loops first over time, and then second over replicate, and that your process model is in the first loop but not the second (otherwise you will end up redefining Ex[t] for every rep, which JAGS will consider an error)
+Note that the expected value of X, `Ex`, varies with time, t, but not replicate. Therefore you'll want to make sure that you JAGS code loops first over time, and then second over replicate, and that your process model is in the first loop but not the second (otherwise you will end up redefining Ex[t] for every rep, which JAGS will consider an error)
 
 2. Update the data model to reference `Ex[t]` instead of `mu`
 

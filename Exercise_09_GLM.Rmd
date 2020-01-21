@@ -53,9 +53,9 @@ PR2
 ### Lab Report Task 1
 
 1.  Plot seedling densities as a function of TDR
-2.	Add regression lines to the plot
+2.	Add regression line to the plot
   Hint 1: use “coef” to extract the regression coefficients from the GLM.
-  Hint 2: don't forget about the link function when plotting the lines
+  Hint 2: don't forget about the link function when plotting the line
 3.	Briefly _describe_ how you would add model confidence and predictive intervals to these curves
 4.	What would be an appropriate null model to compare to?  What metric would you use to compare the two models?
 5.	Plot the calibration data of TDR vs. soil moisture.  Fit a Normal regression model to the calibration data, add the line to the plot, and report the summary table information for the fit

@@ -1,7 +1,6 @@
 ---
 title: "Lab 03 - Maximum Likelihood"
-author: "Michael Dietze"
-date: "September 17, 2014"
+author: "GE509"
 output: html_document
 ---
 

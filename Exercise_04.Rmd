@@ -205,7 +205,7 @@ a0[2]  = out.amb$par[1]
 b0[2]  = out.amb$par[2]
 b1[2]  = out.amb$par[3]
 lnL[2] = out.amb$value
-n[2]     = length(cones)
+n[2]     = length(ncones.amb)
 out.amb
 ```
 
