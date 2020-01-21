@@ -17,8 +17,9 @@ script:
     - Rscript -e "require(knitr); fname = 'Exercise_09_GLM.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_10_HB.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_11_StateSpace.Rmd'; knit(fname); purl(fname)"
-    - Rscript -e "require(knitr); fname = 'Exercise_13_SpaceTimeExploratory.Rmd'; knit(fname); purl(fname)"
-    - Rscript -e "require(knitr); fname = 'Exercise_14_CAR.Rmd'; knit(fname); purl(fname)"  
+    - Rscript -e "require(knitr); fname = 'Exercise_13_TimeSeries.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_14_Spatial_Models.Rmd'; knit(fname); purl(fname)"  
+    - Rscript -e "require(knitr); fname = 'Exercise_15_CAR.Rmd'; knit(fname); purl(fname)"  
 
 install:
 #before_install:
