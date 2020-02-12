@@ -275,7 +275,7 @@ and then substitute in the exponential model for the probability of surviving to
  
 $$L = Binom(y \vert N, \rho) \propto e^{-\rho T y} \left( 1-e^{-\rho T} \right)^{N-y}$$
 
-Apply one of the **numerical methods** you used above in order to estimate $\rho$.
+Apply one of the **numerical optimization methods** you used above in order to estimate $\rho$.
 
 ## Lab Questions
 
