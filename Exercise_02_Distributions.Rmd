@@ -323,7 +323,7 @@ lines(x,dnorm(x,5),col=2)
 
 ### Lab questions:
 ``` 
-7) The last two panels compare a normal and a Laplace distribution with the same mean and variance.  How do the two compare?  In particular, compare the difference in the probabilities of extreme events in each distribution.
+7) The last two panels compare a normal and a Laplace distribution with the same mean and variance.  How do the two distributions compare?  In particular, compare the difference in the probabilities of extreme events in each distribution.
 ```
 
 ## Gamma
@@ -504,5 +504,5 @@ lines(x,dnbinom(x,1,0.15),type="s",col=4,lty=2)
 ### Lab questions:
 ``` 
 14)  In the 'vary size' panel, what are the means of the curves? 
-15) In the “vary variance” panel, how does the shape of the Negative Binomial compare to the Poisson?
+15) In the “vary variance” panel, how does the shape of the Negative Binomial compare to a Poisson with the same mean?
 ```
