@@ -362,6 +362,7 @@ summary(SD)
 ### Task 1
 * Evaluate the MCMC chain for convergence. Include relevant diagnostics and plots. Determine and remove burnin
 * Report parameter summary table and plot marginal distributions
+* Make a scatter plot of the data and add your posterior mean regression line
 * Describe and explain the parameter covariances that you observe in the pairs plot and parameter correlation matrix.
 * Compare the summary statistics for the Bayesian regression model to those from the classical regression:  summary(lm( y ~ x1 )).  This should include a comparison of the means and uncertainties of **all 3 model parameters**
 
