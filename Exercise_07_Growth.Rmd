@@ -1,5 +1,5 @@
 ---
-title: "Lab 07 - Growth Curve"
+title: "Lab 06 - Growth Curve"
 author: "GE 509"
 output: html_document
 ---
@@ -32,7 +32,7 @@ Then the rest of the model takes on the linear form
 
 $$\mu_i = \beta_0 + \beta_1 z_i$$
 
-which is equivalent to our regression model from Lab 6.  Note that since $\theta$ is unknown and has to be estimated, z is not a fixed quantity but needs to be recomputed in each step of the MCMC.  Additional information on this model and how we “linearized” it can be found in textbook section 7.4.4.  Further embellishes can be found in Clark et al 2003 Ecology.
+which is equivalent to our regression model from Lab 5.  Note that since $\theta$ is unknown and has to be estimated, z is not a fixed quantity but needs to be recomputed in each step of the MCMC.  Additional information on this model and how we “linearized” it can be found in textbook section 7.4.4.  Further embellishes can be found in Clark et al 2003 Ecology.
 
 For the first part of the lab we'll assume priors on $\beta$ and the variance that are Normal and Inverse Gamma respectively, which will allow us to sample for these three parameters using a Gibbs Sampler.
 
@@ -55,7 +55,7 @@ As in Lab 6, the first section of R code is used to set up the analysis
 **1) Load Data**: The data for this analysis is stored in binary Rdata format.  There are two variables defined: “L” is the light level (0-1) and “grow” is the height growth rate (cm/yr).
 
 ```{r}
-load("data/Lab7.RData")
+load("data/Lab6.RData")
 library(mvtnorm)
 ```
 
@@ -73,7 +73,7 @@ beta=c(0,0)
 ```
 
 
-**2) Specify priors:**  The uninformative priors for beta (b0,vinvert) and for sigma (s1,s2) can be retained from Lab 6. 
+**2) Specify priors:**  The uninformative priors for beta (b0,vinvert) and for sigma (s1,s2) can be retained from Lab 5. 
 
 ```{r}
 b0 <- as.vector(c(0,0))
@@ -314,7 +314,7 @@ In practice this Michaelis-Menton model is simpler to implement in JAGS than in 
 
 ### Lab Report Task 3:
 
-E) Implement the Michaelis-Menton model in JAGS based on the univariate regression code from Lab 6.  This only requires adding one line (specify the prior on theta) and modifying another line (change the process model).  Run this model and then include the following in your lab report:
+E) Implement the Michaelis-Menton model in JAGS based on the univariate regression code from Lab 5.  This only requires adding one line (specify the prior on theta) and modifying another line (change the process model).  Run this model and then include the following in your lab report:
 
 1. JAGS code
 2. Posterior history plot, density plot, burn-in, and thin
