@@ -12,7 +12,7 @@ script:
     - Rscript -e "require(knitr); fname = 'Exercise_04.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_05_JAGS.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_06_Growth.Rmd'; knit(fname); purl(fname)"
-    - Rscript -e "require(knitr); fname = 'Exercise_08_CI.Rmd'; knit(fname); purl(fname)"
+    - Rscript -e "require(knitr); fname = 'Exercise_07_CI.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_09_GLM.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_10_HB.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_11_StateSpace.Rmd'; knit(fname); purl(fname)"
