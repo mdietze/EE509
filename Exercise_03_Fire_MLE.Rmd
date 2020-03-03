@@ -203,7 +203,7 @@ wlik <- function(param){
 ### Lab Questions
 
 ```
-4) Since the exponential is a special case of the Weibull, use the code from the first case study to solve for the exponential MLE (rho_mle) for the fire scar data 
+4) Since the exponential is a special case of the Weibull, use the numerical optimization code from the first case study to solve for the exponential MLE (rho_mle) for the fire scar data 
 ```
 
 Next we'll specify the initial conditions for the numerical optimization – it doesn't matter what values you actually start from provided they are reasonable since they are just our first guess, though the closer you are to the correct value the less likely you are to end up in a local minima and the faster the algorithm will find the minima.  Below we start with the MLE for the Exponential special case.
