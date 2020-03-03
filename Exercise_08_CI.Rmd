@@ -1,7 +1,6 @@
 ---
 title: "Lab 08 - Interval Estimation and model selection"
-author: "GE 509"
-date: "October 27, 2014"
+author: "EE 509"
 output: html_document
 ---
 
@@ -16,21 +15,14 @@ As a reminder, our model had included tree size, as measured by stem diameter (d
 We'll pick up from where we were at the end of Lab 4 by loading up the the state of the R workspace at the end of that lab:
  
 ```{r}
-load("data/Lab8_cone.RData")
+load("data/Lab7_cone.RData")
 ```
 
 At this point we had fit the pine cone count data to the whole data set (out), to just the ambient CO2 data (out.amb) and to just the elevated CO2 data (out.elev).
 
 ###  AIC vs Likelihood Ratio Test
 
-Let's begin by calculating the AIC for the two models.  We had previously stored the negative log likelihoods in a vector named lnL that contained the values for (combined, amb, elev).  To estimate AIC we need to know the total number of parameters for each model.  For the model that analyzes the combined data there are 3 parameters, a0, b0, and b1.  Because we did not use a Normal likelihood there's not an additional variance parameter that needs to be estimated.  The model that treats ambient and elevated CO2 as separate treatments thus has 6 parameters.
- 
-```{r}
-AIC.combined = 2*lnL[1] + 2*3
-AIC.treatment  = 2*(lnL[2]+lnL[3]) + 2*6
-AIC.combined
-AIC.treatment
-```
+Begin by calculating the AIC for the two models.  We had previously stored the negative log likelihoods in a vector named lnL that contained the values for (combined, amb, elev).  To estimate AIC we need to know the total number of parameters for each model.  For the model that analyzes the combined data there are 3 parameters, a0, b0, and b1.  Because we did not use a Normal likelihood there's not an additional variance parameter that needs to be estimated.  The model that treats ambient and elevated CO2 as separate treatments thus has 6 parameters.
 
 ** Lab Report Task 1**
 Compare the AICs for the two models, interpret the results for this test, and compare with the results from the LRT previously performed.
@@ -47,8 +39,8 @@ nboot <- 100  			## number of bootstrap samples
 npred <- 31				## number of X values you predict for
 dseq  <- seq(0,30,length=npred)		## diameter sequence
 mle   <- matrix(NA,nrow=nboot,ncol=3)	## storage for parameter estimates
-conf.mat  <- matrix(NA,nrow=nboot,ncol=npred)	## storage for maturation
-conf.cone <- matrix(NA,nrow=nboot,ncol=npred)	## storage for fecundity
+conf.mat  <- matrix(NA,nrow=nboot,ncol=npred)	## storage for maturation CI
+conf.cone <- matrix(NA,nrow=nboot,ncol=npred)	## storage for fecundity CI
 pred.mat   <- matrix(NA,nrow=nboot,ncol=npred)	## storage for predictive maturation
 pred.cone <- matrix(NA,nrow=nboot,ncol=npred)	## storage for predictive fecundity
 ```
@@ -95,10 +87,6 @@ for(i in 1:nboot){
   out.boot <- optim(param,likfit,method="L-BFGS-B",	## fit model to sample
                     lower=c(0.001,10,1),upper=c(1,30,30),dia=dia.t[samp],ncone=ncone.t[samp])
   mle[i,] <- out.boot$par					## store parameters
-  conf.mat[i,]  <- pnorm(dseq,mle[i,2],mle[i,3])		## store model | parms
-  conf.cone[i,] <- conf.mat[i,]*mle[i,1]*dseq^2
-  pred.mat[i,]  <- rbinom(npred,1,conf.mat[i,])		## store pseudodata
-  pred.cone[i,] <- rpois(npred,conf.cone[i,]*pred.mat[i,])
 }
 ```
 
@@ -126,29 +114,37 @@ Generate density and CI plots for all 3 model parameters.  Include three figures
 
 ### Model Intervals
 
-Let’s now move on to constructing the model confidence intervals and predictive intervals.  Since we have two process models for this analysis we construct intervals for both.
- 
+Let’s now move on to constructing the model confidence intervals and predictive intervals.  Since we have two process models for this analysis we'll start with the intervals on the maturation model. First, we'll want to generate the Monte Carlo predictions
+
 ```{r}
-ci.mat  <- apply(conf.mat,2,quantile,c(0.025,0.5,0.975))
-ci.cone <- apply(conf.cone,2,quantile,c(0.025,0.5,0.975))
-pi.mat  <- apply(pred.mat,2,quantile,c(0.025,0.975))
-pi.cone <- apply(pred.cone,2,quantile,c(0.025,0.975)) 
+for(i in 1:nboot){
+  conf.mat[i,]  <- pnorm(dseq,mle[i,2],mle[i,3])        ## store model | parms
+  pred.mat[i,]  <- rbinom(npred,1,conf.mat[i,])  
+}
+```
+
+Next we'll want to generate the CI and PI from the full distribution of predictions
+
+```{r}
+ci.mat <- apply(conf.mat,2,quantile,c(0.025,0.5,0.975))
+pi.mat <- apply(pred.mat,2,quantile,c(0.025,0.975)) 
 ```
 
 Finally, lets plot the model confidence and predictive intervals and compare them to the data
  
 ```{r}
 ## fecundity plot
-plot(b$diam,b$c00,col = b$tmt,ylim=c(0,30))
-lines(dseq,ci.cone[2,],col=2,lwd=3)   ## median model
-lines(dseq,ci.cone[1,],col=2,lty=2,lwd=3)	## 95% CI
-lines(dseq,ci.cone[3,],col=2,lty=2,lwd=3)
-lines(dseq,pi.cone[1,],col=3,lty=2,lwd=3)	## 95% PI
-lines(dseq,pi.cone[2,],col=3,lty=2,lwd=3)
+cones = b$c00 > 0
+plot(b$diam,cones,col = b$tmt,ylim=c(0,1))
+lines(dseq,ci.mat[2,],col=2,lwd=3)   ## median model
+lines(dseq,ci.mat[1,],col=2,lty=2,lwd=3)	## 95% CI
+lines(dseq,ci.mat[3,],col=2,lty=2,lwd=3)
+lines(dseq,pi.mat[1,],col=3,lty=2,lwd=3)	## 95% PI
+lines(dseq,pi.mat[2,],col=3,lty=2,lwd=3)
 ```
 
 **Lab Report Task 3** 
-Plot the confidence and predictive interval for the maturation process model.  Include both this plot and the fecundity plot in your lab report.
+Generate and plot the confidence and predictive interval for the full fecundity process model (which combines both maturation and fecundity|maturation). Include the observed data in the plot and interpret both this plot and the maturation plot in your lab report.
 
 **Lab Report Task 4**
 Repeat the bootstrap analysis for the elevated CO2 treatment.  Include the figures and tables from tasks 2 & 3 for the elevated plots as well as a final plot that compares the model confidence intervals between the elevated and ambient data on one figure
@@ -162,7 +158,7 @@ For estimation of parameter confidence intervals we will use the likelihood prof
 Rather than re-running the whole code for Lab 3, let's load up the saved image of the workspace as it was at the end of that lab.
 
 ```{r}
-load("data/Lab8_fire.RData")
+load("data/Lab7_fire.RData")
 ```
 
 Where we left off we had just fit the MLE numerically, the output of which is stored in the variable “out”, and then constructed a 2D contour plot of the likelihood surface by calculating the likelihood on a grid “z” for values that ranged from 20%-200% of the MLE (variable rp).  Let's start by replotting that contour plot
