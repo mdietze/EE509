@@ -6,6 +6,7 @@ cache: packages
 sudo: required
 
 script: 
+    - Rscript -e 'install.packages(c("MCMCpack","mvtnorm"))'
     - Rscript -e "require(knitr); fname = 'Exercise_01_RPrimer.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_02_Distributions.Rmd'; knit(fname); purl(fname)"
     - Rscript -e "require(knitr); fname = 'Exercise_03_Fire_MLE.Rmd'; knit(fname); purl(fname)"
