@@ -1,0 +1,113 @@
+---
+title: 'Lab 08: Heteroskedasticity'
+author: "EE509"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Objectives
+
+In this lab we're going to:
+
+* Explore putting process models on variances (heteroskedasticity)
+* Explore Bayesian model selection
+
+# Tasks
+
+### Load & Plot Data
+
+```{r}
+load("data/Lab08_het.RData")
+plot(x,y)
+```
+
+# Fit traditional linear model
+
+Start from the basic linear model from lab 5. Fit the model to the data, perform you standard set of Bayesian metrics [trace plots, densities, GBR, pairs, effective sample size, etc.], and plot the resulting model (CI and PI) and data. When simulating your PI, make sure you've got the residual error in the right units (precision vs SD)
+
+## Calculate model selection metrics
+
+### DIC
+
+```{r}
+DIC.ho <- dic.samples(j.model, n.iter=5000)
+DIC.ho
+```
+
+### WAIC
+
+First, within you JAGS model, add the likelihood calculation within your for loop
+```
+ like[i] <- dnorm(y[i],mu[i],S)
+```
+Second, assuming that you've converted your JAGS output to a matrix to make the pairs plots and other diagnostics (e.g. `out <- as.matrix(jags.burn)`) we'll want to grab those likelihood columns to calculate WAIC. We'll do that using the `grepl` pattern matching function and the regular expression character `^` which tells R to find any column names that start with the following characters (in this case `like`). Once we do that we'll follow the same calculation as in the  
+
+```{r}
+   like   <- out[,grepl("^like",colnames(out))] 
+   fbar   <- colMeans(like)
+   Pw     <- sum(apply(log(like),2,var))
+   WAIC.ho   <- -2*sum(log(fbar))+2*Pw
+   WAIC.ho
+```
+You'll also notice that out output now has a lot of `like` columns that complicate a lot of our other `coda` diagnostics. We can also use `grepl` to _exclude_ all the columns that have a pattern. For example:
+```{r}
+pairs(out[,!grepl("^like",colnames(out))])
+```
+
+### Predictive loss
+
+The code for predictive loss is very similar to our code for generating confidence and predictive intervals, with the biggest different being that the calculations are done at the OBSERVED X's not a sequence of X's (though if you sort your X's you can often use that sequence to draw the CI & PI). 
+```{r}
+ngibbs = 3000
+yobs  <- y[order(x)]
+xpred <- x[order(x)]
+npred <- length(xpred)
+ypred <- matrix(NA,nrow=ngibbs,ncol=npred)
+ycred <- matrix(NA,nrow=ngibbs,ncol=npred)
+for(g in 1:ngibbs){
+  ycred[g,] <- out[g,2] + out[g,3] * xpred
+  ypred[g,] <- rnorm(npred,ycred[g,],sqrt(1/out[g,1]))
+}
+## Residual variance
+ybar <- apply(ycred,2,mean)
+G <- sum((yobs-ybar)^2)/npred
+## Predictive variance
+P <- sum(apply(ypred,2,var))/npred
+Dpl <- G + P
+PL.ho <- c(G,P,Dpl)
+PL.ho
+```
+Note: for these metrics I've added `.ho` onto the end of the name for the homoskedastic model. For the heterskedastic model you'll want to change this to something different (e.g. `.he`) so that you don't overwrite the results from your first models (you'll need both to make the table at the end)
+
+# Fit heteroskedastic model 
+
+To add heteroskedasticity, we'll start with the linear regression model and then modify it as follows:
+
+* Within the JAGS `for` loop, add a process model for the calculation of the precision
+
+```
+  s[i] <- a[1] + a[2]*x[i]  ## linear model on standard deviation
+  S[i] <- 1/s[i]^2          ## calculate precision from SD
+```
+
+* Replace prior on `S` with priors on `a[1]` and `a[2]`. To ensure that our variance is always positive, make sure to choose zero-bound prior distributions on `a`. Don't forget to add any new prior parameters to your `data` list.
+
+* Update data model and WAIC likelihood calculation to use `S[i]` instead of a fixed `S`.
+
+* Update your `coda.samples` to include `a` instead of `S`.
+
+* As before, perform your standard MCMC metrics & diagnostics
+
+* Calculate your three model selection metrics (DIC, WAIC, PL)
+  ** For predictive loss, CI, and PI, don't forget to update your process model to include the process model on sigma and to make sure you're grabbing the right parameters! And don't forget the precision vs SD difference between R and JAGS.
+
+* Plot your model and data with CI and PI
+
+* As a final task, make a table that shows the different model selection metrics for both models. Briefly discuss how the metrics performed, what they told us, and where they are the same or different.
+
+
+
+
