@@ -10,7 +10,7 @@ The objective of this lab is to explore basic hierarchical models.  We will focu
 
 For this lab we will look at data on mosquito abundance.  The data file “Mosquito.csv” contains ten years worth of data for each of 5 replicate traps. We will begin with the simplest possible model to explain this data and incrementally add complexity.
 ```{r}
-dat <- read.csv("~/git/EE509/data/Mosquito.csv",header=TRUE,as.is = TRUE)
+dat <- read.csv("data/Mosquito.csv",header=TRUE,as.is = TRUE)
 ```
 
 
