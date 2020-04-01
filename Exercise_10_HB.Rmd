@@ -8,18 +8,19 @@ The objective of this lab is to explore basic hierarchical models.  We will focu
 
 # Case Study: Mosquito population size
 
-For this lab we will look at data on mosquito abundance.  The data file “Mosquito.csv” contains ten years worth of data for each of 5 replicate traps (Reminder: the function read.csv can be used to read comma-separated text files).   We will begin with the simplest possible model to explain this data and incrementally add complexity.
+For this lab we will look at data on mosquito abundance.  The data file “Mosquito.csv” contains ten years worth of data for each of 5 replicate traps. We will begin with the simplest possible model to explain this data and incrementally add complexity.
+```{r}
+dat <- read.csv("~/git/EE509/data/Mosquito.csv",header=TRUE,as.is = TRUE)
+```
+
 
 ### Lab Report Task 1: 
 
 1.  Plot mosquito abundance as a function of time in a way that distinguishes the reps (e.g. with lines, colors, or symbols)
 
-2.	Fit the overall mean and standard deviation, reporting summary statistics for both. 
-Hint 1: You can use the JAGS code from lab 5, but remember that your “x” is a matrix of year-by-rep and thus you will need to **loop over both year and rep** rather than just looping 'i in 1:n'.
-Hint 2:  When converting the mosquito data to be 'x' in your `data` list, you need to shave off the “time” column for this to have the correct dimensions and indexing.
+2.	Fit a Bayesian model for the overall "global" mean `mu`, and precision `sigma`, reporting summary statistics for both. 
 
 3.	Add posterior CI and PI to the plot.
-
 
 # Random time effect
 
@@ -29,13 +30,20 @@ To add the random year effect:
 
 1. Add the random year effect to the process model.
 ```
-   Ex[t] <- mu + alpha.t[t]		## process model (does not vary with rep)
+   Ex[i] <- mu + alpha.t[time[i]]		## process model (varies with time but not rep)
 ```
-Note that the expected value of X, `Ex`, varies with time, t, but not replicate. Therefore you'll want to make sure that you JAGS code loops first over time, and then second over replicate, and that your process model is in the first loop but not the second (otherwise you will end up redefining Ex[t] for every rep, which JAGS will consider an error)
+Note that the version above is formatted slightly differently from the version covered in the lecture slides. In the lecture, the data were in a wide format, `x[t,b,i]`, where time, block, and individual were different dimensions in an array. Alternatively, one can format data in a long format, like we see in this file, with time and replicate as columns
+```{r}
+head(dat)
+```
+The variable `time` used in the code above is a vector of indices (length = nrow(dat)) matching a specific row of data to a specific `alpha.t`. Therefore, when building the `data` list that you pass into `jags.model` you'll want to add `time` and have that vector contain values in the range from 1 to 10 instead of 1995-2004. When working with long data, the easiest way to do this is to convert a column to a factor, then from a factor to an integrer
+```{r}
+as.integer(as.factor(dat$time))
+```
 
 2. Update the data model to reference `Ex[t]` instead of `mu`
 
-3. Add the random year effect parameter model (again, within the loop over time but not rep)
+3. Add the random year effect parameter model (within a loop over time)
 ```
 alpha.t[t] ~ dnorm(0,tau.t)		## random year effect
 ```
@@ -48,13 +56,19 @@ alpha.t[t] ~ dnorm(0,tau.t)		## random year effect
 Hint: once you convert the JAGS coda object to a matrix, you can use `grep` to figure out which columns contain alphas: 
 ```
 jags.mat <- as.matrix(jags.out)
-alpha <- jags.mat[,grep("alpha",colnames(jags.mat))]
+sel.a <- grep("alpha",colnames(jags.mat))
+plot(jags.out[,sel.a])
+summary(jags.out[,sel.a])
+alpha <- jags.mat[,sel.a]
+apply(alpha,2,mean)
 ```
 5.	Based on the posterior mean estimates from this model, approximately what percentage of the variance in the mosquito densities is explained by the year effects? Which parameters (and from which models) do you need to look at to assess this?
 
+6. Extra Credit: Repeat the Task 2 analysis adding a random effect on `rep`
+
 # Mixed Effects
 
-You are discussing your research with a colleague and mention that your random effects model showed that one year, 2002, had notably lower mosquito abundance.  He suggests that the driver may be exogenous and sends you a data file, met.csv, that contains the mean annual temperature (°C), precipitation (mm/year), and relative humidity (%) for 1995-2009 years.
+You are discussing your research with a colleague and mention that your random effects model showed that one year, 2002, had notably lower mosquito abundance.  He suggests that the driver may be exogenous and sends you a data file, `met.csv`, that contains the mean annual temperature (°C), precipitation (mm/year), and relative humidity (%) for 1995-2009 years.
  
 ### Lab Report Task 3:
 
@@ -62,5 +76,5 @@ You are discussing your research with a colleague and mention that your random e
 7.	Convert the random effects model to a mixed effects model by converting the mean, mu, to a linear model, `beta0 + beta1*y[i]` where y is the meteorological covariate you want to include, while keeping the random year effect.
 8.	Fit your mixed effects model and plot the model CI and PI vs the data
 9.	Create a summary table that provides the posterior parameter means and CI for all 3 models and their DIC scores.
-10.	Extra Credit: Use the best fitting model to predict the next 5 years (2005-2009) of mosquito abundance including an uncertainty estimate (predictive interval). Turn in a graph of your prediction.
+10.	Extra Credit: Use the best fitting model to predict the next 5 years (2005-2009) of mosquito abundance including an uncertainty estimate (predictive interval). Turn in a graph of your prediction. Hint: the easiest way to make predictions is to create new rows in your data object that has covariates but NA's for the y's.
 
