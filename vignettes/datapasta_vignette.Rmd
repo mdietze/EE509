@@ -1,0 +1,121 @@
+---
+title: "datapasta vignette - EE509"
+author: "Zoey Werbin"
+date: "1/22/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## What is datapasta?
+
+`datapasta` is an R package to help you manually get data into R. Here are two official resources:
+
+User guide: https://cran.r-project.org/web/packages/datapasta/vignettes/how-to-datapasta.html
+
+Reference manual: https://cran.r-project.org/web/packages/datapasta/datapasta.pdf
+
+## So what's this vignette for?
+
+There are some features of datapasta that can be especially useful for environmental science, ecology, and statistics. I'll highlight these in this vignette. From the above vignette, it can be useful for:
+
+"Copying tables from Excel, Jupyter, and websites, where the source file cannot be easily read.
+
+Embedding small-ish amounts of raw data from .csv into Rmarkdown files. The file thus contains code documentation and data, attaining the holy trinity of reproducibility.
+
+Quickly pasting vector output from other queries into dplyr::filter( .. %in% ..).
+
+Adding datasets to readily reproducible examples for posting to StackOverflow, Slack channels etc.
+
+Creating c() expressions with a LOT less typing and fiddling."
+
+## Useful shortcuts:
+
+Once you install datapasta, you can decide which shortcuts to add to your Rstudio environment. Add them by going to Tools -> Modify Keyboard Shortcuts. Additional instructions here: https://support.rstudio.com/hc/en-us/articles/206382178-Customizing-Keyboard-Shortcuts
+
+### Paste as a vector 
+Let's say you have text in the below format (from the Wiki page for the genus Poa https://www.wikiwand.com/en/Poa):
+      
+      Poa abbreviata – short bluegrass
+      Poa affinis
+      Poa alpigena – northern meadow-grass
+      Poa alpina – alpine meadow-grass
+      Poa alsodes – grove bluegrass
+      Poa angustifolia – narrow-leaved meadow-grass
+      Poa annua – annual meadow-grass, annual bluegrass
+      Poa arachnifera – Texas bluegrass
+      Poa arctica – Arctic meadow-grass
+      Poa arida
+      Poa atropurpurea – San Bernardino bluegrass
+
+Highlight it with your mouse, and copy it to your clipboard with ctrl+c (or however). Now, if you enter the `vector_paste()` command into the console, it will return the following vector:
+`c("Poa abbreviata – short bluegrass", "Poa affinis", "Poa alpigena – northern meadow-grass", "Poa alpina – alpine meadow-grass", "Poa alsodes – grove bluegrass", "Poa angustifolia – narrow-leaved meadow-grass", "Poa annua – annual meadow-grass, annual bluegrass", "Poa arachnifera – Texas bluegrass", "Poa arctica – Arctic meadow-grass", "Poa arida", "Poa atropurpurea – San Bernardino bluegrass")`
+
+`vector_paste()` can guess how data is separated, and it generally does a good job. There is also  `vector_paste_vertical()` if you prefer this neater format:
+```{r, echo=T, results='hide'}
+c("Poa abbreviata – short bluegrass",
+  "Poa affinis",
+  "Poa alpigena – northern meadow-grass",
+  "Poa alpina – alpine meadow-grass",
+  "Poa alsodes – grove bluegrass",
+  "Poa angustifolia – narrow-leaved meadow-grass",
+  "Poa annua – annual meadow-grass, annual bluegrass",
+  "Poa arachnifera – Texas bluegrass",
+  "Poa arctica – Arctic meadow-grass",
+  "Poa arida",
+  "Poa atropurpurea – San Bernardino bluegrass")
+```
+
+### Toggle vector quotes
+
+Oh no, you might need to remove those quotes from the vector! That may be necessary if you switch from Base R to dplyr or data.table. Just use the "Toggle vector quotes" addin. You have to go to the Addins menu to use it, but give it a keyboard shortcut to instantly change
+`c("Poa abbreviata – short bluegrass", "Poa affinis", "Poa alpigena – northern meadow-grass", "Poa alpina – alpine meadow-grass")`
+to 
+`c(Poa abbreviata – short bluegrass,Poa affinis,Poa alpigena – northern meadow-grass,Poa alpina – alpine meadow-grass)`
+
+Unfortunately, one of the drawbacks is that the non-quoted vector has spaces, and can't be re-toggled into a character vector.
+
+
+### Paste as a data table
+
+Alright, let's say you want to copy the data frame from https://www.w3schools.com/html/html_tables.asp into R. First copy it to your clipboard, then run `df_paste()' in R and it will show up!
+    
+Magic, right?  
+  
+### Create output for sharing data
+
+Need to paste part of your dataframe into StackOverflow? Use `dpasta()`. It turns this:
+
+          Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+        1          5.1         3.5          1.4         0.2  setosa
+        2          4.9         3.0          1.4         0.2  setosa
+        3          4.7         3.2          1.3         0.2  setosa
+Into:
+
+      data.frame(
+        Sepal.Length = c(5.1, 4.9, 4.7),
+         Sepal.Width = c(3.5, 3, 3.2),
+        Petal.Length = c(1.4, 1.4, 1.3),
+         Petal.Width = c(0.2, 0.2, 0.2),
+             Species = as.factor(c("setosa", "setosa", "setosa"))
+      )
+
+You may notice that it is similar to dput(), which would output:
+
+      structure(list(Sepal.Length = c(5.1, 4.9, 4.7), Sepal.Width = c(3.5, 
+      3, 3.2), Petal.Length = c(1.4, 1.4, 1.3), Petal.Width = c(0.2, 
+      0.2, 0.2), Species = structure(c(1L, 1L, 1L), .Label = c("setosa", 
+      "versicolor", "virginica"), class = "factor")), row.names = c(NA, 
+      3L), class = "data.frame")
+
+So messy by comparison, right?
+
+### Use via remote connection
+
+When connected remotely (via SCC), the machine can't access your local clipboard. So running a `datapasta` command will cause an editor window to pop up, where you paste your text - this should work fine with or without Rstudio. More info on this here: https://cran.r-project.org/web/packages/datapasta/vignettes/datapasta-in-the-cloud.html
+
+
+#####Notes: 
+`datapasta` automatically prevents you from pasting things with over 200 rows, to prevent you from accidentally crashing your computer. If 200 rows isn't enough, change the setting using `dp_set_max_rows(n)`, but then you should probably save that data file outside of your source code for the future.
