@@ -133,7 +133,7 @@ pi.mat <- apply(pred.mat,2,quantile,c(0.025,0.975))
 Finally, lets plot the model confidence and predictive intervals and compare them to the data
  
 ```{r}
-## fecundity plot
+## maturation plot
 cones = b$c00 > 0
 plot(b$diam,cones,col = b$tmt,ylim=c(0,1))
 lines(dseq,ci.mat[2,],col=2,lwd=3)   ## median model
