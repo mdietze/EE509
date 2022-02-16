@@ -15,7 +15,7 @@ The response of ecosystems to elevated CO2 involves not just the change in growt
 Lets begin by loading up the data and taking a look at it
 
 ```{r}
-b <- read.table("data/pinecones.txt",header=TRUE)
+b <- read.table("data/pinecones.txt",header=TRUE,as.is = FALSE)
 
 str(b)
 summary(b)
