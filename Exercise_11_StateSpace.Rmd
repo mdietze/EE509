@@ -1,6 +1,6 @@
 ---
 title: 'Exercise 11: State Space'
-author: "GE 509"
+author: "EE 509"
 output: html_document
 ---
  
@@ -66,7 +66,7 @@ The second major difference in the state-space model is in how the CI is generat
 
 Another thing that is different in this lab from what you have done before is the presence of NA values in the data.  The NA character is used to indicate missing data, and both R and JAGS are capable of handling this.  Since these values are missing from the observation model linking the latent variable, X, to the observation, Y, JAGS will automatically generate predictive estimates for them.  Make sure to specify Y as one of your tracked variables if you want to assess the predicted values!
 
-Finally, unlike many of your previous labs that converge quickly and are insensitive to the choice of prior and initial conditions, you will want to give thought to both the priors and initial conditions on parameters and **state variables** in this lab otherwise your chains may not converge over any reasonable timescale.  Also remember that initial conditions can (and in many cases should) be chosen based on the data, but priors can't just be 'tuned' to give the 'right' answer (i.e. clamping down on a prior without reference to external information is not the correct way to solve convergence problems). In particular, it can be very helpful to initialize the the latent X's at values near or at the observed Y's.
+Finally, unlike many of your previous labs that converge quickly and are insensitive to the choice of prior and initial conditions, you will want to give thought to both the priors and initial conditions on parameters and **state variables** in this lab otherwise your chains may not converge over any reasonable timescale.  Also remember that initial conditions can (and in many cases should) be chosen based on the data, but priors can't just be 'tuned' to give the 'right' answer (i.e. clamping down on a prior without reference to external information is not the correct way to solve convergence problems). In particular, it can be very helpful to **initialize the the latent X's** at values near or at the observed Y's.
  
 ## Lab Report Tasks
 
@@ -82,8 +82,6 @@ Hint: when implementing the Ricker model, don't forget that N and X are on diffe
 
 3.	Construct a summary table that includes the parameters in both models, their 95% CI, and model selection scores (your choice between DIC, WAIC, or predictive loss).
 
-4.	Briefly give an interpretation of your results.  Be sure to comment on which model is a better fit, what you can interpret about the importance of density dependence in regulating this population, and whether the population is at its carrying capacity.  
+4.	Briefly give an interpretation of your results.  Be sure to comment on which model is a better fit, what you can interpret about the importance of density dependence in regulating this population, and whether the population is at its carrying capacity.	What can you infer about the relative importance of autogenic (internal) vs exogenous (external) factors in regulating this population?
 
-5.	What can you infer about the relative importance of autogenic vs exogenous factors in regulating this population?
-
-6.	**Extra Credit**: An alternative to fitting this model as a time-series would have been to fit the data to the analytical solution for the model (e.g. for the exponential growth model, this would have been $N[1]*exp[r*t]$  ), which would have ignored the process varibility.  To approximate the difference in the resulting prediction, generate a time-series plot for the best fitting model (Exponential or Ricker) that contains: (1) the posterior model from your Bayesian fit (mean and CI on X), (2) the CI from the process model using the posterior parameter distributions (r, K, N[1]) but ignoring process error, (3) the observed data.  Comment on the difference between these lines, and between the lines and the data.
+5.	**Extra Credit**: An alternative to fitting this model as a time-series would have been to fit the data to the analytical solution for the model (e.g. for the exponential growth model, this would have been $N[1]*exp[r*t]$  ), which would have ignored the process varibility.  To approximate the difference in the resulting prediction, generate a time-series plot for the best fitting model (Exponential or Ricker) that contains: (1) the posterior model from your Bayesian fit (mean and CI on X), (2) the CI from the process model using the posterior parameter distributions (r, K, N[1]) but ignoring process error, (3) the observed data.  Comment on the difference between these lines, and between the lines and the data.
