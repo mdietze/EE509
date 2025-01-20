@@ -1,5 +1,5 @@
 ---
-title: "Lab 08 - Interval Estimation and model selection"
+title: "Lab 07 - Interval Estimation and model selection"
 author: "EE 509"
 output: html_document
 ---

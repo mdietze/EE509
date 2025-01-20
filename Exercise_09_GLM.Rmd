@@ -67,7 +67,7 @@ Next we're going to fit the Poisson regression model from the Bayesian perspecti
 
 To build the Poisson model:
 
-* Start from the 'univariate_regression' model from Lab 6
+* Start from the 'univariate_regression' model from Lab 5
 
 * Drop the prior on _prec_ -- the Pois has no variance/precision parameter
 
@@ -140,7 +140,11 @@ Writing the combined model (below) involves little more than putting the code fo
 PoisRegPlusCalib = "
 model {
   ### TDR calibration curve
-  for(i in 1:2) { alpha[i] ~ dnorm(0,0.001)}   ## calibration priors
+#  for(i in 1:2) { alpha[i] ~ dnorm(0,0.001)}   ## calibration priors
+alpha[1] ~ dnorm(0,0.001)
+alpha[2] ~ dlnorm(0,0.001)
+beta[1] ~ dnorm(0,0.001)
+beta[2] ~ dlnorm(0,0.001)
   sigma ~ dgamma(0.1,0.1)
   for(i in 1:10){
     ESMc[i] <- alpha[1] + alpha[2]*TDRc[i]   ## expected soil moisture, calibration process model
@@ -148,7 +152,7 @@ model {
   }
   
   ## Seedling Density vs Soil Moisture
-  for(i in 1:2) { beta[i] ~ dnorm(0,0.001)}   ## Poisson regression priors
+#  for(i in 1:2) { beta[i] ~ dnorm(0,0.001)}   ## Poisson regression priors
   for(i in 1:n){
     ESM[i] <-  alpha[1] + alpha[2]*TDR[i]     ## Errors in Variables – process model
     SM[i] ~ dnorm(ESM[i],sigma)               ## Errors in Variables – data model

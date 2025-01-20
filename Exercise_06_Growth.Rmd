@@ -91,7 +91,7 @@ a1 = 1.91
 a2 = 10.17
 ```
 
-which corresponds to prior information of the half-saturation constant having a 95% CI between 0.02 and 0.35. We'll also want to precomputed the matrix product of V and b0 since this term comes up in multiple places.
+which corresponds to prior information of the half-saturation constant having a 95% CI between 0.02 and 0.35. We'll also want to precompute the matrix product of V and b0 since this term comes up in multiple places.
 ```{r}
 Vb <- vinvert %*% b0
 ```
