@@ -1,6 +1,6 @@
 ---
 title: 'Lab 1 - R Primer'
-author: "GE509"
+author: "EE509"
 output: html_document
 ---
 
@@ -8,9 +8,93 @@ output: html_document
 
 The objective of today's hands-on activity is to provide a basic overview of R.  For each topic covered the first part will be directed – you will follow the prescribed sequence of R commands in order to familiarize yourself with what they do.  The second part of each topic will ask you to apply these R commands. 
 
-## Assignment
 
-For this activity you will turn in a Rmd file (prefered) or R Script file that shows your work. If you turn in a Rmd file, you should check that the code "knits" before submitting!
+
+# Assignment
+
+For this activity you will turn in a Rmd file that shows your work.
+
+**Always check that the Rmd file "knits" before submitting!**
+
+All Rmd documents should start with a section that looks something like this:
+
+```
+---
+title: "My Lab"
+author: "My Name"
+output: html_document
+---
+```
+Make sure to give your file a title and put ***your name*** in the author field. Notice that the title and author need to be in quotes. 
+
+
+### Knitting Rmarkdown documents
+
+To be able to compile Rmd into HTML or any other format you will need to install the "knitr" library. 
+
+If you do not already see a button at the top of the editor window that says "Knit" with an icon of a blue ball of yarn next to it, you will need to install this package. 
+
+![](img/Knit_button.png){width=100px}
+
+- From the "Packages" tab in the bottom right pane click on "Install"
+- Enter knitr as the package name, and then click Install
+- From the main menu bar, select Session > Restart R
+- The Knit button should now be visible
+
+If you do have the Knit button, now you should click it. This will create a new file, that has the same name as the Rmd file, except it ends in `.html`. Rstudio should automatically preview this file for you. 
+You will see that it contains exactly the same content as the Rmd file, but formatted nicely in to an east to read document. You are free to keep reading the assignment in either the Rmd file or the html file, but **you can only edit the Rmd file**. When you edit the Rmd file, your changes will not show up in the html file until you select Knit. **Kitting is the best way to check that all your code runs.**
+
+*NOTE: this document will not knit until after Question 10, when the variable `met` is defined *
+
+###  Code Answers
+
+All your code should be placed into what we call "R chunks."
+
+In the editor pane you can recognize them because: 
+
+They start with: ` ```{r} ` (the `{r}` is very important because it's what makes it specifically an R chunk, as opposed to a different type of code chunk)
+
+They end with ` ``` `
+
+R code chunks also have in the top right hand corner three important icons (from left to right)
+![](img/R_chunk.png){width=100px}
+
+1. Optional Settings. Once you get more comfortable using R, they can be useful.
+2. Run the code in all chunks up to this one.
+3. Run the code in this chunk.
+
+Below is an R chunk. Try hitting the play button. 
+You will see that the output appears below the code chunk. 
+```{r}
+1 + 2
+```
+
+### Written Answers 
+
+Any verbal answers should be written in the space between code chunks. You can also include some of your written responses as commented code within the R chunk. Comments start with `#` and are not evaluated by R. Putting comments in code is very useful for remembering what you did when you come back to a file later.
+
+There are multiple ways to format written answers and Rmarkdown is very versatile. What you do comes down to personal preference. 
+
+**Always check that the Rmd file "knits" before submitting!**
+
+### Example of a properly answered question 
+
+1. **If there are 7 cats and 5 dogs, how many animals are there in total?**
+
+```{r}
+cats = 7 # there are 7 cats
+dogs = 5 # there are 5 dogs
+animals = cats + dogs # the sum of cats and dogs gives us the total animals
+
+animals # this will print out the number of animals
+```
+From the calculations above, we can see that there are 12 animals in total. 
+
+You can also use `` `r` `` to reference calculations within your text , which has the advantage that you don't need to update your text if specific numbers change. For example:
+
+We can see that there are `r animals` animals in total.
+
+# R Basics
 
 ## About R
 
@@ -69,7 +153,9 @@ Through your web-browser go to http://www.r-project.org.
 *	Click on “Task Views” and then select one of the “tasks” that you find interesting.  You will then be presented with a brief overview of major subtopics within that area and the R packages that are useful for those types of problems.  These summaries are often an efficient way to familiarize yourself with what R has to offer for a specific type of analysis but are not exhaustive because new packages are constantly being added to R and not all types of analysis have a “Task View”.
 *	Click on “Packages” and then “Table of available packages” and you will see a long list of all of the submitted R packages.  Look around a bit and then click on one you find interesting.  Here you will see basic info on the package including the “Depends” which is the list of packages that you need in order to use this package.  Click on the PDF “Reference manual”.  You'll find that the R documentation for a package describes the inputs and outputs of all the functions in the package and often provides examples of what code calling this function might look like.  However, most packages don't describe how a test works, its assumptions, or why you might want to use it – you'll usually want to look up info about a test rather than apply it blindly.
 
-# R basics
+
+
+## R basics
 
 Lets see how R does some basic arithmetic. Note that in the examples below that a pound sign (#) indicates a comment in the code. Everything after a # is not read by R and is just there for the benefit of the person reading the code (so you don’t have to type it all in). Within the Console window (bottom left) type the following at the command prompt symbol '>':
 
@@ -137,7 +223,7 @@ This will return a list of relevant functions with the parenthesis after the nam
 
 Within RStudio you can also search for help with commands in the **Help** tab in the bottom-right window. This search window combines the functionality of both ? and help.search.
 
-Packages are installed using the ‘Install Packages’ button under the “Packages” tab or by using 'install.packages' function on the command line. Packages are loaded by clicking the check box next to a packages name or by using the 'library' function at the command line.  Packages only need to be installed once but need to be loaded every time you start R (hint: you'll probably want to list library commands near the top of your script files [described below])
+To get new functions in packages that you do not currently have installed, you will have to look up the package you want to use (e.g., on CRAN) and then install it. Packages are installed using the ‘Install Packages’ button under the “Packages” tab or by using 'install.packages' function on the command line. Packages are loaded by clicking the check box next to a packages name or by using the 'library' function at the command line.  Packages only need to be installed once but need to be loaded every time you start R (hint: you'll probably want to list library commands near the top of your script files [described below])
 
 ### Questions:
 
@@ -149,19 +235,23 @@ Packages are installed using the ‘Install Packages’ button under the “Pack
    d.	ln(-5)
    e.	-ln(5)
    f.	ln(1/5)
-g.	How does R represent when the output of a function is not a number?
-2.	Why are we multiplying the results of the atan and atan2 functions by 180/pi? 
-3.	How is the atan2 function different from the atan function? 
-4.	What is the difference between log and log10?
-5.	Given a right triangle with sides x = 5 and y = 13, calculate the length of the hypotenuse (show code)
-6.	If a population starts with a density of 5 individuals/hectare and grows exponentially at a growth rate r=0.04/year, what is the size of the population in π years? (show code)
-7.	Subtract the month you were born from the remainder left after you divide the year you were born by the day you were born (show code)
+   g.	How does R represent when the output of a function is not a number?
+   
+2.	Looking back at the Triginometry section, hy are we multiplying the results of the atan and atan2 functions by 180/pi? 
+
+3.	What is the difference between log and log10? (hint: use `help()`)
+
+4.	Given a right triangle with sides x = 5 and y = 13, calculate the length of the hypotenuse (show code and use variables)
+
+5.	Subtract the month you were born from the remainder left after you divide the year you were born by the day you were born (show code)
 ```
 
 
 ## R Scripts
 
-Now click on File>New>R Script to open up a script window.  It is often useful to work on R from a script window because it provides a record of what you did in your analysis and can be reused for similar analyses.  It is particularly essential for more complicated analyses.  In the script window type
+Now click on File>New File>R Script to open up a new script window.  It is often useful to work on R from a script window (or a new Rmd) because it provides a record of what you did in your analysis and can be reused for similar analyses.  It is particularly essential for more complicated analyses. From the File > New File menu you'll also see that R Studio supports a wide range of R file formats (R scripts, Rmd, R notebooks, Quarto) as well as a wide range of other programing languages.
+
+In the script window type
  
 ```
 x = 1:10
@@ -177,7 +267,7 @@ x
 #y
 ```
  
-Here the result, a vector of ten values from 1 to 10, demonstrates the basic R syntax for creating a sequence of numbers.  This example also demonstrates that the comment character '#' also works in scripts.  Putting comments in scripts is very useful for remembering what you did when you come back to a file later.  For the rest of this activity I'll use boxes to indicate text to be typed in and run, and will use > to indicate that it should be typed on the command prompt and no prompt to indicate that you probably want to type it in a script instead.
+Here the result, a vector of ten values from 1 to 10, demonstrates the basic R syntax for creating a sequence of numbers.  This example also demonstrates that the comment character '#' also works in scripts.  Putting comments in scripts is very useful for remembering what you did when you come back to a file later.  For the rest of this activity I'll use boxes to indicate text to be typed in and run, and will use > to indicate that it should be typed on the command prompt and no prompt to indicate that you probably want to type it in a script or Rmd instead.
 	There are a number of other ways of generating useful sequences besides the ':' syntax
  
 ```{r}
@@ -199,12 +289,11 @@ prod(1:10)		## product of values in a vector
  
 ```
 Questions:
-8.	Describe the difference in output between sum and cumsum.
-9.	Generate a sequence of even numbers from -6 to 6
-10.	Generate a sequence of values from -4.8 to -3.43 that is length 8 (show code)
-a.	What is the difference between values in this sequence?
-b.	What is the sum of the exponential of this sequence?
-11.	Calculate a second difference [a difference of differences] for the sequence 1:10 (show code)
+6.	Describe the difference in output between sum and cumsum.
+7.	Generate a sequence of even numbers from -6 to 6
+8.	Generate a sequence of values from -4.8 to -3.43 that is length 8 (show code)
+  - What is the difference between values in this sequence?
+9. What is the sum of the exponential of the sequence in question 8?
 ```
 
 ## Loading and Saving Data
@@ -226,7 +315,7 @@ The second variable “header=TRUE” informs R that your data file has column h
 </td></tr></table>
 
       
-For saving ASCII data there is an equivalent command “write.table”. Type ?read.table and ?write.table to learn more about these functions. While read.table and write.table can read and write CSV (comma separated value) files by just specifying the ‘sep’ argument as sep = “,” (i.e. a comma in quotes), there are also predefined functions read.csv and write.csv.
+For saving ASCII data there is an equivalent command “write.table”. Type ?read.table and ?write.table to learn more about these functions. While read.table and write.table can read and write CSV (comma separated value) files by just specifying the ‘sep’ argument as sep = “,” (i.e. a comma in quotes), there are also predefined functions `read.csv` and `write.csv`.
  
 ```{r}
 write.table(dat,"my_frogs.csv",row.names=FALSE,sep=",")   	## save as CSV
@@ -261,7 +350,11 @@ Within the Environment window, clicking on a variable will show you the contents
 	Finally, while we won’t use these explicitly in this class, there are a large number of other options for getting data in and out of R in specific formats (e.g. GIS data, image data, etc) and ways to connect R to data sources more dynamically (e.g. SQL databases) that can be particularly useful when dealing with large data sets. The **R Data Import/Export** manual on the R website is a place to start to learn more about moving data in and out of R.
 
 ```
-12.	Save the frog data file delimited in a pipe-delimited format (i.e. separated by ‘|’). Open the file up in a text editor and cut-and-paste the first few lines of the file into your Rscript file (just so I can see what you did).  Load the data back up into R as ‘dat2’ (show code)
+Question:
+
+10.	Use R commands (e.g., do not click "import dataset" and use the dialog there) to read in the file `met_hourly.csv` and assign it the variable name `met`
+
+11. Save the vector `x` to a new csv file 
 ```
 
 
@@ -334,10 +427,11 @@ as.logical(0:1)
 as.matrix(dat)
 ```
 
-``` 
-13.	Show just the spots data as characters
-14.	Show the 3rd through 8th rows of the 1st  though 3rd columns
-15.	Show the first 3 rows
+```
+Questions:
+12.	Show just the spots data as characters
+13.	Show the 3rd through 8th rows of the 1st  though 3rd columns
+14.	Show just the odd numbered rows in the frog data. Write this code for the GENERAL CASE (i.e. don’t just type c(1,3,5,…) but use functions that you learned in previous sections to set up the sequence.
 ```
 
 ## Combining vectors
@@ -371,8 +465,8 @@ rbind(q,p)		# bind as rows
 
    
 ```
-16.	Create a character vector that contains the names of 4 super heros.
-17.	Show just the odd numbered rows in the frog data. Write this code for the GENERAL CASE (i.e. don’t just type c(1,3,5,…) but use functions that you learned in previous sections to set up the sequence.
+Question:
+15.	Create a character vector that contains the names of 4 people you admire.
 ```
 
 ## Logical operators and indexing
@@ -476,15 +570,72 @@ Logicals don't work exactly like 0/1 in some situations, so be careful. You can 
 as.numeric(y>13)
 ```
 
-``` 
-18.	For the frog data set: 
-  a.	display just the rows where frogs have spots
-  b.	display just the rows where frogs are blue
-  c.	how many blue tadpoles are there?
-  d.	create a new object containing just the rows where there are between 3 and 5 tadpoles
-  e.	display just the rows where there are less than 2.5 red frogs
-  f.	display where either frogs do not have spots or there are more than 5 frogs
+## dplyr: The filter and select functions
+
+In addition to data manipulation functions provided within the base R libraries, there are a lot of external libraries developed to make data management more efficient. One of the most popular such libraries is `dplyr`.
+
+Here we load the library dplyr. If you haven't installed dplyr yet this line of code will throw an error, which you can correct by either using `install.packages("dplyr")` or the Packages > Install menu in the bottom right window of RStudio
+```{r}
+library(dplyr)
 ```
+
+dplyr includes a function `filter` that also does the sort of subsetting we saw in the previous tasks. I takes the data set as the first argument and the condition used for subsetting as the second argument. So the previous example could also be rewritten as
+ 
+```{r}
+hotData = dplyr::filter(met, AirTemp > 25)
+```
+
+`dplyr` also has an function `select` for just selecting specific columns. So if you wanted to subset just the columns `ShortWave` and `Rain` you could run
+
+```{r}
+foo = dplyr::select(met, c("ShortWave","Rain"))
+head(foo)
+```
+
+We'll see more dplyr commands below, but a quick "cheat sheet" can be found [here](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
+## Pipes
+
+When cleaning and organizing data it is common to have to string together multiple functions sequentially. For example, if we had data set `x` we might need to first run x through `function1()` and then run the output through `function2()`. In the examples above we did this either by using temporary variables,
+
+```
+y = function1(x)
+z = function2(y)
+```
+
+or by embedding one function call within another
+
+```
+z = function2(function1(x))
+```
+
+Many consider the first both options cumbersome, as the first creates a lot of temporary variables we don't need and the latter can be confusing, particularly when multiple functions are involved or the functions have additional arguments, because one ends up reading the functions in the reverse order that they are called.
+
+Pipes, `|>`, aim to address this issue by creating a way to pass the output of one function to another in order without creating a temporary variable.
+
+```
+z = x |> function1() |> function2()
+```
+
+As another example, if we wanted to both filter the met data by temperature AND select a subset of columns, we could pipe together multiple dplyr commands
+
+```{r}
+foo = met |> filter(AirTemp > 25) |> select(c("ShortWave","Rain"))
+head(foo)
+```
+
+In this instance, when used alone both functions took the dataset as the first arguement and then additional information as the second argument. Here, the first argument is implicit and one only needs to use specify the second. An important thing to remember about pipes is that they will _always_ pass in the *first* argument in a function.
+
+```
+Question
+16.	**Using the frog data set and either base or dplyr functions:** 
+*  a.	display just the rows where frogs have spots
+*  b.	display just the rows where frogs are blue
+*  c.	create a new object containing just the rows where there are between 3 and 5 tadpoles
+*  d.	display just the rows where there are less than 2.5 red frogs
+*  e.	display where either frogs do not have spots or there are more than 5 frogs
+```
+
 ## Plots, tables, and exploratory analysis
 
 Often understanding our data requires more than just being able to subset the raw data, but also the ability to summarize and visualize data. The **table** command can do basic tabulation and cross tabulation of data
@@ -501,12 +652,14 @@ mean(dat$frogs)
 median(dat$tadpoles)
 var(dat$frogs)  			## variance
 sd(dat$frogs)				## standard deviation
-cov(dat$frogs,dat$tadpoles)		## covariance
-cor(dat$frogs,dat$tadpoles)		## correllation
+cov(met$AirTemp,met$LongWave)		## covariance
+cor(met$AirTemp,met$LongWave)		## correllation
 quantile(dat$tadpoles,c(0.05,0.90))		## 5% and 95% quantiles
 min(dat$frogs)				## smallest value
 max(dat$frogs)				## largest value
 ```
+
+## Apply
 
 R also has a set of apply functions for applying any function to sets of values within a data structure.
 
@@ -517,12 +670,52 @@ apply(dat[,1:2],2,sum) 		        # calculate sum of frogs & tadpoles by column (
 
 The function *apply* will apply a function to either every row (dimension 1) or every column (dimension 2) of a matrix or data.frame. In this example the commands apply the “sum” function to the first two columns of the data (frogs & tadpoles) first calculated by row (the total number of individuals in each population) and second by column (the total number of frogs and tadpoles)
 
+![](img/apply_1.png){width=600px}
+
+![](img/apply_2.png){width=600px}
+
 ```{r}
 tapply(dat$frogs,dat$color,mean)          # calculate mean of frogs by color
 tapply(dat$frogs,dat[,c("color","spots")],mean)  # calculate mean of frogs by color & spots
 ```
 
+![](img/tapply.png){width=200px}
+
 The function **tapply** will apply a function to an R data object, grouping data according to a second variable or set of variables. The first example applies the “mean” function to frogs grouping them by color. The second shows that tapply can be used to apply a function over multiple groups, in this case color X spots. 
+
+`dplyr` also provide an alternative to `tapply` using the `group_by` and `summarize` commands. For example, the previous example could be written as
+
+```{r}
+
+dat |> group_by(color,spots) |> summarise(avg = mean(frogs))
+
+```
+
+Note that the `summarize` function creates a new column to store the output of the operation being performed. In this way `summarize` also makes it easy to calculate multiple summary statistics at once for the same groups. For example:
+
+```{r}
+dat |> group_by(color,spots) |> 
+  summarise(avgFrogs = mean(frogs), 
+            sdFrogs = sd(frogs), 
+            avgTadpoles = mean(tadpoles),
+            sdTadpoles = sd(tadpoles))
+```
+
+Another handy dplyr function is `mutate` which provides the ability to add new columns to a dataframe, for example based on computations involving other columns. For example, if we wanted to add a column to `met` that converted the datetime column `time` to just the calendar date we could do this as
+
+```{r}
+met = met |> 
+  mutate(time = as.POSIXct(time,tz="GMT")) |> ## convert from character to datetime
+  mutate(date = as.Date(time))                    ## convert from datetime to date
+head(met)
+```
+
+```
+Question
+17. **Use dplyr to calculate the *daily* mean air temperature**
+```
+
+# Plotting & visualization 
 
 There are a lot of options for plotting data in R.  The simplest of these include
 
@@ -533,7 +726,7 @@ abline(a=0,b=1)					## add a 1:1 line (intercept=0, slope=1)
 hist(dat$tadpoles)				## histogram
 abline(v=mean(dat$tadpoles))			## add a vertical line at the mean
 
-pairs(dat)					## all pairwise scatter plots
+pairs(met[,2:6])					## pairwise scatter plots for selected columns
 
 barplot(tapply(dat$frogs,dat$color,mean))		## barplot of frogs by color
 abline(h=3)					## add a horizontal line at 3
@@ -543,17 +736,50 @@ The functions **lines** and **points** are also frequently used to add additiona
 
 Within the Plot window, graphs can be cut-and-pasted into other documents or saved to file fairly simply by using Export. If you want to automate the process of exporting graphics, for example when you generate a whole bunch of figures at once and don’t want to Export each one by hand, you'll want to use the graphical functions such as 'postscript', 'pdf', or 'tiff'. For all of these plot functions there are numerous additional (optional) arguments that control the formatting of the plots. The help for par (i.e. ?par) gives a fairly detailed list of these options, some of which you will see in further examples below.
 
+```
+Questions
+  18.	Plot a histogram of blue frogs
+  19. Plot shortwave (solar) radiation against time
+  20. Plot shortwave (solar) radiation against relative humidity
+```
 
-  19.	Plot the following lines from 0 to 3 (hint: define x as a sequence with a small step size). Make sure to make the resolution of x sufficiently small to see the curves
-   a.	ln(x)
-   b. $e^{-x}$
-  20.	Make a barplot of the median number of frogs grouped by whether they have spots or not.
-  21.	Plot a histogram of blue frogs
-  22.	Use apply to calculate the across-population standard deviations in the numbers of frogs and tadpoles
+## Tidyverse
+
+Visualization also brings us to introduce the concept of the `tidyverse`. Over the last decade Hadley Wickham and colleagues have introduces a set of packages for data manipulation and visualization that "share an underlying design philosophy, grammar, and data structures" around what they call "tidy" data. The `dplyr` package, which we saw above, is part of the tidyverse and as we saw provides a number of alternative functions for subsetting and summarizing data (see, for example, the data wrangling chapters in Wickham's [R for Data Science](https://r4ds.had.co.nz/)). Another popular part of the tidyverse are its data visualization tools, which are anchored around the `ggplot2` package, which numerous other packages build upon (see the Reverse Dependencies listing for the package https://cran.r-project.org/web/packages/ggplot2/index.html)
+
+The syntax for ggplot is a bit less intuitive than `plot`, but the following tool `esquisse` provides a graphical interface around ggplot that then returns the underlying code used to generate the plot.
+
+Outside of knitr, run the following code to install and launch `esquisse`
+```
+install.packages("esquisse")  ## only needs to be run once
+esquisse::esquisser()         ## launch tool
+```
+Once the tool launches use it to answer the following question. Note that you won't be able to type here while the tool is running, so you may want to copy the questions, and your answers, to another doc temporarily.
+
+
+```
+Question
+
+21. Histogram
+* Select “met” as the data.frame
+* Click “validate imported data”
+* Drag AirTemp into the Y box (which will initially cause the tool to draw a histogram)
+* Click on “Labels and Title” to add axes labels, units, and title
+* Click on “Plot options” to change the color, theme, and number of bins
+* Click on “Data” and filter the dates down to just the summer (approximately)
+* Click on Export & code and hit “insert code into script” to add the code for this figure
+* When you do this you’ll see a lot of new syntax. First, the `%>%` is known as the _pipe operator_ and is used string together multiple functions. So here we see that we start with the met data, then we filter it based upon time, then we call ggplot(). After we call ggplot we see that the different parts of the figure are added together using a `+`. First, we use `aes` (aesthetic) to select the data being used. Then `geom_histogram` is called to plot a histogram, with additional arguments for the number of bins and the fill color (in this case specified using a hexadecimal color code). Next, we see axis labels being set using the `labs` command. Finally we see the theme that’s been applied.
+* Turn in the code for drawing your histogram
+
+22. Line/scatter plot
+* Returning to the ggplot builder, next drag “time” into the X box, which should turn the plot into a time series line plot.
+* As before you can play with label, plot options, data filtering, etc
+* Export this code to your Rmd as well and briefly explain (in text) what has changed in your code from the histogram plot
+```
 
 ## Classical tests
 
-Since R evolved out of the statistical programming language S, it can easily perform a wide variety of statistical tests and analyses. In R linear regression is done with the function “lm” (linear models)
+Since R was initially developed for statistical programming, it can easily perform a wide variety of statistical tests and analyses. In R linear regression is done with the function “lm” (linear models)
  
 ```{r}
 reg1 = lm(tadpoles ~ frogs,data=dat)   #model syntax: y ~ x
@@ -601,11 +827,11 @@ legend("topleft",
        )
 ```
 
-``` 
+```
+Question
 23.	Using the frog data
   a.	Fit a linear model of tadpoles as a function of frogs for just the RED individuals and report the summary data of the fit.  
   b.	Make a scatter plot of this data that includes the regression line
-  c.	Fit a series of linear models of tadpoles as a function of frogs, spots, color, and their interaction terms. Build up from a simple model to the most complex model that is supported by the available data (i.e. all terms should be significant). Also test the full model that includes all variables and interaction terms.
 ```
 
 ## IF statements
@@ -619,7 +845,7 @@ if(condition){
 	## Do Z
 }
 ```
-
+s
 The “condition” part of this syntax is always a logical comparison, which does the first part (Y) if the condition is TRUE and the second part if it is FALSE. It should also be noted that the “else{ }” part of the syntax is optional, which would correspond to telling the computer, “if X do Y, otherwise just keep going”. For example, if we wanted to do integer division on integers but normal division otherwise we could write 
 
 ```{r}
@@ -654,6 +880,7 @@ ifelse(dat$frogs>0, log(dat$frogs),log(-dat$frogs))
 Aside: As is very common in R, as we learn more we often find more efficient ways of solving problems . For example, the above is equivalent to log(abs(dat$frogs))
 
 ```
+Question
 24.	Write an if statement that makes a scatter plot of x if all the values are positive, and plots a histogram otherwise.
 ```
 
@@ -689,6 +916,7 @@ my.division(x,"5")
 
  
 ```
+Question
 25.	Convert the more complicated graphing example at the end of  “Classic Tests” into a function that will make the same plots for any data set. Show how you would call the function passing it just the subset of data where there are 5 or more tadpoles.
 ```
 
@@ -725,8 +953,8 @@ plot(N)
 ```
 
 ```
+Question
 26.	Starting with a vector x = 1:10, write a for loop that adds 5 to each value in the vector. Note that it is permissible to assign an element in a vector to itself (e.g. x[i] = x[i] + 5)
-27.	Modify the logistic growth code to simulate discrete-time exponential growth and plot the output.
 ```
 
 ## Vector and Matrix Math
