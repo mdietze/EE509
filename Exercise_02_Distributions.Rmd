@@ -296,7 +296,7 @@ lines(x,dlnorm(x,2,1),col=4)
 
 ## Exponential & Laplace
 
-The exponential distribution arises naturally as the time it takes for an event to occur when the average rate of occurrence, *r*, is constant.  The exponential is a special case of the Gamma (discussed next) where $Exp(X \mid r) = Gamma(X \mid 1,r)$.  The exponential is also a special case of the Weibull, $Exp(X \min r) = Weibull(X \mid r,1)$, where the Weibull is a generalization of the exponential that allows the rate parameter *r* to increase or decrease with time.  The Laplace is basically a two-sided exponential and arises naturally if one is dealing with absolute deviation, $|x-m|$, rather than squared deviation, $(x-m)^2$, as is done with the normal.
+The exponential distribution arises naturally as the time it takes for an event to occur when the average rate of occurrence, *r*, is constant.  The exponential is a special case of the Gamma (discussed next) where $Exp(X \mid r) = Gamma(X \mid 1,r)$.  The exponential is also a special case of the Weibull, $Exp(X \mid r) = Weibull(X \mid r,1)$, where the Weibull is a generalization of the exponential that allows the rate parameter *r* to increase or decrease with time.  The Laplace is basically a two-sided exponential and arises naturally if one is dealing with absolute deviation, $|x-m|$, rather than squared deviation, $(x-m)^2$, as is done with the normal.
 
 ```{r}
 ## changing the mean
