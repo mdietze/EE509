@@ -48,10 +48,10 @@ We can compare this likelihood with those for other possible values for $\rho$ b
 ```{r}
 ## Negative log LiKelihood function for the EXPonential model
 ## Version 1
-lkexp <- function(rho){
+lkexp <- function(rho,dat){
   -n*log(rho) + rho*sum(dat)
 }
-lkexp(rho_mle)
+lkexp(rho_mle,dat)
 ```
 
 As you can see, when we pass the MLE for $\rho$ to the function we just defined it returns the same value as when we calculated the likelihood explicitly.  The R syntax for defining a function involves assigning it a name (`lkexp <- function`), specifying what the function's parameters are ( `function(rho)` ), and specifying what the function computes ( everything between the { ... } ).  We now use this function to plot the likelihood in both the -log and linear domains as a function of the parameter $\rho$, adding a vertical line to indicate the value of $\rho$ where the MLE is and a horizontal line that shows the value of the likelihood function at the MLE.
@@ -62,13 +62,13 @@ As you can see, when we pass the MLE for $\rho$ to the function we just defined 
 rseq <- seq(0.01,0.4,length=200)		## range of rho values on the x-axis
 
 ## Plot in the –log domain:
-plot(rseq,lkexp(rseq),main="Negative Log Likelihood",
+plot(rseq,lkexp(rseq,dat),main="Negative Log Likelihood",
 	xlab="rho",ylab="-log(L)",type='l')
 abline(v=rho_mle,lty=2)
-abline(h=lkexp(rho_mle),lty=2)
+abline(h=lkexp(rho_mle,dat),lty=2)
 
 ## Plot in the linear domain
-plot(rseq,exp(-lkexp(rseq)),main="Likelihood",xlab="rho",ylab="L",type='l')
+plot(rseq,exp(-lkexp(rseq,dat)),main="Likelihood",xlab="rho",ylab="L",type='l')
 abline(v=rho_mle,lty=2)
 ```
 
@@ -97,28 +97,28 @@ Recall that we are interested in the overall negative log-likelihood rather than
  
 ```{r}
 ## likelihood function - version 2
-lkexp2 <- function(rho){
+lkexp2 <- function(rho,dat){
   -sum(dexp(dat,rho,log=TRUE))
 }
-lkexp2(rho_mle)
+lkexp2(rho_mle,dat)
 ```
 
 One important difference between lkexp2 and the original lkexp is that lkexp2 only makes sense if it’s passed a single value for $\rho$, while with lkexp we could pass a whole vector of rhos, rseq, in order to plot the likelihood.  If one passed a vector of rhos to lkexp2 then dexp would be applied to a vector of rhos and a vector of data simultaneously and by default R will compute the likelihood of the first data point given the first $\rho$, the second data point given the second $\rho$, etc. which is NOT what we're looking for. Fortunately R has a simple function -- `sapply -- that allows you to apply a function to each value in a vector, which IS what we want.
 
 ```{r}
-llk2 <- sapply(rseq,lkexp2)
+llk2 <- sapply(rseq,lkexp2,dat=dat)
 ```
 
 
 We can make some simple plots to confirm that the two variants of the likelihood function do indeed give the same answer
  
 ```{r}
-plot(rseq,lkexp(rseq),main="Log Likelihood",xlab="rho",ylab="-log(L)")
+plot(rseq,lkexp(rseq,dat),main="Log Likelihood",xlab="rho",ylab="-log(L)")
 lines(rseq,llk2,col=2)
 abline(v=rho_mle,lty=2)
-abline(h=lkexp(rho_mle),lty=2)
+abline(h=lkexp(rho_mle,dat),lty=2)
 
-plot(rseq,exp(-lkexp(rseq)),main="Likelihood",xlab="rho",ylab="L")
+plot(rseq,exp(-lkexp(rseq,dat)),main="Likelihood",xlab="rho",ylab="L")
 lines(rseq,exp(-llk2),col=2)
 abline(v=rho_mle,lty=2)
 ```
@@ -127,7 +127,7 @@ If we are dealing with a likelihood function that doesn't have an analytical sol
 
 ```{r}
 ## numerical optimization
-fit <- optimize(lkexp,lower=0.01,upper=0.5,maximum=F)
+fit <- optimize(lkexp,lower=0.01,upper=0.5,maximum=F,dat=dat)
 fit
 ```
 
@@ -136,7 +136,7 @@ Here the first argument of the `optimize` function is the function we want to op
 ```{r}
 fit$minimum - rho_mle
 
-plot(rseq,exp(-lkexp(rseq)),main="Likelihood",xlab="rho",ylab="L")
+plot(rseq,exp(-lkexp(rseq,dat)),main="Likelihood",xlab="rho",ylab="L")
 lines(rseq,exp(-llk2),col=2)
 abline(v=rho_mle,lty=2)
 abline(v=fit$minimum,lty=2,col=2)
@@ -145,7 +145,7 @@ abline(v=fit$minimum,lty=2,col=2)
 An alternative optimization function in R is `nlm` (nonlinear minimization).  The arguments for `nlm` are slightly different from `optimize`, the first still being the function to optimize but the second being a vector of the initial conditions the same length as the number of dimensions – the initial best guess of the parameters is used as the starting place for the optimization.
 
 ```{r}
-fit2 <- nlm(lkexp,0.03)
+fit2 <- nlm(lkexp,0.03,dat=dat)
 fit2
 ```
 
@@ -157,6 +157,7 @@ The output from `nlm` is mostly the same as for `optimize` but it includes a few
 
 ```
 1) Include code to make a plot of the exponential PDF (with the MLE parameter estimate) on top of the histogram of the data.
+2) Repeate the nlm optimization 3 more times with non-trivially different initial guesses to assess whether the algorithm is converging to the same optimum. Make a histogram of all 4 fits and comment on their consistency (or lack of consistency)
 ```
 
 ## Case Study 2: Change in Fire Risk With Time
@@ -177,8 +178,8 @@ lines(age,dweibull(age,.5,50),col="green")
 ### Lab Questions
 
 ```
-2) Does increasing the `shape` parameter cause fire risk to increase or decrease with age?
-3) Extra Credit: Plot the CDF of these 3 distributions. What is significant about the scale parameter? What is the analytical solution for the CDF at this point? Add these lines to your CDF plot.
+3) Does increasing the `shape` parameter cause fire risk to increase or decrease with age? Note that risk (or more formally, hazard) is the probability of an event at a point in time conditional on having already survived to that time (e.g., the exponential PDF, which is monotonically decreasing, has constant hazard). If you can't figure this out from the dweibull, try looking up (e.g. Wikipedia) and plotting the equivalent Weibull hazard function.
+4) Extra Credit: Plot the CDF of these 3 distributions. What is significant about the scale parameter? What is the analytical solution for the CDF at this point? Add these lines to your CDF plot.
 ```
 
 Let’s begin by loading up the data set and take a quick look at it.  The data are actually stored as the number of times each return interval was observed, so our first step is to use `rep` to reconstruct the observations
@@ -195,28 +196,28 @@ Since the Weibull is a complex two-parameter model we'll be solving for the MLE 
  
 ```{r}
 ## define Weibull negative log likelihood
-wlik <- function(param){
- -sum(dweibull(firedata, param[1], param[2], log = TRUE))
+wlik <- function(param,dat){
+ -sum(dweibull(dat, param[1], param[2], log = TRUE))
 }
 ```
 
 ### Lab Questions
 
 ```
-4) Since the exponential is a special case of the Weibull, use the numerical optimization code from the first case study to solve for the exponential MLE (rho_mle) for the fire scar data 
+5) Since the exponential is a special case of the Weibull, use the numerical optimization code from the first case study to solve for the exponential MLE (rho_mle) for the fire scar data 
 ```
 
 Next we'll specify the initial conditions for the numerical optimization – it doesn't matter what values you actually start from provided they are reasonable since they are just our first guess, though the closer you are to the correct value the less likely you are to end up in a local minima and the faster the algorithm will find the minima.  Below we start with the MLE for the Exponential special case.
  
 ```{r}
 param0 <- c(1.0,1/rho_mle)  	##initial condition for numerical optimization
-wlik(param0)
+wlik(param0,dat=firedata)
 ```
 
 As in the first example, we will call upon one of R's built in optimization functions to search parameter space and find the combination of parameters that has the lowest negative log likelihood.
 
 ```{r}
-out <- optim(param0,wlik,lower=c(0.01,0.01), upper=c(100,100),method="L-BFGS-B")
+out <- optim(param0,wlik,lower=c(0.01,0.01), upper=c(100,100),method="L-BFGS-B",dat=firedata)
 out
 ```
 
@@ -237,7 +238,7 @@ for(i in 1:nstep){					## loop over the first dimension
   c <- rp[i]*out$par[1]		#c value
   for(j in 1:nstep){
     lambda <- rp[j]*out$par[2]		#lamba values
-    z[i,j] <- wlik(c(c,lambda))
+    z[i,j] <- wlik(c(c,lambda),dat=firedata)
   }
 }
 ```
@@ -280,11 +281,11 @@ Apply one of the **numerical optimization methods** you used above in order to e
 ## Lab Questions
 
 ```
-5) Please include the following in your answer:
+6) Please include the following in your answer:
 *  R code
 *  Numerical estimate of rho
 *  Negative log likelihood profile
 *  Answer the following question:  If we wanted to test the assumption that mortality rate was constant in time, which of the two data sets could we use and what model would we fit?
-6) Extra Credit: A plot of the exponential PDF with two curves, one based on the Exponential model from the start of this lab and the second from the Binomial/Exponential fit you just found 
+7) Extra Credit: A plot of the exponential PDF with two curves, one based on the Exponential model from the start of this lab and the second from the Binomial/Exponential fit you just found 
 ```
 
