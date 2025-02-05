@@ -15,21 +15,23 @@ The response of ecosystems to elevated CO2 involves not just the change in growt
 Lets begin by loading up the data and taking a look at it
 
 ```{r}
-b <- read.table("data/pinecones.txt",header=TRUE,as.is = FALSE)
+b <- read.csv("data/pinecones.tidy.txt",header=TRUE)
 
 str(b)
 summary(b)
 table(b$ring,b$tmt)           ## shows number of trees by ring and treatment
 
+b00 = b |> dplyr::filter(year==2000)
+
 ##histogram of cone counts in year 2000
-hist(b$c00,breaks=0:92,probability=TRUE,ylim=c(0,1))
+hist(b00$cones,breaks=0:92,probability=TRUE,ylim=c(0,1))
 
 ##plot of counts by tree size (x-axis) and CO2 (AMB is black, CO2 is red)
-plot(b$diam,b$c00,col = b$tmt)
+plot(b00$diam,b00$cones,col = as.factor(b00$tmt))
 ```
 
 
-The rows in this data set represent observations of individual trees.  The first column in the data set is an ID number (id).  The second (ring) is an indicator of which plot the tree was in – there are 6 circular plots at the FACE experiment.  The third (tmt) indicated which treatments were applied to which rings, where AMB refers to ambient CO2 concentrations and CO2 refers to elevated CO2.  The next column (diam) gives the diameter of the tree at 1.3 m height (diameter breast height) in centimeters.  Other measures of tree size (height, mass, etc.) are highly correlated with diameter.  The final three columns are the cone counts in 1998 (c98), 1999 (c99), and 2000 (c00).  To keep the analysis more manageable we'll focus on just the data from 2000.
+This data set represents observations of individual trees over time.  The first column in the data set (ring) is an indicator of which plot the tree was in – there are 6 circular plots at the FACE experiment.  The second (tmt) indicated which treatments were applied to which rings, where AMB refers to ambient CO2 concentrations and CO2 refers to elevated CO2.  The next column is an ID number (id) for the tree, which then followed by the year it was measured (year), and the diameter of the tree at 1.3 m height (diam = diameter breast height) in centimeters.  Other measures of tree size (height, mass, etc.) are highly correlated with diameter.  The final column (cones) is the cone counts.  To keep the analysis more manageable we'll focus on just the data from 2000.
 
 ## Fecundity Model
 
@@ -44,10 +46,10 @@ $$g(x_i) = a_0 x_i^2$$
 Before we get to fitting the model, lets define some variables that specify what data is going to be used in the fitting
 
 ```{r}
-dia   <- b$diam       ## tree diameters
-ncone <- b$c00       	## number of cones in 2000
+dia   <- b00$diam       ## tree diameters
+ncone <- b00$cones       	## number of cones in 2000
 cones <- (ncone > 0) 	## whether cones are present – this indicates whether tree is mature
-tmt   <- b$tmt       	## treatment (elevated vs ambient)
+tmt   <- b00$tmt       	## treatment (elevated vs ambient)
 ```
 
 
@@ -192,8 +194,8 @@ To begin model comparison, lets look at how to fit the model to just the data fr
 
 ```{r}
 ## Ambient
-dia.amb   = b$diam[tmt=="AMB"]   ## tree diameters
-ncone.amb = b$c00[tmt=="AMB"]    ## number of cones
+dia.amb   = b00$diam[tmt=="AMB"]   ## tree diameters
+ncone.amb = b00$cones[tmt=="AMB"]    ## number of cones
 ```
 
 Next, lets fit the same likelihood model that we did previously but save the output to different variables.  You'll notice that since we've now defined the data sets used by the likfit function differently all we have to do is re-fit the likelihood function as is.
