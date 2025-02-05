@@ -1,0 +1,304 @@
+---
+title: "Advanced plots with ggplot2 - EE509"
+author: "Sawyer Balint"
+date: "1/29/2025"
+output:
+  bookdown::pdf_document2: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(bookdown) #personal style preference
+```
+
+# Introduction
+
+Graphically presenting data in a key component of all scientific products, including the final project for EE509. This vignette will demonstrate best practices for quickly making publication-quality plots in R, utilizing the popular package `ggplot2` and several companion packages.
+
+Users should be comfortable with using `dplyr` and pipe operators prior to beginning this vignette.
+
+## Installation
+
+Although `ggplot2` can be downloaded as a stand-alone package (e.g., `install.packages("ggplot2")`), it is included in the popular `tidyverse` suite of data management packages. I recommend downloading `tidyverse` instead, since users will likely use `dplyr`, `readr`, and `tidyr` for their projects.
+
+```{r}
+
+#check to see if tidyverse is installed. if it is not, install it
+if (!("tidyverse" %in% installed.packages())){
+  install.packages("tidyverse")
+}
+
+#load tidyverse
+library(tidyverse)
+
+```
+
+# Plotting a single variable
+
+We will use the `storms` dataset, included with `tidyverse`. These data shows the position, wind speed, and pressure of tropical storms and hurricanes in the Gulf of Mexico beginning in 1975.
+
+Let's begin with a basic graph showing the frequency of storms by time of year. This requires counting the number of storms per year and assigning them to a month.
+
+```{r}
+#view data structure
+str(storms)
+
+#create a summary dataframe showing the number of hurricanes per month
+summary.df <- storms %>%
+  group_by(name, year) %>%
+  summarize(month = min(month)) %>% #some storms span multiple months. in that case, return the earlier month
+  unique() %>%
+  group_by(month) %>%
+  count() %>% #count the number of named storms
+  ungroup()
+
+#view the first 6 lines
+head(summary.df)
+
+#make a basic graph
+ggplot(summary.df, aes(month, n))+
+  geom_col()
+
+```
+
+This initial plot is informative: most tropical storms begin in the late summer, with very few storms beginning in the winter. We can use a distribution like this to predict which times of the year are most likely to have tropical storms.
+
+However, there are some issues with this plot as well. The x- and y- axis titles are confusing, and the numerical units on the x-axis are not consistent with the categorical month variable. Thus, we will change the plot to address both of these concerns:
+
+```{r}
+#this built-in list has month abbreviations
+month.abb
+
+#change numeric month to abbreviations
+summary.df <- summary.df %>%
+  complete(month=c(1:12)) %>% #we're missing some months, so make sure all are included for graphing
+  mutate(month = factor(month, #convert month to factor
+                        labels=month.abb),
+         n=ifelse(is.na(n), 0,n)) #and label using the abbreviations
+
+#make a slightly better graph
+plot <- ggplot(summary.df, aes(month, n))+
+  geom_col()+
+  labs(x="Month", y="Number of named storms 1975-2022") #renames axis titles
+
+#note that I am create a ggplot object and then calling the object.
+#this is not required, but it it useful for this vignette to show iterative changes
+plot
+
+```
+
+This plot is much easier to interpret, with appropriate units and labels. This is an acceptable, albeit ugly, plot.
+
+## Colors and themes
+
+Perhaps we would like to make some aesthetic changes to our plot. Below, I will make a three changes to suite my personal preferences:
+
+- I will use the built-in `ggplot2` theme `theme_classic()` to configure the axes, plot background, and grid lines
+- I will change the colors of the bars to be orange with a black outline
+- I will remove the bottom y-axis expansion so y-axis starts at zero, since we can't have a negitive number of storms.
+
+```{r}
+#make some aesthetic changes
+plot <- ggplot(summary.df, aes(month, n))+
+  theme_classic()+ #change axis and plot background colors
+  geom_col(color="black", fill="orange")+ #change bar colors
+  scale_y_continuous(expand=expansion(mult=c(0,0.05)))+ #remove lower y-axis expansion
+  labs(x="Month", y="Number of named storms 1975-2022") #rename axis titles
+
+plot
+```
+
+Congrats! This is a publication-quality plot, ready for *Science*.
+
+# Plotting multiple variables
+
+Returning to the original `storms` data, let's investigate the relationship between wind speed, pressure, and the diameter of the storm. One way to assess the relationship would be to create two separate plots, as shown below:
+
+```{r}
+#create a dataset of maximum wind speed, minimum pressure, and maximum diameter
+maxwind.df <- storms %>%
+  group_by(name, year) %>%
+  summarize(month = min(month),
+            wind = max(wind),
+            pressure = min(pressure),
+            year=mean(year),
+            diameter=max(tropicalstorm_force_diameter)) %>%
+  ungroup()#some storms span multiple months. in that case, return the earlier month
+
+#make a plot of pressure and wind
+ggplot(maxwind.df, aes(pressure, wind))+
+  theme_classic()+
+  geom_point(shape=21, color="black", fill="orange")+
+  labs(x="Pressure (millibars)", y="Wind Speed (knots)")
+
+#make a plot of pressure and diameter
+ggplot(maxwind.df, aes(pressure, diameter))+
+  theme_classic()+
+  geom_point(shape=21, color="black", fill="darkred")+
+  labs(x="Pressure (millibars)", y="Wind Field >34kt (nautical miles)")
+
+```
+
+We find that as the barometric pressure inside the hurricane decreases, the maximum wind speed and the diameter of tropical-storm force winds (i.e. the size of the storm) increase. If we had a reading of the pressure at the center of the storm, we might estimate its maximum wind speed and diameter based on these relationships.
+
+## Creating multiple subplots with `facet_wrap()`
+
+Working with two individual plots is unwieldy, and it makes it challenging to directly compare the relationship between the two response variables. How could we plot both of these variables in a single plot? One method is to use `facet_wrap()`, as shown below:
+
+```{r}
+
+#create a new dataframe that is in a long format
+#we will use the new "variable" column for faceting
+facet.df <- maxwind.df %>%
+  pivot_longer(cols=c(wind, diameter), names_to="variable")
+
+#make a basic plot with facet wrap
+plot <- ggplot(facet.df, aes(pressure, value, color=variable, shape=variable))+
+  geom_point()+
+  facet_wrap(.~variable) #here we tell facet_wrap how to make the subplots
+
+plot
+
+```
+
+If you go to any scientific conference, you'll find numerous plots that look just like this one: hideous grey plot backgrounds, ambiguous facet labels, and a redundant legend. But by far the most egregious issue is that "wind" and "diameter" are plotted on the same y-axis while using different units. It would make more sense to show this plot as a single column, with both plots sharing the same x-axis scale. Let's fix that first, within the `facet_wrap()` call:
+
+```{r}
+
+#add some more customization to facet_wrap
+plot <- plot+
+  facet_wrap(.~variable, ncol=1, scales="free_y") #here we specify one column and free y axes
+
+```
+
+Finally, I will add units and make some aesthetic adjustments to match my personal preferences:
+
+```{r}
+
+#rename the facet labels to include unit information
+facet.df <- facet.df %>%
+  mutate(variable=factor(variable, levels=c("diameter","wind"),
+                         labels=c("Wind field >34kt (nmi)",
+                                  "Wind speed (kt)")))
+
+#make aesthetic changes
+plot <- ggplot(facet.df, aes(pressure, value, fill=variable, shape=variable))+
+  theme_bw()+ #use a ggplot theme
+  geom_point(color="black", alpha=0.8)+ #remove legend, set black outline, slightly transparent
+  facet_wrap(.~variable, ncol=1, scales="free_y", strip.position="left")+ #move facet labels to the left
+  labs(y=NULL, x="Pressure (millibar)")+ #set x-axis label
+  scale_shape_manual(values=c(21:25))+ #specify shapes that have an outline
+  scale_fill_viridis_d(option="inferno", begin=0.3, end=0.7)+ #specify a color-blind friendly color palette
+  theme(strip.background = element_blank(), #remove the box around the facet labels
+        strip.placement = "outside", #move the facet labels outside of the y-axis
+        legend.position="none" #remove the legend - it's redundant
+        ) 
+
+plot
+
+```
+
+This plot looks much better, and would be fine in a scientific presentation or manuscript. 
+
+## Summary statistics with `ggpmisc`
+
+Some simple statistical models, such as linear regressions, can be visualized directly with `ggplot2`. We can also annotate summary statistics within the plot using the companion package `ggpmisc`:
+
+Hint: see https://cran.r-project.org/web/packages/ggpmisc/vignettes/model-based-annotations.html for more useful ways to show summary statistics on a plot!
+
+```{r}
+
+#check to see if ggpmisc is installed. if it is not, install it
+if (!("ggpmisc" %in% installed.packages())){
+  install.packages("ggpmisc")
+  #last time I installed this, I also had to manually install the rlang dependency
+}
+
+library(ggpmisc)
+
+#facet plot with summary statistics
+plot +
+  geom_smooth(color="black", fill="grey", method="lm")+ #add a linear regression line
+  stat_poly_eq(label.x="right") #add r2 value
+  
+
+```
+
+Admittedly, performing statistics within ggplot is not best practice. We have done no diagnostics to confirm the validity of our linear regressions, and the regression between pressure and wind field (top) clearly violates the assumption of homoscedasticity. However, after statistics have already been performed and validated, this example shows how some simple models can be visualized using only a couple lines of code.
+
+# Visualizing spatial data
+
+Sometimes, there is nothing better than an old-fashioned map to visualize data spatially. Thankfully, `ggplot2` also has GIS capability, especially when paired with the companion package `sf`. I'm also going to use the package `maps` to import base layer data.
+
+Let's begin with a simple map of the world:
+
+```{r}
+#check to see if packages are installed. if it is not, install them
+if (!("sf" %in% installed.packages())){
+  install.packages("sf")
+}
+
+if (!("maps" %in% installed.packages())){
+  install.packages("maps")
+}
+
+library(sf)
+library(maps)
+
+#import map data and convert to sf
+world.sf <- map("world", plot = FALSE, fill = TRUE) %>%
+  st_as_sf()
+
+#make a simple plot of the earth
+plot <- ggplot()+
+  theme_bw()+
+  geom_sf(data = world.sf)
+
+plot
+
+```
+
+Using the `sf` package, we can quickly crop the map to the North Atlantic:
+
+```{r}
+
+#crop the plot
+plot <- plot+
+    coord_sf(xlim = c(-120, 0), ylim = c(0, 60), expand = FALSE)+ #set x and y limits, in units of degrees
+    labs(x=NULL, y=NULL)
+
+plot
+
+```
+
+Let's add some hurricane tracks. I'm curious about Category 5 hurricanes that have occurred between 2000 and 2010.
+
+```{r}
+
+#create a dataframe of hurricanes between 2000 and 2010
+hurricanes.df <- storms %>%
+  group_by(name, year) %>%
+  mutate(max.category=max(category, na.rm=TRUE)) %>%
+  ungroup() %>%
+  #i'm filtering because there are a lot of hurricanes
+  filter(max.category==5) %>%
+  filter(between(year, 2000,2010))
+
+#add hurricane data to the plot
+plot <- plot+
+  geom_path(data=hurricanes.df, aes(long, lat, color=name), alpha=0.5)+
+  geom_point(data=hurricanes.df, aes(long, lat, fill=name, shape=name), alpha=0.5)+
+  scale_color_viridis_d(option="turbo", aesthetics = c("color","fill"))+
+  scale_shape_manual(values=rep(21:25,3))+
+  theme(legend.title=element_blank())
+
+plot
+
+```
+
+This map qualitatively illustrates that hurricanes are not evenly distributed across space - they tend to have consistent tracks carving clockwise from the mid equatorial Atlantic, through the Gulf of Mexico and into Central and North America. Based on this map, we might hypothesize that the likelihood of encountering a hurricane in southern Florida is higher than in Maine. However, proper statistical methods will be required to test that hypothesis.
+
+# Notes
+
+Additional `ggplot2` examples are available at https://ggplot2.tidyverse.org/reference/index.html
+
