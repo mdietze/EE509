@@ -1,0 +1,59 @@
+---
+title: 'Homework 1'
+author: "Sawyer Balint"
+date: "01/31/2025"
+output:
+  bookdown::pdf_document2: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(bookdown) #personal style preference
+library(tidyverse) #for everything
+library(knitr) #for kable
+```
+
+
+First, let's observe the data:
+
+```{r}
+counts <- c(5,6,7,3,6,5,8,4,4,3)
+
+hist(counts)
+
+```
+
+**What is your process model?**
+
+The process model is $f(x)=\lambda$
+
+**What is your data model?**
+
+Because this is count data, it must be discrete and have a lower bound of 0. It also appears to have a higher density at lower values. Thus, it is likely a Poisson distribution: $$x~Pois(\lambda)$$
+
+**Solve for the analytical MLE**
+\begin{center}
+Likelihood is equal to the Poisson distribution:
+$$L=\Pi~Pois(x_{i}|\lambda)$$
+which has the probability distribution function of:
+$$Pois(x_{i}|\lambda) = \lambda^{x_i}~e^{-\lambda}$$
+thus likelihood is equal to:
+$$L\propto\Pi~\lambda^{x_i}~e^{-\lambda}$$
+We solve for $L$ by taking the natural log:
+$$lnL\propto\sum~x_iln(\lambda)-\sum(\lambda)$$
+Take the derivative with respect to $\lambda$:
+$$\frac{dlnL}{d\lambda}=\frac{1}{\lambda}\sum~x_i-n$$
+set it equal to zero:
+$$0=\frac{1}{\lambda}\sum~x_i-n$$
+and solve for $\lambda$
+$$\lambda=\frac{1}{n}\sum~x_i$$
+Thus, $\lambda$ is equal to the sum of $x$ over $n$ which is the mean.
+\end{center}
+
+**What is the estimate for this population?**
+
+```{r}
+
+round(mean(counts))
+
+```
