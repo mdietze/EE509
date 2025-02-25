@@ -1,6 +1,6 @@
 ---
 title: "Lab 06 - Growth Curve"
-author: "GE 509"
+author: "EE 509"
 output: html_document
 ---
 
@@ -13,7 +13,7 @@ output: html_document
 To move from a qualitative description of shade tolerance to a quantitative one requires that we quantify the relationship between light and growth for understory trees.  One of the most common model's used to fit this relationship is the Michaelis-Menton function (aka Monod) 
 
 _Process Model_
-$$\mu_i = \beta_0 + \beta_1 {{L_i}\over{\theta + L_i}} $$					
+$$\mu_i = \beta_1 + \beta_2 {{L_i}\over{\theta + L_i}} $$					
 
 The Michaelis-Menton is a ratio function that starts at b0 when light is at zero (L=0) and saturates at b0 + b1 as light increases.  Here we take $\mu$ to be the expected growth rate and $\theta$ is the half-saturation constant, with is the light level at which growth is expected to be half way between its minimum and it's maximum.  For our analysis we'll use light data derived from the analysis of canopy photos that estimates the total annual light budget at a site normalized by the amount of light received if there was no shade from other trees.  In other words, L varies from 0-1 and can be interpreted as the proportion of full sun.  Growth will be assessed in terms of change in height (cm/year) based on repeated measurements of the height of individuals during annual censuses at the end of the growing season.
 
@@ -30,7 +30,7 @@ $$z_i = {{L_i}\over{\theta + L_i}}$$
 
 Then the rest of the model takes on the linear form
 
-$$\mu_i = \beta_0 + \beta_1 z_i$$
+$$\mu_i = \beta_1 + \beta_2 z_i$$
 
 which is equivalent to our regression model from Lab 5.  Note that since $\theta$ is unknown and has to be estimated, z is not a fixed quantity but needs to be recomputed in each step of the MCMC.  Additional information on this model and how we “linearized” it can be found in textbook section 7.4.4.  Further embellishes can be found in Clark et al 2003 Ecology.
 
@@ -40,7 +40,7 @@ To add the nonlinear portion of the model we need to specify a prior on $\theta$
 
 Combining all the parts of the model, this gives us a posterior:
 
-$$p(\beta,\theta,\sigma^2 \vert y, L) \propto N_n \left( y \vert \beta_0 + \beta_1 {{L_i}\over{\theta + L_i}} , \sigma^2 \right) N_2(\beta \vert beta0, V_b) IG(\sigma^2 \vert s_1,s_2) Beta(\theta \vert a,b)$$
+$$p(\beta,\theta,\sigma^2 \vert y, L) \propto N_n \left( y \vert \beta_1 + \beta_2 {{L_i}\over{\theta + L_i}} , \sigma^2 \right) N_2(\beta \vert \beta_0, V_b) IG(\sigma^2 \vert s_1,s_2) Beta(\theta \vert a,b)$$
 
 #Set Up
 
@@ -91,12 +91,12 @@ a1 = 1.91
 a2 = 10.17
 ```
 
-which corresponds to prior information of the half-saturation constant having a 95% CI between 0.02 and 0.35. We'll also want to precompute the matrix product of V and b0 since this term comes up in multiple places.
+which corresponds to prior information of the half-saturation constant having a 95% CI between 0.02 and 0.35. We'll also want to precompute the matrix product of V and b0 since this term will come up in multiple places.
 ```{r}
 Vb <- vinvert %*% b0
 ```
 
-**3) Set up variables to store MCMC:**  Unlike in JAGS, which returns all the output at once, when coding MCMC by hand we need to define matrices and vectors to store our MCMC output.
+**3) Set up variables to store MCMC:**  Unlike in JAGS, which returns all the output at once, when coding MCMC by hand we need to define matrices and vectors to store our MCMC output. Note that you'll need to increase ngibbs to get a sufficiently large sample to assess convergence, calculate acceptance rate, and tune your jump variance. You'll need to increase ngibbs even further to produce your final output.
 
 ```{r}
 ##storage for MCMC
@@ -126,7 +126,7 @@ dtnorm <- function(x,mu,sd){
   y[x<0 | x > 1] = -Inf
   return(y)
 }
-xseq = seq(-0.5,1,length=100)
+xseq = seq(-0.5,1.1,length=1000)
 plot(xseq,exp(dtnorm(xseq,0.25,0.3)),type='l')
 lines(xseq,dnorm(xseq,0.25,0.3),col=2)
 ```
@@ -210,7 +210,7 @@ We can implement this in R as
 
 The third section in the MCMC, which samples for theta, requires a way of sampling from the following conditional distribution:
 
-$$p(\theta \vert \beta,\sigma^2, y, L) \propto N_n \left( y \vert \beta_0 + \beta_1 {{L_i}\over{\theta + L_i}} , \sigma^2 \right) Beta(\theta \vert a,b)$$
+$$p(\theta \vert \beta,\sigma^2, y, L) \propto N_n \left( y \vert \beta_1 + \beta_2 {{L_i}\over{\theta + L_i}} , \sigma^2 \right) Beta(\theta \vert a,b)$$
 
 This conditional posterior is based on selecting the terms from the full posterior (above) that include theta.  Since this clearly a non-standard distribution we will sample from it using Metropolis-Hasting.  We will be using the Metropolis-Hastings algorithm rather than the simpler Metropolis because our truncated Normal distribution is non-symmetric.
 
