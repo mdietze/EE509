@@ -63,7 +63,7 @@ PR2
 
 ## Bayesian Poisson Regression
 
-Next we're going to fit the Poisson regression model from the Bayesian perspective using BUGS.  This will allow you to compare the Likelihood and Bayesian approaches and will serve as the foundation for building a more complex model.  
+Next we're going to fit the Poisson regression model from the Bayesian perspective using JAGS. This will allow you to compare the Likelihood and Bayesian approaches and will serve as the foundation for building a more complex model.  
 
 To build the Poisson model:
 
@@ -103,11 +103,10 @@ To show how this works:
 
 ### Poisson Regression with Errors in Variables
 
-Note: the first two models presented below are for explanation and you don't have to run them
-
 One obvious problem with the analyses conducted so far is that the covariate has been our proxy data, TDR, which has arbitrary units and is not biologically interesting -- there are no noteworthy theories in biology about the effect of soil impedance on plants.  What we are really interested in is the impact of soil moisture on our plants, but we never observe soil moisture directly – it is a latent variable.  However, we do have a calibration curve that can be used to relate TDR to soil moisture.  By far the most common approach in the literature to calibration problems such as this one is to use just only the deterministic process model for the relationship between the two variables in order to transform one variable to another.  However, the relationship is not perfect and therefore there is uncertainty in the soil moisture estimates.  A full treatment of uncertainty would account for the fact that there is both parameter uncertainty in the calibration curve and residual error in the data model – in other words we want to know the posterior predictive distribution of each soil moisture estimate given the observed TDR measurement.  If we knew this we could then use these posterior distributions as informative priors on our data model for the Errors in Variables model we talked about in lecture.  If we wanted to fit the calibration curve in JAGS it would just be the simple linear regression model we've seen a number of times already
  
-```
+```{r}
+TDR_Calibration = "
 model {
   for(i in 1:2) { alpha[i] ~ dnorm(0,0.001)}        ## priors
   sigma ~ dgamma(0.01,0.01)
@@ -116,11 +115,13 @@ model {
             SMc[i] ~ dnorm(ESMc[i],sigma)           ## data model: Soil Moisture calibration
    }
 }
+"
 ```
 
-The Poisson regression model would then be modified based on the errors in variable approach to account for the uncertainty in soil moisture due to the fact that TDR is an imperfect proxy.
+The Poisson regression model would then be modified based on the errors in variable approach to account for the uncertainty in soil moisture due to the fact that TDR is an imperfect proxy. Specifically, we're embedding the calibration curve converting from TDR to soil moisture into JAGS so that we're accounting for both the parameter (alpha) and random (sigma) error around the calibration.
  
-```
+```{r}
+PoisRegEIV = "
 model {
   alpha ~ dmnorm(abar,aprec)}                            ## informative prior, calibration process
   sigma ~ dgamma(s1,s2)                                  ## informative prior, calibration precision
@@ -131,10 +132,20 @@ model {
     log(mu[i]) <- beta[1]+beta[2]*SM[i]                  ## Poisson regression - process model
     y[i] ~ dpois(mu[i])  		                             ## Poisson Regression – data model
   }
-}
+}"
 ```
 
-Writing the combined model (below) involves little more than putting the code for each of these two models into one file
+### Lab Report Task 4: 
+
+11. Fit the `TDR_Calibration` model, perform standard MCMC diagnostics, and report a summary of the model parameters
+12. For the errors-in-variables model to work you need to pass in highly-informative priors for alpha and sigma. Specifically, you need to calculate abar, aprec, s1, and s2 from the POSTERIORS from the `TDR_Calibration` model. In this task set up the full `data` object for the `PoisRegEIV` model, including these informative priors. For aprec don't forget this is a precision. For s1 and s2 use a moment matching approach, analytically relating the mean and variance of the posterior distribution from the `TDR_Calibration` to the parameters s1 and s2 in the dgamma.
+13. Fit the `PoisRegEIV` model and provide a summary table and posterior density plots for the model parameters.  Also report the burn in and the effective MCMC sample size.
+14. Plot the model credible interval and predictive interval.  Extra Credit: Include the scatterplot of the data on the plot, using the posterior CIs for all the latent _SM_ variables as the x.
+15.	How does this fit compare to the previous Poisson regression of seedlings vs TDR in terms of the overall uncertainty in the model (width of credible and predictive intervals)?  In qualitative terms, to what degree does ignoring the uncertainty in the TDR/Soil Moisture relationship affect the uncertainty in our parameter estimates and our confidence in our model?
+
+## Lab Report Task 5: EXTRA CREDIT
+
+An alternative to fitting the errors-in-variables model sequentially would be to writing a combined model (below) involves little more than putting the code for each of these two models into one file
 
 ```{r}
 PoisRegPlusCalib = "
@@ -164,13 +175,8 @@ beta[2] ~ dlnorm(0,0.001)
 ```
 
 
-While this model looks larger and more complicated that most we've looked at in JAGS, it really just consists of a number of simple parts we've seen before.  The first part is the fitting of the calibration curve.  The second part involves using the calibration curve to estimate soil moisture and then fitting the Poisson regression of seedling density vs soil moisture.  Unlike the conventional approach of performing each step sequentially, this approach propagates the error in each step into the final model.
+While this model looks larger and more complicated that most we've looked at in JAGS, it really just consists of a number of simple parts we've seen before.  The first part is the fitting of the calibration curve.  The second part involves using the calibration curve to estimate soil moisture and then fitting the Poisson regression of seedling density vs soil moisture. 
 	Reminder: you may want to specify initial conditions on the model parameters.  It is perfectly valid to use the previous estimates (e.g. Task 1) for the initial conditions.  For example, if I wanted to initialize alpha to all 0's and sigma to 5 I would specify list(alpha=c(0,0),sigma(5))
- 
-### Lab Report Task 4: 
-
-11. Fit the final combined calibration/Poisson regression model and provide a summary table and posterior density plots for the model parameters.  Also report the burn in and the effective MCMC sample size.
-12. Plot the model credible interval and predictive interval.  Extra Credit: Include the scatterplot of the data on the plot, using the posterior CIs for all the latent _SM_ variables as the x.
-13.	How does this fit compare to the previous Poisson regression of seedlings vs TDR in terms of the overall uncertainty in the model (width of credible and predictive intervals)?  In qualitative terms, to what degree does ignoring the uncertainty in the TDR/Soil Moisture relationship affect the uncertainty in our parameter estimates and our confidence in our model?
-
-
+	
+16. Fit the `PoisRegPlusCalib` model and provide a summary table and posterior density plots for the model parameters.  Also report the burn in and the effective MCMC sample size.
+17. Compare the `PoisRegPlusCalib` and `PoisRegPlusEIV` models, both in terms of the parameter values and graphically in terms of the overall model CIs and PIs.
