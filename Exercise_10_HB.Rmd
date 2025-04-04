@@ -1,6 +1,6 @@
 ---
 title: "Lab 10 - Hierarchical Bayes"
-author: "GE 509"
+author: "EE 509"
 output: html_document
 ---
 

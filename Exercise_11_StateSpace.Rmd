@@ -6,7 +6,7 @@ output: html_document
  
 The objective of this lab is to explore state-space time-series models.  State-space models are a flexible framework that treats the true time-series as a latent variable, which separates the process model (which describes the transition from one time to the next) and the data model (which describes the observation error).  This separation allows us to treat the observed data for each time as conditionally independent from every other observation given the underlying latent state variable.  This separation also allows us to model the data and process on different time scales and to easily accommodate missing data or irregular sampling, which is difficult in traditional time-series models.  The basic state-space framework presented here is easily extensible to multiple data sets, multiple interacting time series, and more complex (e.g. multivariate) process models.
 
-##Case Study:  Bialowieza moose
+## Case Study:  Bialowieza moose
 
 In this lab we will be working with data on the observed density of moose (Alces alces) in the Bialowieza Primeval Forest, which straddles the border of Poland and Belarus (Jedrzejewska et al 1997).  Our data consists of annual censuses collected by a combination of snow tracking, hunting, drive censuses, and counts at baiting sites.  Data have been corrected for known biases but some amount of observation error likely remains.  The data set is fairly long by ecological standards—a 48-year data set spanning 1946-1993—however, there are gaps of missing data from 1963-1966 and in 1989.  Data are available in the text file “alcesdata.txt”.  For further information, this analysis closely mirrors the example from Clark and Bjornstad (2004).
 
@@ -34,9 +34,7 @@ Next, lets assume that the observation error on the population densities is logn
  
 $$Y_t \sim N(X_t,\tau^2)$$
 
-![Figure 1](images/Lab10.1.jpg)
-
-Figure 1:  Graph representation of the state space model (priors not shown).  Under parameters, b represents the process model coefficients (r for the exponential, r and K for the Ricker), $\tau^2$ is the observation error, and $\sigma^2$ is the process error..  As defined above, X and Y are the latent “true” density and the observed values, respectively. The letters A, B, and C indicate the three terms that contribute to the posterior for Xt.  
+![Figure 1: Graph representation of the state space model (priors not shown).  Under parameters, b represents the process model coefficients (r for the exponential, r and K for the Ricker), $\tau^2$ is the observation error, and $\sigma^2$ is the process error..  As defined above, X and Y are the latent “true” density and the observed values, respectively. The letters A, B, and C indicate the three terms that contribute to the posterior for Xt.](images/Lab10.1.jpg)
 
 Finally, we will want to specify priors for the model parameters:
 
@@ -70,18 +68,16 @@ Finally, unlike many of your previous labs that converge quickly and are insensi
  
 ## Lab Report Tasks
 
-Lab Report Task 1
-
 1.  Write out and run the JAGS code for the exponential growth model.  Include the JAGS code and standard MCMC diagnostics in your lab report.  Also include the following plots:
 a) Plots of the time series data on both the LOG and LINEAR scales that include the model mean and credible intervals. Note: the linear scale plots are just a transform of the outputs from the log-scale model, NOT a different model. Also remember that because of Jensen's inequality you shouldn't transform the summary statistics, but you CAN transform the MCMC samples themselves
 b) Density plots for the predicted values for the missing data. Note: make sure to track these variables as part of your coda.samples variable list.
 c) Density plots of the intrinsic growth rate, the observation error variance, and the process model error variance
 
 2.	Modify the exponential growth process model in the JAGS code to instead be the Ricker growth model.  Rerun including your JAGS code and the same figures as in part 1 plus plots for both the prior and posterior density on the carrying capacity.
-Hint: when implementing the Ricker model, don't forget that N and X are on different scales.
+Hint: When implementing the Ricker model, don't forget that N and X are on different scales. You'll need to exp(x[t-1]) to get N[t-1]
 
 3.	Construct a summary table that includes the parameters in both models, their 95% CI, and model selection scores (your choice between DIC, WAIC, or predictive loss).
 
-4.	Briefly give an interpretation of your results.  Be sure to comment on which model is a better fit, what you can interpret about the importance of density dependence in regulating this population, and whether the population is at its carrying capacity.	What can you infer about the relative importance of autogenic (internal) vs exogenous (external) factors in regulating this population?
+4.	Briefly give an interpretation of your results.  Be sure to comment on which model is a better fit, what you can interpret about the importance of density dependence in regulating this population, and whether the population is at its carrying capacity.	What can you infer about the relative importance of autogenic (internal) vs exogenous (external) and stochastic factors in regulating this population?
 
 5.	**Extra Credit**: An alternative to fitting this model as a time-series would have been to fit the data to the analytical solution for the model (e.g. for the exponential growth model, this would have been $N[1]*exp[r*t]$  ), which would have ignored the process varibility.  To approximate the difference in the resulting prediction, generate a time-series plot for the best fitting model (Exponential or Ricker) that contains: (1) the posterior model from your Bayesian fit (mean and CI on X), (2) the CI from the process model using the posterior parameter distributions (r, K, N[1]) but ignoring process error, (3) the observed data.  Comment on the difference between these lines, and between the lines and the data.
